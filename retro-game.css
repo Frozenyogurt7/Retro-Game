@@ -3,30 +3,11 @@ text-align:center;
 font-size:15px;
  font-family:Arial;
  color:#000000;
-	background: linear-gradient(#708090 , #b0C4de );
+	background: linear-gradient(#709084 , rgb(176, 222, 190) );
 
  }
  title{
  font-size:200%;
  }
 
- table{
- text-align:center;
- margin: 0 auto;
- border-color:black;
- }
-
-.tabnormal{
-	width:150px;
-	height:10px;
-	background-color:white;
-	
-}
-
-.tda{
-	color:white;
-	background-color:gray;
-	opacity: 0.7;
-
-	
-}
+ 

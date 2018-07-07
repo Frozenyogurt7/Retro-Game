@@ -2,11 +2,9 @@
 
 <head>
 
-<script language="javascript" type="text/javascript" src="retro-game.js"></script>
 
-<link rel="stylesheet" href="retro-game.css">
 
-<title> Retro-game </title>
+<title > Retro-game </title>
 
 
 </head>
@@ -14,19 +12,16 @@
 <body>
 
   
-<h1><u>Überschrift</u></h1>
+<h1 id="title"><u>Frogger</u></h1>
+
+<div id="game_div">
+    <canvas id="game" height="560" width="400"></canvas>
+  </div>
 
 
-<table>
+  <script language="javascript" type="text/javascript" src="retro-game.js"></script>
 
-<tr>
-
-<td width="150" height="10px"><b>Test </td >
-
-
-</tr>
-
-</table>
+  <link rel="stylesheet" href="retro-game.css">
 
 
 
@@ -34,14 +29,6 @@
 
 
 
-
-
-
-
-<input id="regel" type="range" name="auswertung" min="0"step="20000" max="20000000" value="0" >
-Test
-
-<button style="width:200px" onclick="rechnen()"> Test</Button>
 
 
 </body>
