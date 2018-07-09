@@ -3,7 +3,7 @@
 
 var spiel = document.getElementById('game');
 var frog = {
-    x:spiel.width,
+    x:spiel.width / 2 -20,
     y:spiel.height -15
     };
 var context = spiel.getContext('2d');
@@ -24,27 +24,67 @@ var drawBackground = function() {
     sprites = new Image();
     sprites.src = 'assets/frogger.png'; 
     sprites.onload = function() {
-    setInterval(game_loop, 50);
+    inter= setInterval(game_loop, 50);
+    
+
+
     };
 
+    var carpos = 0
 
 var game_loop = function(){
     drawBackground();
-    context.drawImage(sprites, 12, 369, 23, 17, frog.x / 2 -20, frog.y -40, 23, 17);
+    context.drawImage(sprites, 12, 369, 23, 17, frog.x , frog.y -40, 23, 17);
+    drawCars()
+    
+    //console.log(carpos % spiel.width & "," &  "460")
+    console.log(frog.y-50)
+    if(carpos % spiel.width +10 >= frog.x && carpos % spiel.width <= frog.x && 460  == frog.y-50) {
+
+        clearInterval(inter)
+    }
+}
+
+var drawCars = function(){
+
+
+    context.drawImage(sprites, 8, 265, 30, 22, carpos % spiel.width, 460, 30, 22);
+    //context.drawImage(sprites, 8, 265, 30, 22, (carpos + 100 )% spiel.width, 460, 30, 22);       
+    ///context.drawImage(sprites, 8, 265, 30, 22, (carpos + 200 )% spiel.width, 460, 30, 22); 
+    //context.drawImage(sprites, 8, 265, 30, 22, (carpos + 300 )% spiel.width, 460, 30, 22); 
+
+    //context.drawImage(sprites, 8, 265, 30, 22, spiel.width - (carpos % spiel.width), 420, 30, 22);
+    //context.drawImage(sprites, 8, 265, 30, 22, spiel.width - ((carpos + 100) % spiel.width), 420, 30, 22);
+    //context.drawImage(sprites, 8, 265, 30, 22, spiel.width - ((carpos + 200) % spiel.width), 420, 30, 22);
+    //context.drawImage(sprites, 8, 265, 30, 22, spiel.width - ((carpos + 300) % spiel.width), 420, 30, 22);
+   
+    //context.drawImage(sprites, 8, 265, 30, 22, carpos % spiel.width, 380, 30, 22);
+    
+    //context.drawImage(sprites, 8, 265, 30, 22, spiel.width - (carpos % spiel.width), 340, 30, 22);
+    carpos = carpos + 2
+
 
 }
 
+
+
+
+
     document.body.onkeydown = function(event){
-       if(event.code=="ArrowUp"){
-        frog.y = frog.y - 50;
-       }else if(event.code == "ArrowDown"){
-        frog.y = frog.y + 50;
+        console.log(event)
+       if(event.code=="ArrowUp" && frog.y -100 > 0){ 
+        frog.y = frog.y - 35;
+
+       }else if(event.code == "ArrowDown" && frog.y  < spiel.height){
+
+        frog.y = frog.y + 35;
        }
        else if(event.code == "ArrowLeft"){
-        frog.x = frog.x - 50;
+        frog.x = frog.x - 42;
+        console.log("test")
        }
        else if(event.code == "ArrowRight"){
-        frog.x = frog.x + 50;
+        frog.x = frog.x + 42;
        }
          
         
