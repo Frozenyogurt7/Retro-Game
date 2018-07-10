@@ -10,8 +10,14 @@ var context = spiel.getContext('2d');
     sprites.src = 'assets/frogger.png'; 
     sprites.onload = function() {       //after images are load
 
+for(i=0;i<3;i++){
+car[i] = new car(50*i,0,5)
 
-    car1 = new car();
+}
+for(i=3;i<5;i++){
+   car[i] = new car(50*i,1,10)
+}
+   
     inter= setInterval(game_loop, 85);      //loop //85 mileseconds = ~ 12 FPS (motion human able to see)
     
 
@@ -26,11 +32,12 @@ var game_loop = function(){
 
     drawBackground();
     context.drawImage(sprites, 12, 369, 23, 17, frog.x , frog.y, 23, 17);
-
-    car1.move();                //loop through all cars
-    car1.checkCrash();
-      
-
+    
+    for(i=0;i<5;i++){
+    car[i].move();                //loop through all cars
+    car[i].checkCrash();
+    }
+  
       //  clearInterval(inter)
    
 }
@@ -59,8 +66,8 @@ var drawBackground = function() {
        if(event.keyCode==38 && frog.y -100 > 0){ 
         frog.y = frog.y - 35;
 
-       }else if(event.keyCode == 40 && frog.y  < spiel.height){
-
+       }else if(event.keyCode == 40 && frog.y  < spiel.height -80){
+        console.log(frog.y)
         frog.y = frog.y + 35;
        }
        else if(event.keyCode == 37){
@@ -86,18 +93,27 @@ var drawBackground = function() {
         
 
           
-        constructor(){      //parameter x y bzw row and speed have to be given
-            this.x = 0
-            this.y = 460
-            this.speed = 10
+        constructor(x,row,speed){      //parameter x y bzw row and speed have to be given
+            this.x = x
+            this.row = row
+            this.y = 460 - row * 30
+            this.speed = speed
                        
-            context.drawImage(sprites, 8, 265, 30, 22, this.x, this.y, 30, 22);
+            
+            
         }
     
         move(){
            
-            this.x = (this.x + this.speed) % spiel.width
-            context.drawImage(sprites, 8, 265, 30, 22, this.x, this.y, 30, 22);
+            this.x <= spiel.width + 20 ? this.x = (this.x + this.speed) : this.x = -20;
+          
+            switch(this.row){
+                case 0:context.drawImage(sprites, 8, 265, 30, 22, this.x, this.y, 30, 22);
+                        break;
+                case 1:context.drawImage(sprites, 44, 265, 30, 22, this.x , this.y, 30, 22);
+                        break;
+            }
+            
         }
         checkCrash(){
            
