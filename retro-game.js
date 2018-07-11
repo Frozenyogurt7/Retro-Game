@@ -11,12 +11,19 @@ var context = spiel.getContext('2d');
     sprites.onload = function() {       //after images are load
 
 for(i=0;i<3;i++){
-car[i] = new car(50*i,0,5)
+car[i] = new car(50*i,0,5,"right")
 
 }
 for(i=3;i<5;i++){
-   car[i] = new car(50*i,1,10)
+   car[i] = new car(50*i,1,10,"left")
 }
+
+for(i=5;i<7;i++){
+    car[i] = new car(50*i,2,7,"right")
+    console.log("new lkw")
+ }
+
+ console.log(car[6].speed)
    
     inter= setInterval(game_loop, 85);      //loop //85 mileseconds = ~ 12 FPS (motion human able to see)
     
@@ -31,9 +38,22 @@ for(i=3;i<5;i++){
 var game_loop = function(){
 
     drawBackground();
-    context.drawImage(sprites, 12, 369, 23, 17, frog.x , frog.y, 23, 17);
+
+        switch(frog.picture){
+            case 0: context.drawImage(sprites, 12, 369, 23, 20, frog.x , frog.y, 23, 20); // draw frog up
+                    break;
+            case 1:context.drawImage(sprites, 80, 369, 23, 20, frog.x , frog.y, 23, 20); // draw frog down
+                    break;
+            case 2:context.drawImage(sprites, 75, 337, 23, 20, frog.x , frog.y, 23, 20); // draw frog left
+                    break;
+            case 3:context.drawImage(sprites, 12, 335, 23, 22, frog.x , frog.y, 23, 22); // draw frog right
+                    break;
+        }
+        
     
-    for(i=0;i<5;i++){
+    
+    console.log(car.length)
+    for(i=0;i<=7;i++){
     car[i].move();                //loop through all cars
     car[i].checkCrash();
     }
@@ -64,18 +84,22 @@ var drawBackground = function() {
     document.body.onkeydown = function(event){
       
        if(event.keyCode==38 && frog.y -100 > 0){ 
+       frog.picture = 0;
         frog.y = frog.y - 35;
-
+        
        }else if(event.keyCode == 40 && frog.y  < spiel.height -80){
-        console.log(frog.y)
+        frog.picture = 1;
         frog.y = frog.y + 35;
        }
        else if(event.keyCode == 37){
+        frog.picture = 2;
         frog.x = frog.x - 42;
        }
        else if(event.keyCode == 39){
+        frog.picture = 3;
         frog.x = frog.x + 42;
-       }
+       
+    }
          
         
     };
@@ -93,24 +117,32 @@ var drawBackground = function() {
         
 
           
-        constructor(x,row,speed){      //parameter x y bzw row and speed have to be given
+        constructor(x,row,speed,direc){      //parameter x y bzw row and speed have to be given
             this.x = x
             this.row = row
             this.y = 460 - row * 30
             this.speed = speed
-                       
+            this.direction = direc           
             
             
         }
     
         move(){
            
-            this.x <= spiel.width + 20 ? this.x = (this.x + this.speed) : this.x = -20;
+            switch(this.direction){
+                case "left": this.x <= spiel.width + 20 ? this.x = (this.x + this.speed) : this.x = -20; //move right
+                            break;
+                case "right":this.x >= -20 ? this.x = (this.x - this.speed) : this.x = spiel.width +20; //move left
+            }
+            
           
             switch(this.row){
-                case 0:context.drawImage(sprites, 8, 265, 30, 22, this.x, this.y, 30, 22);
+                case 0:context.drawImage(sprites, 8, 265, 30, 22, this.x, this.y, 30, 22);  //pink car
                         break;
-                case 1:context.drawImage(sprites, 44, 265, 30, 22, this.x , this.y, 30, 22);
+                case 1:context.drawImage(sprites, 44, 265, 30, 22, this.x , this.y, 30, 22); //car red wheel
+                        break;
+                case 2:context.drawImage(sprites, 100, 300, 60, 22, this.x , this.y, 60, 22); //LKW
+                console.log("LKW")
                         break;
             }
             
@@ -129,7 +161,8 @@ var drawBackground = function() {
 
         var frog = {
             x:spiel.width / 2 -15,
-            y:spiel.height -55
+            y:spiel.height -55,
+            picture:0
             };
 
 
@@ -140,22 +173,3 @@ var drawBackground = function() {
 	
 	
 	
-
-
-
-
-
-//-----------------------cars
-
-//context.drawImage(sprites, 8, 265, 30, 22, (carpos + 100 )% spiel.width, 460, 30, 22);       
-    ///context.drawImage(sprites, 8, 265, 30, 22, (carpos + 200 )% spiel.width, 460, 30, 22); 
-    //context.drawImage(sprites, 8, 265, 30, 22, (carpos + 300 )% spiel.width, 460, 30, 22); 
-
-    //context.drawImage(sprites, 8, 265, 30, 22, spiel.width - (carpos % spiel.width), 420, 30, 22);
-    //context.drawImage(sprites, 8, 265, 30, 22, spiel.width - ((carpos + 100) % spiel.width), 420, 30, 22);
-    //context.drawImage(sprites, 8, 265, 30, 22, spiel.width - ((carpos + 200) % spiel.width), 420, 30, 22);
-    //context.drawImage(sprites, 8, 265, 30, 22, spiel.width - ((carpos + 300) % spiel.width), 420, 30, 22);
-   
-    //context.drawImage(sprites, 8, 265, 30, 22, carpos % spiel.width, 380, 30, 22);
-    
-    //context.drawImage(sprites, 8, 265, 30, 22, spiel.width - (carpos % spiel.width), 340, 30, 22);
