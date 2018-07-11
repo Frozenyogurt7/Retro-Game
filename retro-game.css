@@ -1,13 +1,13 @@
 body{
-text-align:center;
-font-size:15px;
- font-family:Arial;
- color:#000000;
+	text-align:center;
+	font-size:15px;
+	font-family:Arial;
+	color:#000000;
 	background: linear-gradient(#709084 , rgb(176, 222, 190) );
+}
 
- }
- title{
- font-size:200%;
- }
+title{
+	font-size:200%;
+}
 
  
