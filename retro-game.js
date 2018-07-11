@@ -19,11 +19,11 @@ for(i=3;i<5;i++){
 }
 
 for(i=5;i<7;i++){
-    car[i] = new car(50*i,2,7,"right")
+    car[i] = new car(50*i,2,7,"right",1.2)
     console.log("new lkw")
  }
 
- console.log(car[6].speed)
+
    
     inter= setInterval(game_loop, 85);      //loop //85 mileseconds = ~ 12 FPS (motion human able to see)
     
@@ -53,7 +53,7 @@ var game_loop = function(){
     
     
     console.log(car.length)
-    for(i=0;i<=7;i++){
+    for(i=0;i<=car.length+1;i++){
     car[i].move();                //loop through all cars
     car[i].checkCrash();
     }
@@ -113,21 +113,20 @@ var drawBackground = function() {
 
 
 
-    class car{
+
         
 
           
-        constructor(x,row,speed,direc){      //parameter x y bzw row and speed have to be given
+        var car =function(x,row,speed,direc,length){      //parameter x y bzw row and speed have to be given
             this.x = x
             this.row = row
             this.y = 460 - row * 30
             this.speed = speed
             this.direction = direc           
-            
-            
-        }
+            this.lenght = length || 1
+        
     
-        move(){
+        this.move= function(){
            
             switch(this.direction){
                 case "left": this.x <= spiel.width + 20 ? this.x = (this.x + this.speed) : this.x = -20; //move right
@@ -147,16 +146,16 @@ var drawBackground = function() {
             }
             
         }
-        checkCrash(){
+        this.checkCrash = function(){
            
             //if in hitbox of frog alert crash
-            if(frog.x+10 >= this.x && frog.x-10 <= this.x && frog.y <= this.y +10 && frog.y >= this.y -10 ){
+            if(frog.x+10 >= this.x && frog.x-10 <= this.x * this.lenght && frog.y <= this.y +10 && frog.y >= this.y -10 ){
                 alert("crash");
             }
 
         }
-    
-        }
+    }
+        
 
 
         var frog = {
