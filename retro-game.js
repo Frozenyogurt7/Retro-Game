@@ -53,7 +53,7 @@ var game_loop = function(){
    
 }
 
-//----------------------------draw background------------
+//----------------------------draw background------------ 
 
 var drawBackground = function() {
     context.fillStyle='#191970'; //color
