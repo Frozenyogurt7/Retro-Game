@@ -55,11 +55,16 @@ var game_loop = function(){
         car[i].checkOn() ? console.log("crash") : null
     }
      if(checkWater()){
-         var bool = true
+         var bool = false
         for(i=0;i<Object.keys(wood).length;i++){
            //every
-           console.log(i)
-             wood[i].checkOn()==true && bool==false  ? bool = true: bool = false
+            if(wood[i].checkOn() && !bool){
+                bool = true
+                break;
+            }else{            
+                bool = false
+            }
+              
             
         } 
         if(bool){
