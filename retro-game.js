@@ -24,8 +24,12 @@ for(i=5;i<7;i++){
     car[i] = new car(50*i,2,2.3,"right",1.2)
   
  }
- 
-wood1 = new wood(50,0,5,"left")
+ for(x=0;x<2;x++){
+    wood[x] = new wood(120*x,0,2,"left",50)
+}
+for(x=2;x<4;x++){
+    wood[x] = new wood(120*(x-2),1,2,"right",50)
+}
 
 inter= setInterval(game_loop, 16);      //loop //85 mileseconds = ~  30 FPS (motion human able to see)
     
@@ -39,18 +43,41 @@ var game_loop = function(){
     
     drawBackground();
    
-    drawFrog();
-    checkWater();    
-        
-    wood1.move();
-    for(i=0;i<=car.length+1;i++){
+   
+    for(x=0;x<Object.keys(wood).length;x++){  
+ 
+        wood[x].move();
+        }
+   
+
+    for(i=0;i<Object.keys(car).length;i++){
         car[i].move();                //loop through all cars
-        car[i].checkCrash();
+        car[i].checkOn() ? console.log("crash") : null
     }
+     if(checkWater()){
+         var bool = true
+        for(i=0;i<Object.keys(wood).length;i++){
+           //every
+           console.log(i)
+             wood[i].checkOn()==true && bool==false  ? bool = true: bool = false
+            
+        } 
+        if(bool){
+            console.log("nowater")
+            
+        } else {
+            console.log("water")
+        }
+     
+
+     }
+        
+  
     
+
   
 
-   
+    drawFrog();                     //have to be on the end because on top of all images
 }
 
 //----------------------------draw background------------ 
@@ -84,7 +111,7 @@ var drawFrog = function(){
 
 var checkWater = function(){
     if(frog.y <= spiel.height / 2 ){
-        alert("Water")
+       return true
     }
 }
 
@@ -150,11 +177,12 @@ var checkWater = function(){
             }
             
         }
-        this.checkCrash = function(){
+        this.checkOn = function(){
            
             //if in hitbox of frog alert crash
             if(frog.x+10 >= this.x && frog.x-10 <= this.x * this.lenght && frog.y <= this.y +10 && frog.y >= this.y -10 ){
-                alert("crash");
+               
+                return true
             }
 
         }
@@ -164,14 +192,14 @@ var checkWater = function(){
     var wood =function(x,row,speed,direc,length){      //parameter x y bzw row and speed have to be given
         this.x = x
         this.row = row
-        this.y = 250
+        this.y = 250 - (row * 30)
         this.speed = speed
         this.direction = direc           
         this.lenght = length || 1
     
 
         this.move= function(){
-       console.log("move")
+     
         switch(this.direction){
             case "left": this.x <= spiel.width + 20 ? this.x = (this.x + this.speed) : this.x = -20; //move right
                         break;
@@ -180,19 +208,26 @@ var checkWater = function(){
         
       
         switch(this.row){
-            case 0: context.drawImage(sprites, 10, 225, 90, 28 ,this.x, this.y, 90, 28);  //pink car
-            console.log("move")
+            case 0: context.drawImage(sprites, 10, 225,85, 28 ,this.x, this.y, 85, 28); 
                     break;
+            case 1: context.drawImage(sprites, 10, 225,85, 28 ,this.x, this.y, 85, 28);  
         
         }
         
         }
         this.checkOn = function(){
-                
-
-        }
+            //if in hitbox of frog 
+            
+            if(frog.x+10 >= this.x && frog.x-10 <= this.x + this.lenght && frog.y <= this.y +10 && frog.y >= this.y -10 ){
+                this.direction == "left" ?frog.x = frog.x + this.speed :frog.x = frog.x - this.speed 
+                return true
+                 
+            }else{
+                return false
+            }
 
     }
+}
 
         var frog = {
             x:spiel.width / 2 -15,
