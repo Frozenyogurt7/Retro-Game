@@ -1,5 +1,3 @@
-
-
 //get Canvas
 var spiel = document.getElementById('game');
 var context = spiel.getContext('2d');
@@ -21,13 +19,13 @@ var vehicle = []
 var isPlayerAlive = true
 var lives = 4
 
-try{
-    
+try {
+
     highscore = localStorage.getItem('highscore')
-    if(highscore == null){
+    if (highscore == null) {
         highscore = 0
     }
-}catch(exception){
+} catch (exception) {
     highscore = 0
 }
 
@@ -59,11 +57,11 @@ sprites.onload = function () { //after images are load
 
     }
     for (i = 7; i < 11; i++) {
-        vehicle[i] = new gameObject(40 * (i-4), 360, "bagger", 4, "left")
+        vehicle[i] = new gameObject(40 * (i - 4), 360, "bagger", 4, "left")
 
     }
     for (i = 11; i < 13; i++) {
-        vehicle[i] = new gameObject(40 * (i-6), 325, "blue car", 4, "right")
+        vehicle[i] = new gameObject(40 * (i - 6), 325, "blue car", 4, "right")
 
     }
     for (x = 0; x < 2; x++) {
@@ -85,8 +83,8 @@ var game_loop = function () {
     context.beginPath()
 
     drawBackground();
-    
-    
+
+
     for (x = 0; x < Object.keys(plane).length; x++) {
 
         plane[x].move();
@@ -106,9 +104,9 @@ var game_loop = function () {
         }
     }
 
-    
-   
-    if (checkWater()&& !frog.picture.includes("way")) {
+
+
+    if (checkWater() && !frog.picture.includes("way")) {
         var isPlayerOnSafeObject = false
         for (i = 0; i < Object.keys(plane).length; i++) {
             //every
@@ -126,9 +124,9 @@ var game_loop = function () {
 
     }
 
-    if((505 - frog.y) / 35 *100 > score && !frog.picture.includes("way")){
-        score = (505 - frog.y) / 35 *100        //new score  
-    } 
+    if ((505 - frog.y) / 35 * 100 > score && !frog.picture.includes("way")) {
+        score = (505 - frog.y) / 35 * 100 //new score  
+    }
 
 
 
@@ -148,31 +146,31 @@ var drawBackground = function () {
     context.drawImage(sprites, 0, 119, 399, 34, 0, 283, 400, 38); //lila between water and street
     context.drawImage(sprites, 0, 119, 399, 34, 0, 490, 400, 38); //lila at the beginning
 
-    for(i=0;i<5;i++){
+    for (i = 0; i < 5; i++) {
         context.beginPath()
-        context.arc(27 +i*85, 90, 10, 0, 2 * Math.PI); //water lily
+        context.arc(27 + i * 85, 90, 10, 0, 2 * Math.PI); //water lily
         context.stroke();
         context.fillStyle = 'green';
         context.fill()
     }
 
-drawLine(5,460)
-// for(z=0;z<4;z++){
-//     for(i=0;i<10;i++){
-//         context.beginPath()
-//         context.moveTo(5 + i * 40,460 - z * 35)
-//         context.lineTo(30 + i * 40,460 - z * 35)
-//         context.strokeStyle="white"
-//         context.stroke()    
-//    }
-// }
-  
+    drawLine(5, 460)
+    // for(z=0;z<4;z++){
+    //     for(i=0;i<10;i++){
+    //         context.beginPath()
+    //         context.moveTo(5 + i * 40,460 - z * 35)
+    //         context.lineTo(30 + i * 40,460 - z * 35)
+    //         context.strokeStyle="white"
+    //         context.stroke()    
+    //    }
+    // }
+
 
     context.font = 'bold 12pt arial';
     context.fillText('Score: ', 100, 550);
     context.fillText('Highscore: ', 240, 550);
-    context.fillText(score, 155 , 550);
-    context.fillText(highscore, 330 , 550);
+    context.fillText(score, 155, 550);
+    context.fillText(highscore, 330, 550);
     for (i = 0; i < lives; i++) {
         context.drawImage(sprites, 13, 334, 17, 23, 5 + i * 20, 538, 11, 15);
     }
@@ -180,20 +178,20 @@ drawLine(5,460)
 
 };
 
-var drawLine =function (x,y){
+var drawLine = function (x, y) {
 
-        context.beginPath()
-        context.moveTo(x ,y)
-        context.lineTo(x+ 30 ,y)
-        context.strokeStyle="white"
-        context.stroke()   
-        
-        if(x <326){
-            drawLine(x = x + 40, y = y )
-            return;
-        }else if(y > 355){
-            drawLine(x = 5, y = y - 35 )
-        }
+    context.beginPath()
+    context.moveTo(x, y)
+    context.lineTo(x + 30, y)
+    context.strokeStyle = "white"
+    context.stroke()
+
+    if (x < 326) {
+        drawLine(x = x + 40, y = y)
+        return;
+    } else if (y > 355) {
+        drawLine(x = 5, y = y - 35)
+    }
 
 }
 
@@ -216,16 +214,16 @@ var drawFrog = function () {
                 context.drawImage(sprites, 12, 335, 23, 22, frog.x, frog.y, 23, 22); // draw frog right
                 break;
             case "leftway":
-                context.drawImage(sprites, 110, 338, 26, 22, frog.x,frog.y, 26, 22); // draw left way
+                context.drawImage(sprites, 110, 338, 26, 22, frog.x, frog.y, 26, 22); // draw left way
                 break;
             case "upway":
                 context.drawImage(sprites, 45, 365, 23, 26, frog.x, frog.y, 23, 26); // draw frog upway
                 break;
             case "rightway":
-                context.drawImage(sprites, 43, 335, 26, 22, frog.x,frog.y, 26, 22); // draw right way
+                context.drawImage(sprites, 43, 335, 26, 22, frog.x, frog.y, 26, 22); // draw right way
                 break;
             case "downway":
-                context.drawImage(sprites, 115, 365, 25, 26, frog.x,frog.y, 25, 26); // draw down way
+                context.drawImage(sprites, 115, 365, 25, 26, frog.x, frog.y, 25, 26); // draw down way
                 break;
         }
     } else {
@@ -242,37 +240,37 @@ var checkWater = function () {
 
 //---------------keydown event------------------------
 
-document.body.onkeydown =  async function (event) {     //async because we want to await
-    
+document.body.onkeydown = async function (event) { //async because we want to await
+
     if (isPlayerAlive != false) { //if crashed then press key to reload
-        if (event.keyCode == 38 && frog.y - 100 > 0) {                  //move and change picture while jumping 100 ms
+        if (event.keyCode == 38 && frog.y - 100 > 0) { //move and change picture while jumping 100 ms
             frog.picture = "upway"; //frog up
             frog.y = frog.y - 25;
             await sleep(100)
-                frog.picture = "up"; //frog left
-                frog.y = frog.y - 10;
-           
+            frog.picture = "up"; //frog left
+            frog.y = frog.y - 10;
+
         } else if (event.keyCode == 40 && frog.y < spiel.height - 80) {
             frog.picture = "downway"; //frog down
             frog.y = frog.y + 20;
             await sleep(100)
-                frog.picture = "down"; //frog left
-                frog.y = frog.y + 15;
-     
+            frog.picture = "down"; //frog left
+            frog.y = frog.y + 15;
+
         } else if (event.keyCode == 37 && frog.x > 40) {
             frog.picture = "leftway"; //frog left
             frog.x = frog.x - 21;
             await sleep(100)
-                frog.picture = "left"; //frog left
-                frog.x = frog.x - 21;
-                       
+            frog.picture = "left"; //frog left
+            frog.x = frog.x - 21;
+
         } else if (event.keyCode == 39 && frog.x < spiel.width - 50) {
             frog.picture = "rightway"; //frog right
             frog.x = frog.x + 21;
             await sleep(100)
-                frog.picture = "right"; //frog left
-                frog.x = frog.x + 21;
-                   }
+            frog.picture = "right"; //frog left
+            frog.x = frog.x + 21;
+        }
     } else {
         isPlayerAlive = true
         frog = frog = {
@@ -286,8 +284,8 @@ document.body.onkeydown =  async function (event) {     //async because we want 
 };
 
 //sleep function returns and promise after x miliseconds so a async function can wait while executing
-var sleep = function(ms){
-    return new Promise(resolve => setTimeout(resolve, ms));     
+var sleep = function (ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 //-----------------------------------------classes-----------------
 
@@ -335,9 +333,9 @@ var gameObject = function (x, y, vehicle, speed, direc, length) { //parameter x 
             case "crocodile":
                 context.drawImage(sprites, 155, 370, 90, 25, this.x, this.y, 90, 25); //crocodile
                 break;
-                
-          
-                
+
+
+
 
         }
 
@@ -359,16 +357,16 @@ var dead = function () {
     lives = lives - 1
     clearInterval(loop)
     if (lives == 0) {
-        
+
         alert("lose game")
-        if(highscore<score){
-           
-            localStorage.setItem('highscore',score.toString())
-            highscore=score
-            
+        if (highscore < score) {
+
+            localStorage.setItem('highscore', score.toString())
+            highscore = score
+
         }
-        score =0
+        score = 0
         lives = 4
-     
+
     }
 }
