@@ -18,7 +18,7 @@ var frog = {
 
 var plane = []
 var vehicle = []
-var gameStatus = true
+var isPlayerAlive = true
 var lives = 4
 try{
     highscore = localStorage.getItem('highscore')
@@ -95,17 +95,17 @@ var game_loop = function () {
 
 
     if (checkWater()) {
-        var bool = false
+        var isPlayerOnSafeObject = false
         for (i = 0; i < Object.keys(plane).length; i++) {
             //every
-            if (plane[i].checkOn() && !bool) {
-                bool = true
+            if (plane[i].checkOn() && !isPlayerOnSafeObject) {
+                isPlayerOnSafeObject = true
                 break;
             } else {
-                bool = false
+                isPlayerOnSafeObject = false
             }
         }
-        if (!bool) {
+        if (!isPlayerOnSafeObject) {
             dead()
         }
 
@@ -142,7 +142,6 @@ var drawBackground = function () {
     context.fillText('Highscore: ', 240, 550);
     context.fillText(score, 155 , 550);
     context.fillText(highscore, 330 , 550);
-    console.log(lives)
     for (i = 0; i < lives; i++) {
         context.drawImage(sprites, 13, 334, 17, 23, 5 + i * 20, 538, 11, 15);
     }
@@ -151,7 +150,7 @@ var drawBackground = function () {
 };
 
 var drawFrog = function () {
-    if (gameStatus != false) {
+    if (isPlayerAlive != false) {
 
 
         switch (frog.picture) {
@@ -169,7 +168,7 @@ var drawFrog = function () {
                 break;
         }
     } else {
-        context.drawImage(deadSprite, 0, 0, 40, 30, frog.x, frog.y - 10, 40, 30);
+        context.drawImage(deadSprite, 0, 0, 30, 30, frog.x, frog.y - 10, 30, 30);
     }
 }
 
@@ -183,8 +182,7 @@ var checkWater = function () {
 //---------------keydown event------------------------
 
 document.body.onkeydown = function (event) {
-    console.log(frog.y)
-    if (gameStatus != false) { //if crashed then press key to reload
+    if (isPlayerAlive != false) { //if crashed then press key to reload
         if (event.keyCode == 38 && frog.y - 100 > 0) {
             frog.picture = 0; //frog up
             frog.y = frog.y - 35;
@@ -205,7 +203,7 @@ document.body.onkeydown = function (event) {
             frog.x = frog.x + 42;
         }
     } else {
-        gameStatus = true
+        isPlayerAlive = true
         frog = frog = {
             x: spiel.width / 2 - 15,
             y: spiel.height - 55,
@@ -274,7 +272,7 @@ var gameObject = function (x, y, vehicle, speed, direc, length) { //parameter x 
 }
 
 var dead = function () {
-    gameStatus = false
+    isPlayerAlive = false
     lives = lives - 1
     clearInterval(loop)
     if (lives == 0) {
