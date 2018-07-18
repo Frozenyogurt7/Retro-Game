@@ -20,8 +20,13 @@ var plane = []
 var vehicle = []
 var gameStatus = true
 var lives = 4
+
 try{
+    
     highscore = localStorage.getItem('highscore')
+    if(highscore == null){
+        highscore = 0
+    }
 }catch(exception){
     highscore = 0
 }
@@ -46,18 +51,26 @@ sprites.onload = function () { //after images are load
 
     }
     for (i = 3; i < 5; i++) {
-        vehicle[i] = new gameObject(50 * i, 430, "red car", 6, "left")
+        vehicle[i] = new gameObject(50 * i, 428, "red car", 6, "left")
     }
 
     for (i = 5; i < 7; i++) {
-        vehicle[i] = new gameObject(50 * i, 400, "white LKW", 4, "right", 1.2)
+        vehicle[i] = new gameObject(50 * i, 396, "white LKW", 4, "right", 1.2)
+
+    }
+    for (i = 7; i < 11; i++) {
+        vehicle[i] = new gameObject(40 * (i-4), 364, "bagger", 4, "left")
+
+    }
+    for (i = 11; i < 13; i++) {
+        vehicle[i] = new gameObject(40 * (i-6), 332, "blue car", 4, "right")
 
     }
     for (x = 0; x < 2; x++) {
-        plane[x] = new gameObject(120 * x, 250, "wood line", 5, "left", 4)
+        plane[x] = new gameObject(120 * x, 250, "wood line", 4, "left", 4)
     }
     for (x = 2; x < 4; x++) {
-        plane[x] = new gameObject(120 * (x - 2), 220, "wood line", 5, "right", 4)
+        plane[x] = new gameObject(120 * (x - 2), 220, "wood line", 3, "right", 4)
     }
 
     loop = setInterval(game_loop, 16); //loop //85 mileseconds = ~  30 FPS (motion human able to see)
@@ -142,7 +155,9 @@ var drawBackground = function () {
     context.fillText('Highscore: ', 240, 550);
     context.fillText(score, 155 , 550);
     context.fillText(highscore, 330 , 550);
-    console.log(lives)
+    
+    
+
     for (i = 0; i < lives; i++) {
         context.drawImage(sprites, 13, 334, 17, 23, 5 + i * 20, 538, 11, 15);
     }
@@ -246,17 +261,29 @@ var gameObject = function (x, y, vehicle, speed, direc, length) { //parameter x 
 
         switch (this.vehicle) { //draw objects
             case "pink car":
-                context.drawImage(sprites, 8, 265, 30, 22, this.x, this.y, 30, 22); //pink car
+                context.drawImage(sprites, 8, 265, 30, 22, this.x, this.y, 30, 22); //green car
                 break;
             case "red car":
-                context.drawImage(sprites, 44, 265, 30, 22, this.x, this.y, 30, 22); //car red wheel
+                context.drawImage(sprites, 44, 265, 30, 22, this.x, this.y, 30, 22); //red car
                 break;
             case "white LKW":
                 context.drawImage(sprites, 100, 300, 60, 22, this.x, this.y, 60, 22); //LKW
                 break;
+            case "bagger":
+                context.drawImage(sprites, 8, 300, 30, 22, this.x, this.y, 32, 22); //bagger
+                break;
+            case "blue car":
+                context.drawImage(sprites, 82, 265, 32, 24, this.x, this.y, 36, 24); //blue car
+                break;
             case "wood line":
                 context.drawImage(sprites, 10, 225, 85, 28, this.x, this.y, 85, 28); //wood
                 break;
+            case "crocodile":
+                context.drawImage(sprites, 155, 370, 90, 25, this.x, this.y, 90, 25); //crocodile
+                break;
+                
+          
+                
 
         }
 
@@ -282,7 +309,7 @@ var dead = function () {
         alert("lose game")
         if(highscore<score){
            
-            localStorage.setItem('highscore',score)
+            localStorage.setItem('highscore',score.toString())
             highscore=score
             
         }
