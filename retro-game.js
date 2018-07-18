@@ -13,7 +13,7 @@ var context = spiel.getContext('2d');
 var frog = {
     x: spiel.width / 2 - 15,
     y: spiel.height - 55,
-    picture: 0
+    picture: "up"
 };
 
 var plane = []
@@ -47,11 +47,11 @@ sprites.onload = function () { //after images are load
 
     //Create Cars
     for (i = 0; i < 3; i++) {
-        vehicle[i] = new gameObject(50 * i, 460, "pink car", 4, "right")
+        vehicle[i] = new gameObject(50 * i, 465, "pink car", 4, "right")
 
     }
     for (i = 3; i < 5; i++) {
-        vehicle[i] = new gameObject(50 * i, 428, "red car", 6, "left")
+        vehicle[i] = new gameObject(50 * i, 432, "red car", 6, "left")
     }
 
     for (i = 5; i < 7; i++) {
@@ -59,11 +59,11 @@ sprites.onload = function () { //after images are load
 
     }
     for (i = 7; i < 11; i++) {
-        vehicle[i] = new gameObject(40 * (i-4), 364, "bagger", 4, "left")
+        vehicle[i] = new gameObject(40 * (i-4), 360, "bagger", 4, "left")
 
     }
     for (i = 11; i < 13; i++) {
-        vehicle[i] = new gameObject(40 * (i-6), 332, "blue car", 4, "right")
+        vehicle[i] = new gameObject(40 * (i-6), 325, "blue car", 4, "right")
 
     }
     for (x = 0; x < 2; x++) {
@@ -85,8 +85,8 @@ var game_loop = function () {
     context.beginPath()
 
     drawBackground();
-
-
+    
+    
     for (x = 0; x < Object.keys(plane).length; x++) {
 
         plane[x].move();
@@ -106,8 +106,8 @@ var game_loop = function () {
         }
     }
 
-
-    if (checkWater()) {
+    
+    if (checkWater()&& !frog.picture.includes("way")) {
         var bool = false
         for (i = 0; i < Object.keys(plane).length; i++) {
             //every
@@ -119,13 +119,15 @@ var game_loop = function () {
             }
         }
         if (!bool) {
-            dead()
+           dead()
         }
 
 
     }
 
-
+    if((505 - frog.y) / 35 *100 > score && !frog.picture.includes("way")){
+        score = (505 - frog.y) / 35 *100        //new score  
+    } 
 
 
 
@@ -141,14 +143,29 @@ var drawBackground = function () {
     context.fillStyle = '#000000'; //new color after first 
     context.fillRect(0, 284, 399, 283); //fill style
     // image,x old, y old, width old, height old, x new, y new, width new, height new
-    context.drawImage(sprites, 0, 0, 399, 113, 0, 0, 399, 113); // lila on top of page
-    context.drawImage(sprites, 0, 119, 399, 34, 0, 283, 399, 34); //lila between water and street
-    context.drawImage(sprites, 0, 119, 399, 34, 0, 495, 399, 34); //lila at the beginning
+    context.drawImage(sprites, 0, 0, 399, 113, 0, 0, 399, 113); // yelow on top of page
+    context.drawImage(sprites, 0, 119, 399, 34, 0, 283, 400, 38); //lila between water and street
+    context.drawImage(sprites, 0, 119, 399, 34, 0, 490, 400, 38); //lila at the beginning
 
-    context.arc(112, 90, 10, 0, 2 * Math.PI); //water lily
-    context.stroke();
-    context.fillStyle = 'green';
-    context.fill()
+    for(i=0;i<5;i++){
+        context.beginPath()
+        context.arc(27 +i*85, 90, 10, 0, 2 * Math.PI); //water lily
+        context.stroke();
+        context.fillStyle = 'green';
+        context.fill()
+    }
+
+drawLine(5,460)
+// for(z=0;z<4;z++){
+//     for(i=0;i<10;i++){
+//         context.beginPath()
+//         context.moveTo(5 + i * 40,460 - z * 35)
+//         context.lineTo(30 + i * 40,460 - z * 35)
+//         context.strokeStyle="white"
+//         context.stroke()    
+//    }
+// }
+  
 
     context.font = 'bold 12pt arial';
     context.fillText('Score: ', 100, 550);
@@ -165,22 +182,51 @@ var drawBackground = function () {
 
 };
 
-var drawFrog = function () {
+var drawLine =function (x,y){
+
+        context.beginPath()
+        context.moveTo(x ,y)
+        context.lineTo(x+ 30 ,y)
+        context.strokeStyle="white"
+        context.stroke()   
+        
+        if(x <326){
+            drawLine(x = x + 40, y = y )
+            return;
+        }else if(y > 355){
+            drawLine(x = 5, y = y - 35 )
+        }
+
+}
+
+var drawFrog =   function () {
     if (gameStatus != false) {
 
 
         switch (frog.picture) {
-            case 0:
+            case "up":
                 context.drawImage(sprites, 12, 369, 23, 20, frog.x, frog.y, 23, 20); // draw frog up
                 break;
-            case 1:
+            case "down":
                 context.drawImage(sprites, 80, 369, 23, 20, frog.x, frog.y, 23, 20); // draw frog down
                 break;
-            case 2:
+            case "left":
                 context.drawImage(sprites, 75, 337, 23, 20, frog.x, frog.y, 23, 20); // draw frog left
                 break;
-            case 3:
+            case "right":
                 context.drawImage(sprites, 12, 335, 23, 22, frog.x, frog.y, 23, 22); // draw frog right
+                break;
+            case "leftway":
+                context.drawImage(sprites, 110, 338, 26, 22, frog.x,frog.y, 26, 22); // draw left way
+                break;
+            case "upway":
+                context.drawImage(sprites, 45, 365, 23, 26, frog.x, frog.y, 23, 26); // draw frog upway
+                break;
+            case "rightway":
+                context.drawImage(sprites, 43, 335, 26, 22, frog.x,frog.y, 26, 22); // draw right way
+                break;
+            case "downway":
+                context.drawImage(sprites, 115, 365, 25, 26, frog.x,frog.y, 25, 26); // draw down way
                 break;
         }
     } else {
@@ -197,45 +243,54 @@ var checkWater = function () {
 
 //---------------keydown event------------------------
 
-document.body.onkeydown = function (event) {
-    console.log(frog.y)
+document.body.onkeydown =  async function (event) {     //async because we want to await
+    
     if (gameStatus != false) { //if crashed then press key to reload
-        if (event.keyCode == 38 && frog.y - 100 > 0) {
-            frog.picture = 0; //frog up
-            frog.y = frog.y - 35;
-     
-            if((505 - frog.y) / 35 *100 > score){
-            
-                score = (505 - frog.y) / 35 *100 
-               
-            } 
+        if (event.keyCode == 38 && frog.y - 100 > 0) {                  //move and change picture while jumping 100 ms
+            frog.picture = "upway"; //frog up
+            frog.y = frog.y - 25;
+            await sleep(100)
+                frog.picture = "up"; //frog left
+                frog.y = frog.y - 10;
+           
         } else if (event.keyCode == 40 && frog.y < spiel.height - 80) {
-            frog.picture = 1; //frog down
-            frog.y = frog.y + 35;
+            frog.picture = "downway"; //frog down
+            frog.y = frog.y + 20;
+            await sleep(100)
+                frog.picture = "down"; //frog left
+                frog.y = frog.y + 15;
+     
         } else if (event.keyCode == 37 && frog.x > 40) {
-            frog.picture = 2; //frog left
-            frog.x = frog.x - 42;
+            frog.picture = "leftway"; //frog left
+            frog.x = frog.x - 21;
+            await sleep(100)
+                frog.picture = "left"; //frog left
+                frog.x = frog.x - 21;
+                       
         } else if (event.keyCode == 39 && frog.x < spiel.width - 50) {
-            frog.picture = 3; //frog right
-            frog.x = frog.x + 42;
-        }
+            frog.picture = "rightway"; //frog right
+            frog.x = frog.x + 21;
+            await sleep(100)
+                frog.picture = "right"; //frog left
+                frog.x = frog.x + 21;
+                   }
     } else {
         gameStatus = true
         frog = frog = {
             x: spiel.width / 2 - 15,
             y: spiel.height - 55,
-            picture: 0
+            picture: "up"
         };
         loop = setInterval(game_loop, 16)
     }
 
 };
 
-
-
+//sleep function returns and promise after x miliseconds so a async function can wait while executing
+var sleep = function(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));     
+}
 //-----------------------------------------classes-----------------
-
-
 
 
 var gameObject = function (x, y, vehicle, speed, direc, length) { //parameter x y bzw row and speed have to be given
