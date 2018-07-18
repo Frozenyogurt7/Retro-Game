@@ -18,7 +18,7 @@ var frog = {
 
 var plane = []
 var vehicle = []
-var gameStatus = true
+var isPlayerAlive = true
 var lives = 4
 
 try{
@@ -107,19 +107,20 @@ var game_loop = function () {
     }
 
     
+   
     if (checkWater()&& !frog.picture.includes("way")) {
-        var bool = false
+        var isPlayerOnSafeObject = false
         for (i = 0; i < Object.keys(plane).length; i++) {
             //every
-            if (plane[i].checkOn() && !bool) {
-                bool = true
+            if (plane[i].checkOn() && !isPlayerOnSafeObject) {
+                isPlayerOnSafeObject = true
                 break;
             } else {
-                bool = false
+                isPlayerOnSafeObject = false
             }
         }
-        if (!bool) {
-           dead()
+        if (!isPlayerOnSafeObject) {
+            dead()
         }
 
 
@@ -172,9 +173,6 @@ drawLine(5,460)
     context.fillText('Highscore: ', 240, 550);
     context.fillText(score, 155 , 550);
     context.fillText(highscore, 330 , 550);
-    
-    
-
     for (i = 0; i < lives; i++) {
         context.drawImage(sprites, 13, 334, 17, 23, 5 + i * 20, 538, 11, 15);
     }
@@ -199,8 +197,9 @@ var drawLine =function (x,y){
 
 }
 
-var drawFrog =   function () {
-    if (gameStatus != false) {
+
+var drawFrog = function () {
+    if (isPlayerAlive != false) {
 
 
         switch (frog.picture) {
@@ -230,7 +229,7 @@ var drawFrog =   function () {
                 break;
         }
     } else {
-        context.drawImage(deadSprite, 0, 0, 40, 30, frog.x, frog.y - 10, 40, 30);
+        context.drawImage(deadSprite, 0, 0, 30, 30, frog.x, frog.y - 10, 30, 30);
     }
 }
 
@@ -245,7 +244,7 @@ var checkWater = function () {
 
 document.body.onkeydown =  async function (event) {     //async because we want to await
     
-    if (gameStatus != false) { //if crashed then press key to reload
+    if (isPlayerAlive != false) { //if crashed then press key to reload
         if (event.keyCode == 38 && frog.y - 100 > 0) {                  //move and change picture while jumping 100 ms
             frog.picture = "upway"; //frog up
             frog.y = frog.y - 25;
@@ -275,7 +274,7 @@ document.body.onkeydown =  async function (event) {     //async because we want 
                 frog.x = frog.x + 21;
                    }
     } else {
-        gameStatus = true
+        isPlayerAlive = true
         frog = frog = {
             x: spiel.width / 2 - 15,
             y: spiel.height - 55,
@@ -356,7 +355,7 @@ var gameObject = function (x, y, vehicle, speed, direc, length) { //parameter x 
 }
 
 var dead = function () {
-    gameStatus = false
+    isPlayerAlive = false
     lives = lives - 1
     clearInterval(loop)
     if (lives == 0) {
