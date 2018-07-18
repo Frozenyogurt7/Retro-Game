@@ -4,8 +4,14 @@ var context = spiel.getContext('2d');
 
 //localStorage.setItem('highscore',0)
 //console.log(localStorage.getItem('highscore'))      //personal highscore!?
+var theme = document.createElement('audio');
+theme.setAttribute('src', 'assets/musik.mp3');
+theme.setAttribute('loop', 'true');
 
-
+var jumpSound = document.createElement('audio');
+jumpSound.setAttribute('src', 'assets/jump3.mp3');
+areSoundsActive = true
+theme.play();
 
 //frog json
 var frog = {
@@ -18,6 +24,7 @@ var plane = []
 var vehicle = []
 var isPlayerAlive = true
 var lives = 4
+var music = true
 
 try {
 
@@ -154,16 +161,8 @@ var drawBackground = function () {
         context.fill()
     }
 
-    drawLine(5, 460)
-    // for(z=0;z<4;z++){
-    //     for(i=0;i<10;i++){
-    //         context.beginPath()
-    //         context.moveTo(5 + i * 40,460 - z * 35)
-    //         context.lineTo(30 + i * 40,460 - z * 35)
-    //         context.strokeStyle="white"
-    //         context.stroke()    
-    //    }
-    // }
+    drawLine(5, 460)        //recursive function just because I can
+  
 
 
     context.font = 'bold 12pt arial';
@@ -178,9 +177,9 @@ var drawBackground = function () {
 
 };
 
-var drawLine = function (x, y) {
+var drawLine = function (x, y) {        
 
-    context.beginPath()
+    context.beginPath()     //recursive function just because I can
     context.moveTo(x, y)
     context.lineTo(x + 30, y)
     context.strokeStyle = "white"
@@ -199,8 +198,9 @@ var drawLine = function (x, y) {
 var drawFrog = function () {
     if (isPlayerAlive != false) {
 
-
+        
         switch (frog.picture) {
+            
             case "up":
                 context.drawImage(sprites, 12, 369, 23, 20, frog.x, frog.y, 23, 20); // draw frog up
                 break;
@@ -243,7 +243,9 @@ var checkWater = function () {
 document.body.onkeydown = async function (event) { //async because we want to await
 
     if (isPlayerAlive != false) { //if crashed then press key to reload
+        playSound()
         if (event.keyCode == 38 && frog.y - 100 > 0) { //move and change picture while jumping 100 ms
+            
             frog.picture = "upway"; //frog up
             frog.y = frog.y - 25;
             await sleep(100)
@@ -369,4 +371,41 @@ var dead = function () {
         lives = 4
 
     }
+}
+
+var musicOff = function(){
+    var musicButton = document.getElementById("musicBtn")
+    if(music==true){
+        theme.pause()
+        musicButton.innerHTML = "Music an"
+        music = false
+    }else{
+        theme.play()
+        musicButton.innerHTML = "Music aus"
+        music = true
+    }
+
+
+
+}
+
+var playSound = function(){
+    console.log("play")
+    if(areSoundsActive == true){
+        console.log("play2")
+        jumpSound.load()
+        jumpSound.play()
+    }
+   
+
+}
+var soundsOff = function(){
+    var soundsButton = document.getElementById("soundsBtn")
+   if(areSoundsActive==true){
+        areSoundsActive = false 
+        soundsButton.innerHTML="Sounds an"
+   }else{
+        areSoundsActive = true
+        soundsButton.innerHTML="Sounds aus"
+   } 
 }
