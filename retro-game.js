@@ -135,7 +135,7 @@ var game_loop = function () {
     for (i = 0; i < Object.keys(vehicle).length; i++) {
         vehicle[i].move(); //loop through all cars
         if (vehicle[i].checkOn()) {
-           // dead();
+            dead();
         }
     }
 
@@ -153,7 +153,7 @@ var game_loop = function () {
             }
         }
         if (!isPlayerOnSafeObject) {
-           // dead()
+            dead()
         }
 
 
