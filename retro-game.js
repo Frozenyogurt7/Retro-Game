@@ -2,8 +2,6 @@
 var spiel = document.getElementById('game');
 var context = spiel.getContext('2d');
 
-//localStorage.setItem('highscore',0)
-//console.log(localStorage.getItem('highscore'))      //personal highscore!?
 var theme = document.createElement('audio');
 theme.setAttribute('src', 'assets/musik.mp3');
 theme.setAttribute('loop', 'true');
@@ -11,7 +9,7 @@ theme.setAttribute('loop', 'true');
 var jumpSound = document.createElement('audio');
 jumpSound.setAttribute('src', 'assets/jump3.mp3');
 areSoundsActive = true
-theme.play();
+//theme.play();
 
 //frog json
 var frog = {
@@ -22,6 +20,8 @@ var frog = {
 
 var plane = []
 var vehicle = []
+var turtle = []
+var crocodile =[]
 var isPlayerAlive = true
 var lives = 4
 var music = true
@@ -72,10 +72,21 @@ sprites.onload = function () { //after images are load
 
     }
     for (x = 0; x < 2; x++) {
-        plane[x] = new gameObject(120 * x, 250, "wood line", 4, "left", 4)
+        plane[x] = new gameObject(120 * x, 250, "wood line", 2, "left", 2.5)
     }
     for (x = 2; x < 4; x++) {
-        plane[x] = new gameObject(120 * (x - 2), 220, "wood line", 3, "right", 4)
+        plane[x] = new gameObject(120 * x, 215, "wood line", 3, "right", 2.5)
+    }
+
+    for(x=0;x<3;x++){
+        turtle[x] = new gameObject(50 * x,180,"turtle1",2,"right")
+    }
+    for(x=0;x<2;x++){
+        crocodile[x]= new gameObject(100*x,145,"crocodile1",1,"left",2)
+        
+    }
+    for (x = 4; x < 6; x++) {
+        plane[x] = new gameObject(120 * (x - 2), 110, "wood line", 1, "right", 2.5)
     }
 
     loop = setInterval(game_loop, 16); //loop //85 mileseconds = ~  30 FPS (motion human able to see)
@@ -85,14 +96,15 @@ sprites.onload = function () { //after images are load
 
 
 //-----------------------loop event---------------------------
-
+var counter = 0
+var fx = 1
 var game_loop = function () {
     context.beginPath()
-
+    
     drawBackground();
 
 
-    for (x = 0; x < Object.keys(plane).length; x++) {
+        for (x = 0; x < Object.keys(plane).length; x++) {
 
         plane[x].move();
         if (plane[x].checkOn()) {
@@ -102,12 +114,28 @@ var game_loop = function () {
 
 
     }
+  
 
+    counter = (counter + 2 * fx )% 602
+  
+    for (x = 0; x < Object.keys(turtle).length; x++) {
+        turtle[x].move()
+        counter == 600 || counter == 0 ? fx = fx * -1 : null
+        if(counter % 50 == 0) {
+            turtle[x].vehicle = "turtle" + (counter / 50)   
+        }
+    }
+
+
+
+    for (x = 0; x < Object.keys(crocodile).length; x++) {
+        crocodile[x].move() 
+    }
 
     for (i = 0; i < Object.keys(vehicle).length; i++) {
         vehicle[i].move(); //loop through all cars
         if (vehicle[i].checkOn()) {
-            dead();
+           // dead();
         }
     }
 
@@ -125,7 +153,7 @@ var game_loop = function () {
             }
         }
         if (!isPlayerOnSafeObject) {
-            dead()
+           // dead()
         }
 
 
@@ -151,7 +179,9 @@ var drawBackground = function () {
     // image,x old, y old, width old, height old, x new, y new, width new, height new
     context.drawImage(sprites, 0, 0, 399, 113, 0, 0, 399, 113); // yelow on top of page
     context.drawImage(sprites, 0, 119, 399, 34, 0, 283, 400, 38); //lila between water and street
-    context.drawImage(sprites, 0, 119, 399, 34, 0, 490, 400, 38); //lila at the beginning
+    context.drawImage(sprites, 0, 119, 399, 34, 0, 490, 400, 38); //lila at the beginnng
+
+    
 
     for (i = 0; i < 5; i++) {
         context.beginPath()
@@ -208,7 +238,7 @@ var drawFrog = function () {
                 context.drawImage(sprites, 80, 369, 23, 20, frog.x, frog.y, 23, 20); // draw frog down
                 break;
             case "left":
-                context.drawImage(sprites, 75, 337, 23, 20, frog.x, frog.y, 23, 20); // draw frog left
+                context.drawImage(sprites, 78, 337, 23, 20, frog.x, frog.y, 23, 20); // draw frog left
                 break;
             case "right":
                 context.drawImage(sprites, 12, 335, 23, 22, frog.x, frog.y, 23, 22); // draw frog right
@@ -332,8 +362,32 @@ var gameObject = function (x, y, vehicle, speed, direc, length) { //parameter x 
             case "wood line":
                 context.drawImage(sprites, 10, 225, 85, 28, this.x, this.y, 85, 28); //wood
                 break;
-            case "crocodile":
+            case "crocodile1":
                 context.drawImage(sprites, 155, 370, 90, 25, this.x, this.y, 90, 25); //crocodile
+                break;
+            case "crocodile2":
+                context.drawImage(sprites, 155, 330, 90, 35, this.x,this.y, 90, 35); //crocodile2
+                break;
+            case "turtle0":
+            case "turtle1":
+            case "turtle2":         //fall through for longer tutrle 0
+            case "turtle3":
+            case "turtle4":
+                context.drawImage(sprites, 16, 405, 26, 22, this.x,this.y, 26, 22); //turtle 1
+                break;
+            case "turtle5":
+                context.drawImage(sprites, 55, 405, 26, 24, this.x,this.y, 26, 24); //turtle2
+                break;
+            case "turtle6":
+                context.drawImage(sprites, 92, 405, 30, 24, this.x,this.y, 30, 24); //turtle3
+                break;
+            case "turtle7":
+                context.drawImage(sprites, 134, 405, 30, 24, this.x,this.y, 30, 24); //turtle4
+                break;
+            case "turtle8":
+                context.drawImage(sprites, 180, 405, 20, 20, this.x,this.y, 20, 20); //turtle5
+                break;
+            case "turtle9":
                 break;
 
 
@@ -390,9 +444,9 @@ var musicOff = function(){
 }
 
 var playSound = function(){
-    console.log("play")
+    
     if(areSoundsActive == true){
-        console.log("play2")
+     
         jumpSound.load()
         jumpSound.play()
     }
