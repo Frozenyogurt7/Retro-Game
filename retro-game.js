@@ -8,6 +8,12 @@ theme.setAttribute('loop', 'true');
 
 var jumpSound = document.createElement('audio');
 jumpSound.setAttribute('src', 'assets/jump3.mp3');
+
+var waterSplashSound = document.createElement('audio')
+waterSplashSound.setAttribute('src','assets/waterSplash.mp3')
+
+var crashSound = document.createElement('audio')
+crashSound.setAttribute('src','assets/crash.mp3')
 areSoundsActive = true
 
 //theme.play();
@@ -70,7 +76,9 @@ var game_loop = function () {
         if (!checkWin()) {
             if (checkWater()) {
                 if (!checkOnSaveObject() || frog.x > spiel.width - 20 || frog.x < -10) {
+                    waterSplashSound.play()
                     dead();
+                    
                 }
             }
 
@@ -164,6 +172,7 @@ var moveObjects = function () {
     for (i = 0; i < Object.keys(vehicle).length; i++) {
         vehicle[i].move(); //loop through all cars
         if (vehicle[i].checkOn()) {
+            crashSound.play()
             dead();
         }
     }
