@@ -134,6 +134,10 @@ var drawBackground = function () {
 
 };
 
+var loadContent = function (){
+    
+}
+
 var checkOnSaveObject = function () {
 
     for (i = 0; i < Object.keys(waterObj).length; i++) {    //for all water objects
