@@ -2,14 +2,14 @@
 
 ### Autoren: Dirk Soltenborn, Gerorg Westbomke, Yannik Kasper
 
-##Spezifikation:
+## Spezifikation:
 
-###Ziel: Nachbildung des Retrospiels Frogger
-###Verwendete Mittel: HTML5, CSS, JavaScrpit
-###Lauffähig auf: Chrome, Firefox, Opera, InternetExplorer >=8.0 mit Xampp Server
+### Ziel: Nachbildung des Retrospiels Frogger
+### Verwendete Mittel: HTML5, CSS, JavaScrpit
+### Lauffähig auf: Chrome, Firefox, Opera, InternetExplorer >=8.0 mit Xampp Server
 
 
-##Verwendete Mittel:
+## Verwendete Mittel:
 -Nachgebildetes Frogger Template
 -Nachgebildetes Totenkopf Bild
 -Frog Sound:    
@@ -18,14 +18,14 @@
 
 
 
-##Dokumentation
+## Dokumentation
 
-###Klassen und Methoden
+### Klassen und Methoden
 gameObject
 move()
 checkOn()
 
-###Functionen
+### Functionen
 createObjects()             Objekterstellung Levelspezifisch
 soundsOff()                 Ein und ausschalten von Sounds
 playSound()                 Abspielen des Frosch Sounds
@@ -43,7 +43,7 @@ checkOnSaveObject()         Prüfung ob Forsch auf Wasser Object ist
 drawBackground()            Zeichnen des Hintergrundes
 gameLoop()                  Schleife für Zeichnung und Prüfung
 
-###Objecte
+### Objecte
 Frog Json Object
 Spiel object
 content Canvas Objekt
