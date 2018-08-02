@@ -10,11 +10,11 @@
 
 
 ## Verwendete Mittel:
--Nachgebildetes Frogger Template
--Nachgebildetes Totenkopf Bild
--Frog Sound:    
--Car crash Sound:
--Water Sound
+* Nachgebildetes Frogger Template
+* Nachgebildetes Totenkopf Bild
+* Frog Sound:    
+* Car crash Sound:
+* Water Sound
 
 
 
