@@ -21,33 +21,33 @@
 ## Dokumentation
 
 ### Klassen und Methoden
-gameObject
-move()
-checkOn()
+* gameObject
+* move()
+* checkOn()
 
 ### Functionen
-createObjects()             Objekterstellung Levelspezifisch
-soundsOff()                 Ein und ausschalten von Sounds
-playSound()                 Abspielen des Frosch Sounds
-dead()                      Bei Tot ausgeführte Function
-checkWin()                  Prüfung auf Gewinn
-sleep()                     Wait Function durch Pomiss return
-document.body.onkeydown()   tastatur Eingabe
-document.body.onkeyup()     tastatur Eingabe
-checkWater()                Prüfung ob Frosch im Wasser
-drawFrog()                  Zeichnen des Frosches
-drawLine()                  Linien zwischen den Autos malen
-checkScore()                Prüfung ob neuer Score erreicht wurde
-moveObjects()               Bewegung aller Objecte
-checkOnSaveObject()         Prüfung ob Forsch auf Wasser Object ist
-drawBackground()            Zeichnen des Hintergrundes
-gameLoop()                  Schleife für Zeichnung und Prüfung
+* createObjects()             Objekterstellung Levelspezifisch
+* soundsOff()                 Ein und ausschalten von Sounds
+* playSound()                 Abspielen des Frosch Sounds
+* dead()                      Bei Tot ausgeführte Function
+* checkWin()                  Prüfung auf Gewinn
+* sleep()                     Wait Function durch Pomiss return
+* document.body.onkeydown()   tastatur Eingabe
+* document.body.onkeyup()     tastatur Eingabe
+* checkWater()                Prüfung ob Frosch im Wasser
+* drawFrog()                  Zeichnen des Frosches
+* drawLine()                  Linien zwischen den Autos malen
+* checkScore()                Prüfung ob neuer Score erreicht wurde
+* moveObjects()               Bewegung aller Objecte
+* checkOnSaveObject()         Prüfung ob Forsch auf Wasser Object ist
+* drawBackground()            Zeichnen des Hintergrundes
+* gameLoop()                  Schleife für Zeichnung und Prüfung
 
 ### Objecte
-Frog Json Object
-Spiel object
-content Canvas Objekt
-Theme Bild Object
-JumpSound Sound Object
-WaterSplasch Sound Object
-Crash Sound Object
+* Frog Json Object
+* Spiel object
+* content Canvas Objekt
+* Theme Bild Object
+* JumpSound Sound Object
+* WaterSplasch Sound Object
+* Crash Sound Object
