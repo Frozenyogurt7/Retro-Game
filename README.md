@@ -4,9 +4,9 @@
 
 ## Spezifikation:
 
-### Ziel: Nachbildung des Retrospiels Frogger
-### Verwendete Mittel: HTML5, CSS, JavaScrpit
-### Lauffähig auf: Chrome, Firefox, Opera, InternetExplorer >=8.0 mit Xampp Server
+#### Ziel: Nachbildung des Retrospiels Frogger
+#### Verwendete Mittel: HTML5, CSS, JavaScrpit
+#### Lauffähig auf: Chrome, Firefox, Opera, InternetExplorer >=8.0 mit Xampp Server
 
 
 ## Verwendete Mittel:
