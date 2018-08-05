@@ -170,7 +170,7 @@ var moveObjects = function () {
 
         counter == 450 || counter == 0 ? fx = fx * -1 : null
         if (counter % 50 == 0 && waterObj[x].ObjPicture.includes("turtle")) {
-            waterObj[x].ObjPicture = "turtle" + (counter / 50)
+            waterObj[x].ObjPicture = "turtle" + (counter / 50 )
             //check counter... counter goes ip to 600 and then down to 0 and again... on different numbers the pictture of the tutles change
 
         }
@@ -538,8 +538,9 @@ var createObjects = function () {
 
     waterObj[13] = new gameObject(100, 148, "crocodile1", 1, "right", 2)
     waterObj[14] = new gameObject(200, 148, "crocodile1", 1, "right", 2)
+    waterObj[15] = new gameObject(350, 148, "wood line", 1, "right", 2)
+    waterObj[16] = new gameObject(450, 148, "wood line", 1, "right", 2)
 
-
-    waterObj[15] = new gameObject(120, 112, "wood line", 1, "left", 2.5)
-    waterObj[16] = new gameObject(240, 112, "wood line", 1, "left", 2.5)
+    waterObj[17] = new gameObject(120, 112, "wood line", 1, "left", 2.5)
+    waterObj[18] = new gameObject(240, 112, "wood line", 1, "left", 2.5)
 }
