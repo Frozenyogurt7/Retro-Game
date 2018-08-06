@@ -1,48 +1,48 @@
 //get Canvas
-var spiel = document.getElementById('game');    //game Object
-var context = spiel.getContext('2d');           //get Canvas
+var spiel = document.getElementById('game'); //game Object
+var context = spiel.getContext('2d'); //get Canvas
 
 var theme = document.createElement('audio');
-theme.setAttribute('src', 'assets/musik.mp3');  //noisy music
+theme.setAttribute('src', 'assets/musik.mp3'); //noisy music
 theme.setAttribute('loop', 'true');
 
-var jumpSound = document.createElement('audio');    //jump sound
+var jumpSound = document.createElement('audio'); //jump sound
 jumpSound.setAttribute('src', 'assets/jump3.mp3');
 
-var waterSplashSound = document.createElement('audio')      //dead water Sound
-waterSplashSound.setAttribute('src','assets/waterSplash.mp3')
+var waterSplashSound = document.createElement('audio') //dead water Sound
+waterSplashSound.setAttribute('src', 'assets/waterSplash.mp3')
 
-var crashSound = document.createElement('audio')        //car crash sound
-crashSound.setAttribute('src','assets/crash.mp3')
+var crashSound = document.createElement('audio') //car crash sound
+crashSound.setAttribute('src', 'assets/crash.mp3')
 areSoundsActive = false
 
 //theme.play();
 
 //frog json
 var frog = {
-    x: spiel.width / 2 - 15,            //frog json. Frog is drawn from this object
+    x: spiel.width / 2 - 15, //frog json. Frog is drawn from this object
     y: spiel.height - 55,
     picture: "up"
 };
 
-var waterObj = []                       //arrays of water and street objects
+var waterObj = [] //arrays of water and street objects
 var vehicle = []
 
-var isPlayerAlive = true                //check variables
+var isPlayerAlive = true //check variables
 var lives = 4
 var music = false
 var win = [false, false, false, false, false]
-var keyPressed = false                  //keypressed prevent of holding keys
+var keyPressed = false //keypressed prevent of holding keys
 var isInMenu = true;
 
 try {
 
-    highscore = localStorage.getItem('highscore')   //use of local storage to save own highsore. IE needs xampp for local Storage
+    highscore = localStorage.getItem('highscore') //use of local storage to save own highsore. IE needs xampp for local Storage
     if (highscore == null) {
-        highscore = 0                               //most browsers return null if localstorage is not set
+        highscore = 0 //most browsers return null if localstorage is not set
     }
 } catch (exception) {
-    highscore = 0                                   //IE gets error if localstroage object not existing
+    highscore = 0 //IE gets error if localstroage object not existing
 }
 
 
@@ -50,10 +50,10 @@ try {
 var score = 0
 //set images
 sprites = new Image();
-sprites.src = 'assets/frogger.png';     //frogger template with all objects
+sprites.src = 'assets/frogger.png'; //frogger template with all objects
 sprites.onload = function () { //after images are load
 
-    deadSprite = new Image()            //dead frog image
+    deadSprite = new Image() //dead frog image
     deadSprite.src = 'assets/dead_frog.png'
     createObjects();
     //Create Cars
@@ -68,32 +68,32 @@ var counter = 0
 var fx = 1
 
 
-var game_loop = function () {   //game loop 16 times a seconed executed
+var game_loop = function () { //game loop 16 times a seconed executed
 
 
-    drawBackground();           //have to be orderd. Backgrouds position behind all others  
-    moveObjects();              
-    if (!frog.picture.includes("way")) {    //if frog is not in animaton
+    drawBackground(); //have to be orderd. Backgrouds position behind all others  
+    moveObjects();
+    if (!frog.picture.includes("way")) { //if frog is not in animaton
         if (!checkWin()) {
             if (checkWater()) {
-                if (!checkOnSaveObject() || frog.x > spiel.width - 20 || frog.x < -10) {    //If frog is in water and not on an object or to close to the side
-                    areSoundsActive ? waterSplashSound.play() : null    //play dead sound 
+                if (!checkOnSaveObject() || frog.x > spiel.width - 20 || frog.x < -10) { //If frog is in water and not on an object or to close to the side
+                    areSoundsActive ? waterSplashSound.play() : null //play dead sound 
                     dead();
-                    
+
                 }
             }
 
         }
     }
 
-    checkScore();   //check if score have to be increased
+    checkScore(); //check if score have to be increased
     drawFrog(); //have to be on the end because on top of all images
 }
 
 //----------------------------draw background------------ 
 
 var drawBackground = function () {
-    context.beginPath()             //!important for performance. erases the already drawn pixels?
+    context.beginPath() //!important for performance. erases the already drawn pixels?
     context.fillStyle = '#191970'; //color blue
     context.fillRect(0, 0, 400, 284); //fill syle
     context.fillStyle = '#000000'; //new color black after first 
@@ -108,7 +108,7 @@ var drawBackground = function () {
     for (i = 0; i < 5; i++) {
         context.beginPath()
         context.arc(27 + i * 85, 90, 10, 0, 2 * Math.PI); //water lily
-        context.stroke();   //draw circle
+        context.stroke(); //draw circle
         context.fillStyle = 'green';
         context.fill() //set green style of circles
     }
@@ -118,7 +118,7 @@ var drawBackground = function () {
 
 
     context.font = 'bold 12pt arial';
-    context.fillText('Score: ', 100, 550);      //crate labels on the bottom
+    context.fillText('Score: ', 100, 550); //crate labels on the bottom
     context.fillText('Highscore: ', 240, 550);
     context.fillText(score, 155, 550);
     context.fillText(highscore, 330, 550);
@@ -128,20 +128,20 @@ var drawBackground = function () {
 
     for (i = 0; i < 5; i++) {
         if (win[i] == true) {
-            context.drawImage(sprites, 12, 369, 23, 20, 15 + (i * 85), 82, 23, 20)  //if player has one win the frog will be drawn all the time on the lilly
+            context.drawImage(sprites, 12, 369, 23, 20, 15 + (i * 85), 82, 23, 20) //if player has one win the frog will be drawn all the time on the lilly
         }
     }
 
 
 };
 
-var loadContent = function (){
-    
+var loadContent = function () {
+
 }
 
 var checkOnSaveObject = function () {
 
-    for (i = 0; i < Object.keys(waterObj).length; i++) {    //for all water objects
+    for (i = 0; i < Object.keys(waterObj).length; i++) { //for all water objects
         //every
 
         if (waterObj[i].checkOn() && waterObj[i].ObjPicture != "turtle9" && waterObj[i].ObjPicture != "crocodile2") {
@@ -161,7 +161,7 @@ var moveObjects = function () {
     //creazy alorithm to change the picture and behavior of turtles and crodociles
     counter = (counter + 2 * fx) % 602
     for (x = 0; x < Object.keys(waterObj).length; x++) {
-        waterObj[x].move();         //move all waterObjects
+        waterObj[x].move(); //move all waterObjects
 
         if (waterObj[x].checkOn()) {
             waterObj[x].direction == "right" ? frog.x = frog.x + waterObj[x].speed : frog.x = frog.x - waterObj[x].speed
@@ -171,15 +171,15 @@ var moveObjects = function () {
 
         counter == 450 || counter == 0 ? fx = fx * -1 : null
         if (counter % 50 == 0 && waterObj[x].ObjPicture.includes("turtle")) {
-            waterObj[x].ObjPicture = "turtle" + (counter / 50 )
+            waterObj[x].ObjPicture = "turtle" + (counter / 50)
             //check counter... counter goes ip to 600 and then down to 0 and again... on different numbers the pictture of the tutles change
 
         }
 
-        if(waterObj[x].ObjPicture.includes("crocodile") && counter < 400){
-            waterObj[x].ObjPicture = "crocodile1"   //crocodile save 2/3 of time
-        }else if(waterObj[x].ObjPicture.includes("crocodile") && counter >= 400){
-            waterObj[x].ObjPicture = "crocodile2"   //crocodie not sace 1/3 of time
+        if (waterObj[x].ObjPicture.includes("crocodile") && counter < 400) {
+            waterObj[x].ObjPicture = "crocodile1" //crocodile save 2/3 of time
+        } else if (waterObj[x].ObjPicture.includes("crocodile") && counter >= 400) {
+            waterObj[x].ObjPicture = "crocodile2" //crocodie not sace 1/3 of time
         }
 
     }
@@ -187,7 +187,7 @@ var moveObjects = function () {
     for (i = 0; i < Object.keys(vehicle).length; i++) {
         vehicle[i].move(); //loop through all cars
         if (vehicle[i].checkOn()) {
-            areSoundsActive ? crashSound.play() : null  //crash with car, play sound
+            areSoundsActive ? crashSound.play() : null //crash with car, play sound
             dead();
         }
     }
@@ -200,7 +200,7 @@ var checkScore = function () {
 }
 
 var drawLine = function (x, y) {
-//draw the lines between the vehicles
+    //draw the lines between the vehicles
 
     context.beginPath() //recursive function just because I can
     context.moveTo(x, y)
@@ -259,7 +259,7 @@ var checkWater = function () {
 
     if (frog.y <= spiel.height / 2) {
         return true
-    }   //iif over the middle return true
+    } //iif over the middle return true
     return false
 }
 
@@ -275,7 +275,7 @@ document.body.onkeydown = async function (event) { //async because we want to aw
 
                 frog.picture = "upway"; //frog up
                 frog.y = frog.y - 25;
-                await sleep(100)        //sleep function for animation wait 0.1 seconds to it looks like the frog is moving slowly
+                await sleep(100) //sleep function for animation wait 0.1 seconds to it looks like the frog is moving slowly
                 frog.picture = "up"; //frog left
                 frog.y = frog.y - 10;
 
@@ -307,7 +307,7 @@ document.body.onkeydown = async function (event) { //async because we want to aw
                 y: spiel.height - 55,
                 picture: "up"
             };
-            loop = setInterval(game_loop, 16)       //new loop beaucse the orher one was cleared
+            loop = setInterval(game_loop, 16) //new loop beaucse the orher one was cleared
         }
     }
 };
@@ -336,7 +336,7 @@ var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter
 
 
     this.move = function () {
-//move the object method. check if out of bound and then move position to the other bound
+        //move the object method. check if out of bound and then move position to the other bound
         switch (this.direction) {
             case "right":
                 this.x <= spiel.width + this.lenght * 40 ? this.x = (this.x + this.speed) : this.x = -this.lenght * 40; //move right
@@ -345,7 +345,7 @@ var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter
                 this.x >= (-40 * this.lenght) ? this.x = (this.x - this.speed) : this.x = spiel.width + this.lenght * 40; //move left
         }
 
-//all pictures of objects drawn on there positions
+        //all pictures of objects drawn on there positions
         switch (this.ObjPicture) { //draw objects
             case "pink car":
                 context.drawImage(sprites, 8, 265, 30, 22, this.x, this.y, 30, 22); //green car
@@ -369,7 +369,7 @@ var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter
                 context.drawImage(sprites, 155, 370, 90, 25, this.x, this.y, 90, 25); //crocodile
                 break;
             case "crocodile2":
-                context.drawImage(sprites, 155, 330, 90, 35, this.x, this.y-7, 90, 35); //crocodile2
+                context.drawImage(sprites, 155, 330, 90, 35, this.x, this.y - 7, 90, 35); //crocodile2
                 break;
             case "turtle0":
             case "turtle1":
@@ -411,7 +411,7 @@ var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter
     }
 }
 var checkWin = function () {
-//check if frog is on lilly if yes move frog to the beginning
+    //check if frog is on lilly if yes move frog to the beginning
     for (i = 0; i < 5; i++) {
         if (frog.y < 100 && frog.x > 5 + (85 * i) && frog.x < 30 + (85 * i)) {
             win[i] = true
@@ -426,7 +426,7 @@ var checkWin = function () {
     if (win.every(function (elemet) {
             return elemet == true
         })) {
-        alert("won game")   //great alert
+        alert("won game") //great alert
         return true
     }
     return false
@@ -437,27 +437,27 @@ var dead = function () {
     isPlayerAlive = false
     lives = lives - 1
     clearInterval(loop)
-    if (lives == 0) {   //if dead with no lives
+    if (lives == 0) { //if dead with no lives
         win = [false, false, false, false, false]
         // context.globalAlpha = 0.2;
         // context.fillStyle = "white"
         // context.fillRect(0,0,400,560);  //background getting transperent and
         // context.globalAlpha =1;
         // context.font = 'bold 72pt arial';
-      
+
         // context.fillStyle = '#38fe14';
         // context.fillText('GAME', 60, 150);  //image game over
         // context.fillText('OVER', 60, 300);
         if (highscore < score) {
 
             localStorage.setItem('highscore', score.toString())
-            highscore = score       //if dead set new highscore if nececcary
+            highscore = score //if dead set new highscore if nececcary
 
         }
         score = 0
         lives = 4
         deathMenu();
-        
+
     }
 }
 
@@ -481,7 +481,7 @@ var playSound = function () {
 
     if (areSoundsActive == true) {
 
-        jumpSound.load()    //if Sounds are enables make sound by every jump
+        jumpSound.load() //if Sounds are enables make sound by every jump
         jumpSound.play()
     }
 
@@ -491,7 +491,7 @@ var soundsOff = function () {
     var soundsButton = document.getElementById("soundsBtn")
     if (areSoundsActive == true) {
         areSoundsActive = false
-        soundsButton.innerHTML = "Sounds anschalten"    //change html to switch of and on musik/sound
+        soundsButton.innerHTML = "Sounds anschalten" //change html to switch of and on musik/sound
     } else {
         areSoundsActive = true
         soundsButton.innerHTML = "Sounds ausschalten"
@@ -554,25 +554,25 @@ var createObjects = function () {
 
 // Menu Options
 
-function startGame(){
+function startGame() {
     document.getElementById("gameMenu").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
     isInMenu = false;
 }
 
-function deathMenu(){
+function deathMenu() {
     document.getElementById("game").classList.add("hidden");
     document.getElementById("deathMenu").classList.remove("hidden");
     isInMenu = true;
 }
 
-function showMainMenu(){
+function showMainMenu() {
     document.getElementById("deathMenu").classList.add("hidden");
     document.getElementById("gameMenu").classList.remove("hidden");
     isInMenu = true;
 }
 
-function retry(){
+function retry() {
     document.getElementById("deathMenu").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
     isInMenu = false;

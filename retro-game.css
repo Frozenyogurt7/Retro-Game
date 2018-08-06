@@ -18,8 +18,8 @@ title{
 
 #game_div{
 	position: absolute;
-    top: 200px;
-    left: 770px;
+    top: 15% ;
+    left: 38%;
 }
 
 .soundOptions{
@@ -37,12 +37,13 @@ title{
 .mainMenuBtn{
 	position: relative;
 	font-size: 32px;
+	color: forestgreen;
 	width: 80%;
 	height: 40px;
 	margin: 0 10%;
 	padding: 10px 0;
 	background: #ffffff;
-	color:#000000;
+
 }
 
 .startBtn{
