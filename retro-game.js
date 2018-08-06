@@ -33,6 +33,7 @@ var lives = 4
 var music = false
 var win = [false, false, false, false, false]
 var keyPressed = false                  //keypressed prevent of holding keys
+var isInMenu = true;
 
 try {
 
@@ -266,7 +267,7 @@ var checkWater = function () {
 //---------------keydown event------------------------
 
 document.body.onkeydown = async function (event) { //async because we want to await
-    if (keyPressed == false) {
+    if (keyPressed == false && isInMenu == false) {
         if (isPlayerAlive != false) { //if crashed then press key to reload
             playSound()
             keyPressed = true
@@ -438,15 +439,15 @@ var dead = function () {
     clearInterval(loop)
     if (lives == 0) {   //if dead with no lives
         win = [false, false, false, false, false]
-        context.globalAlpha = 0.2;
-        context.fillStyle = "white"
-        context.fillRect(0,0,400,560);  //background getting transperent and
-        context.globalAlpha =1;
-        context.font = 'bold 72pt arial';
+        // context.globalAlpha = 0.2;
+        // context.fillStyle = "white"
+        // context.fillRect(0,0,400,560);  //background getting transperent and
+        // context.globalAlpha =1;
+        // context.font = 'bold 72pt arial';
       
-        context.fillStyle = '#38fe14';
-        context.fillText('GAME', 60, 150);  //image game over
-        context.fillText('OVER', 60, 300);
+        // context.fillStyle = '#38fe14';
+        // context.fillText('GAME', 60, 150);  //image game over
+        // context.fillText('OVER', 60, 300);
         if (highscore < score) {
 
             localStorage.setItem('highscore', score.toString())
@@ -455,7 +456,8 @@ var dead = function () {
         }
         score = 0
         lives = 4
-
+        deathMenu();
+        
     }
 }
 
@@ -543,4 +545,35 @@ var createObjects = function () {
 
     waterObj[17] = new gameObject(120, 112, "wood line", 1, "left", 2.5)
     waterObj[18] = new gameObject(240, 112, "wood line", 1, "left", 2.5)
+
+    waterObj[15] = new gameObject(120, 112, "wood line", 1, "left", 2.5)
+    waterObj[16] = new gameObject(240, 112, "wood line", 1, "left", 2.5)
+}
+
+
+
+// Menu Options
+
+function startGame(){
+    document.getElementById("gameMenu").classList.add("hidden");
+    document.getElementById("game").classList.remove("hidden");
+    isInMenu = false;
+}
+
+function deathMenu(){
+    document.getElementById("game").classList.add("hidden");
+    document.getElementById("deathMenu").classList.remove("hidden");
+    isInMenu = true;
+}
+
+function showMainMenu(){
+    document.getElementById("deathMenu").classList.add("hidden");
+    document.getElementById("gameMenu").classList.remove("hidden");
+    isInMenu = true;
+}
+
+function retry(){
+    document.getElementById("deathMenu").classList.add("hidden");
+    document.getElementById("game").classList.remove("hidden");
+    isInMenu = false;
 }

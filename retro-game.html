@@ -14,10 +14,20 @@
 
 
   <div id="game_div">
-    <canvas id="game" height="560" width="400"></canvas>
+    <div id="gameMenu">
+      <div class="mainMenuBtn startBtn" onclick="startGame()">Start Game</div>
+    </div>
+    <div id="deathMenu" class="hidden">
+      <div class="mainMenuBtn retryBtn" onclick="retry()">Retry</div>
+      <div class="mainMenuBtn backToMenuBtn" onclick="showMainMenu()">Back to Menu</div>
+    </div>
+    <canvas class="hidden" id="game" height="560" width="400"></canvas>
+    <div class="soundOptions">
+      <button id="musicBtn"onclick="musicOff()">Musik anschalten</button> 
+      <button id="soundsBtn"onclick="soundsOff()">Sounds ausschalten</button>
+    </div>
   </div>
-  <button id="musicBtn"onclick="musicOff()">Musik anschalten</button> 
-  <button id="soundsBtn"onclick="soundsOff()">Sounds ausschalten</button>
+
 
 
   <script language="javascript" type="text/javascript" src="retro-game.js"></script>
