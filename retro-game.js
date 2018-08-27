@@ -133,11 +133,15 @@ var moveObjects = function () {
         }
 
         counter == 450 || counter == 0 ? fx = fx * -1 : null
+
+
+   
         if (counter % 50 == 0 && waterObj[x].ObjPicture.includes("turtle")) {
             waterObj[x].ObjPicture = "turtle" + (counter / 50)
             //check counter... counter goes ip to 600 and then down to 0 and again... on different numbers the pictture of the tutles change
 
         }
+
 
         if (waterObj[x].ObjPicture.includes("crocodile") && counter < 400) {
             waterObj[x].ObjPicture = "crocodile1" //crocodile save 2/3 of time

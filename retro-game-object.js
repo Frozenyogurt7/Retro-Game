@@ -137,3 +137,4 @@ var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter
 
     }
 }
+
