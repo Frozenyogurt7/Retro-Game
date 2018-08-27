@@ -129,6 +129,7 @@ var Star = function(){
         context.fillStyle = 'yellow';
         context.fill()
         context.stroke();
+        
     }
 
 }

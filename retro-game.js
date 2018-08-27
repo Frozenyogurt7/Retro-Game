@@ -74,7 +74,7 @@ var game_loop = function () { //game loop 16 times a seconed executed
 
 
     drawBackground(); //have to be orderd. Backgrouds position behind all others  
-    star.drawStar();
+
 
     moveObjects();
     if (!frog.picture.includes("way")) { //if frog is not in animaton
@@ -89,7 +89,7 @@ var game_loop = function () { //game loop 16 times a seconed executed
 
         }
     }
-
+    star.drawStar();
     checkScore(); //check if score have to be increased
     drawFrog(); //have to be on the end because on top of all images
 }
