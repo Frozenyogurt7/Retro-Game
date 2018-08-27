@@ -1,9 +1,40 @@
+@font-face {			/*Source: https://www.1001fonts.com/drummon-font.html */
+    font-family: 'Drummon 3D';
+    src: url('assets/fonts/Drummon3D.eot');
+    src: url('assets/fonts/Drummon3D.eot?#iefix') format('embedded-opentype'),
+        url('assets/fonts/Drummon3D.woff2') format('woff2'),
+        url('assets/fonts/Drummon3D.woff') format('woff'),
+        url('assets/fonts/Drummon3D.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {			/*Source: https://www.1001fonts.com/drummon-font.html */
+    font-family: 'Drummon';
+    src: url('assets/fonts/Drummon-Bold.eot');
+    src: url('assets/fonts/Drummon-Bold.eot?#iefix') format('embedded-opentype'),
+        url('assets/fonts/Drummon-Bold.woff2') format('woff2'),
+        url('assets/fonts/Drummon-Bold.woff') format('woff'),
+        url('assets/fonts/Drummon-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+
 body{
 	text-align:center;
 	font-size:15px;
-	font-family:Arial;
+	font-family: 'Drummon'!important;
 	color:#000000;
-	background: linear-gradient(#709084 , rgb(176, 222, 190) );
+	background: url("assets/background.png"); /*Source: Photo by Element5 Digital from Pexels URL: https://www.pexels.com/photo/led-light-signage-1293269/ */
+    position: absolute;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+	margin: 0!important;
+	top:0;
+	left: 0;
 }
 
 title{
@@ -19,7 +50,8 @@ title{
 #game_div{
 	position: absolute;
     top: 15% ;
-    left: 38%;
+	left: 38%;
+	z-index: 5;
 }
 
 .soundOptions{
@@ -36,18 +68,47 @@ title{
 
 .mainMenuBtn{
 	position: relative;
-	font-size: 32px;
+	font-size: 46px;
 	color: forestgreen;
 	width: 80%;
 	height: 40px;
 	margin: 0 10%;
 	padding: 10px 0;
-	background: #ffffff;
 
 }
 
 .startBtn{
 	top: 40px;
+}
+
+.musicBtn{
+	top:100px;
+}
+
+.musicImage{
+    width: 40px;
+    height: 40px;
+    background: url("assets/soundOn.png") 100% 100% no-repeat;
+    background-size: 40px;
+    float: right;
+    z-index: 9999;
+    padding: 5px 0 0 0;
+    position: relative
+}
+
+.soundImage{
+    width: 40px;
+    height: 40px;
+    background: url("assets/soundOn.png") 100% 100% no-repeat;
+    background-size: 40px;
+    float: right;
+    z-index: 9999;
+    padding: 5px 0 0 0;
+    position: relative
+}
+
+.soundBtn{
+	top:160px;
 }
 
 #deathMenu{
@@ -62,4 +123,24 @@ title{
 
 .backToMenuBtn{
 	top: 80px;
+}
+
+.whiteTransparent{
+	top:0;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background: #ffffff;
+	opacity: 0.5;
+}
+
+#title span{
+	z-index: 5;
+	position: relative;
+	font-family: "Drummon";
+	font-size: 90px;
+	color: #198819;
+	text-shadow: rgb(255, 255, 255) 3px 0px 0px, rgb(255, 255, 255) 2.83487px 0.981584px 0px, rgb(255, 255, 255) 2.35766px 1.85511px 0px, rgb(255, 255, 255) 1.62091px 2.52441px 0px, rgb(255, 255, 255) 0.705713px 2.91581px 0px, rgb(255, 255, 255) -0.287171px 2.98622px 0px, rgb(255, 255, 255) -1.24844px 2.72789px 0px, rgb(255, 255, 255) -2.07227px 2.16926px 0px, rgb(255, 255, 255) -2.66798px 1.37182px 0px, rgb(255, 255, 255) -2.96998px 0.42336px 0px, rgb(255, 255, 255) -2.94502px -0.571704px 0px, rgb(255, 255, 255) -2.59586px -1.50383px 0px, rgb(255, 255, 255) -1.96093px -2.27041px 0px, rgb(255, 255, 255) -1.11013px -2.78704px 0px, rgb(255, 255, 255) -0.137119px -2.99686px 0px, rgb(255, 255, 255) 0.850987px -2.87677px 0px, rgb(255, 255, 255) 1.74541px -2.43999px 0px, rgb(255, 255, 255) 2.44769px -1.73459px 0px, rgb(255, 255, 255) 2.88051px -0.838247px 0px;
 }

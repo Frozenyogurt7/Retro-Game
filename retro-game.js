@@ -14,7 +14,7 @@ waterSplashSound.setAttribute('src', 'assets/waterSplash.mp3')
 
 var crashSound = document.createElement('audio') //car crash sound
 crashSound.setAttribute('src', 'assets/crash.mp3')
-areSoundsActive = false
+areSoundsActive = true;
 
 //theme.play();
 
@@ -32,7 +32,7 @@ var vehicle = []
 
 var isPlayerAlive = true //check variables
 var lives = 4
-var music = false
+var music = true
 var win = [false, false, false, false, false]
 var keyPressed = false //keypressed prevent of holding keys
 var isInMenu = true;
@@ -295,18 +295,23 @@ var dead = function () {
 }
 
 var musicOff = function () {
-    var musicButton = document.getElementById("musicBtn")
+    var musicButton = document.getElementsByClassName("musicBtn")
+    var imageName= "";
+    musicImage = musicButton[0].childNodes[1];
     if (music == true) {
         theme.pause()
+        imageName = "soundOff";
         musicButton.innerHTML = "Music anschalten"
         music = false
     } else {
         theme.play()
+        imageName = "soundOn";
         musicButton.innerHTML = "Music ausschalten"
         music = true
     }
 
-
+    musicImage.style.background = "url('assets/"+imageName+".png') 100% 100% no-repeat";
+    musicImage.style.backgroundSize = "40px";
 
 }
 
@@ -321,14 +326,22 @@ var playSound = function () {
 
 }
 var soundsOff = function () {
-    var soundsButton = document.getElementById("soundsBtn")
+    var soundsButton = document.getElementsByClassName("soundBtn");
+    console.log(soundsButton);
+    var imageName="";
+    soundImage = soundsButton[0].childNodes[1];
     if (areSoundsActive == true) {
-        areSoundsActive = false
-        soundsButton.innerHTML = "Sounds anschalten" //change html to switch of and on musik/sound
+        areSoundsActive = false;
+        imageName = "soundOff";
+        //soundsButton.innerHTML = "Sounds anschalten" //change html to switch of and on musik/sound
     } else {
-        areSoundsActive = true
-        soundsButton.innerHTML = "Sounds ausschalten"
+        areSoundsActive = true;
+        imageName = "soundOn";
+        //soundsButton.innerHTML = "Sounds ausschalten"
     }
+
+    soundImage.style.background = "url('assets/"+imageName+".png') 100% 100% no-repeat";
+    soundImage.style.backgroundSize = "40px";
 }
 
 
