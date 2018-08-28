@@ -42,9 +42,15 @@ title{
 }
 
 #gameMenu{
+	display:none;
+}
+
+#gameMenu, .highscoreOuterContainer{
 	background: #000000;
 	width: 400px;
 	height: 560px;
+	color: forestgreen;
+	font-size: 46px;
 }
 
 #game_div{
@@ -52,6 +58,37 @@ title{
     top: 15% ;
 	left: 38%;
 	z-index: 5;
+	box-shadow: 1px 1px 60px 30px;
+}
+
+.highscoreInnerContainer{
+	font-size: 36px;
+}
+
+.scoreHeader{
+	border-bottom: 3px solid forestgreen!important;
+}
+
+.highscorePositionContainer{
+	width: 10%;
+	float: left;
+}
+
+.highscoreNameContainer{
+	width: 45%;
+	float:left;
+}
+
+.highscoreScoreContainer{
+	width: 45%;
+	float:right;
+}
+
+.highscoreNameContainer div, 
+.highscoreScoreContainer div,
+.highscorePositionContainer div{
+	padding: 5px 0;
+	border-bottom: 1px  solid forestgreen;
 }
 
 .soundOptions{
@@ -68,13 +105,10 @@ title{
 
 .mainMenuBtn{
 	position: relative;
-	font-size: 46px;
-	color: forestgreen;
 	width: 80%;
 	height: 40px;
 	margin: 0 10%;
 	padding: 10px 0;
-
 }
 
 .startBtn{
