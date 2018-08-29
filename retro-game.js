@@ -103,7 +103,7 @@ var loadContent = function () {
 }
 
 var checkOnSaveObject = function () {
-console.log(Object.keys(waterObj).length)
+
     for (i = 0; i < Object.keys(waterObj).length; i++) { //for all water objects
         //every
 
@@ -325,7 +325,7 @@ var playSound = function () {
 }
 var soundsOff = function () {
     var soundsButton = document.getElementsByClassName("soundBtn");
-    console.log(soundsButton);
+
     var imageName="";
     soundImage = soundsButton[0].childNodes[1];
     if (areSoundsActive == true) {
@@ -405,7 +405,7 @@ function reset(){
 
 function setDifficulty(val){
     difficulty = val / 2;
-    console.log(val);
+
     var difficultyOptions = document.getElementsByClassName("difficultyNumber");
     for(var i = 0, length = difficultyOptions.length; i < length; i++) {
         difficultyOptions[i].classList.remove("selected");
