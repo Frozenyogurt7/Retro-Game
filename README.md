@@ -1,20 +1,28 @@
 # Frogger Retro-Game
 
 ### Autoren: Dirk Soltenborn, Gerorg Westbomke, Yannik Kasper
+### Versionsnummer: 0.9
+### Datum: 29.08.2018
 
 ## Spezifikation:
 
-#### Ziel:            Nachbildung des Retrospiels Frogger
+#### Ziel:            Nachbildung des Retrospiels Frogger mit unterschiedlichen Schwierigkeitsgraden und neueren Features
 #### Verwendete       Mittel: HTML5, CSS, JavaScrpit
-#### Lauffähig auf:   Chrome, Firefox, Opera, InternetExplorer >=8.0 mit Xampp Server
+#### Lauffähig auf:   Chrome, Firefox, Opera
+#### Nicht lauffähig auf IE aufgrund der folgenden Funktionaliäten:
+* Animationen durch Async Functions und "Await" Keyword
+* Verwendung mehererer JavaScript Dokumente zur Übersichtlichkeit
+* Verwendung von LocalStorage ohne Xampp
+* Verwendung des Keywords "Include"
+
 
 
 ## Verwendete Mittel:
-* Nachgebildetes Frogger Template
-* Nachgebildetes Totenkopf Bild
+* Nachgebildetes Frogger Template (eigen Erstelllung)
+* Nachgebildetes Totenkopf Bild   (eigen Erstelllung)  
 * Frog Sound:    
 * Car crash Sound:
-* Water Sound
+* Water Sound:
 
 
 
