@@ -16,6 +16,7 @@ var crashSound = document.createElement('audio') //car crash sound
 crashSound.setAttribute('src', 'assets/crash.mp3')
 areSoundsActive = true;
 
+var difficult = 1
 //theme.play();
 
 //frog json
