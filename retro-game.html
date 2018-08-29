@@ -4,7 +4,13 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script language="javascript" type="text/javascript" src="retro-game.js" defer></script>
+  <script language="javascript" type="text/javascript" src="retro-game-object.js"></script>
+  <script language="javascript" type="text/javascript" src="retro-game-draw.js" ></script>
   
+ 
+  
+  <link rel="stylesheet" href="retro-game.css">
   
   <title > Retro-game </title>
 
@@ -21,6 +27,14 @@
       <div class="mainMenuBtn musicBtn" onclick="musicOff()">Music <div class="musicImage"></div></div>
       <div class="mainMenuBtn soundBtn" onclick="soundsOff()">Effects <div class="soundImage"></div></div>
       <div class="mainMenuBtn highscoreBtn" onclick="showHighscore()">Highscores<div class="highScoreImage"></div></div>
+      <div class="mainMenuBtn difficultyMenu">
+        <div class="difficultyHeader">Difficulty</div>
+        <div class="difficultySelection">
+          <div id="difficulty1" class="difficultyNumber selected" onclick="setDifficulty(1)">1</div>
+          <div id="difficulty2" class="difficultyNumber" onclick="setDifficulty(2)">2</div>
+          <div id="difficulty3" class="difficultyNumber" onclick="setDifficulty(3)">3</div>
+        </div>
+      </div>
     </div>
 
     <div id="highscoreView" class="highscoreOuterContainer hidden">
@@ -64,6 +78,8 @@
       </div>
     </div>
 
+   
+
     <div id="deathMenu" class="hidden">
       <div class="mainMenuBtn retryBtn" onclick="retry()">Retry</div>
       <div class="mainMenuBtn backToMenuBtn" onclick="showMainMenu()">Back to Menu</div>
@@ -78,13 +94,7 @@
 
   
  
-  <script language="javascript" type="text/javascript" src="retro-game.js" defer></script>
-  <script language="javascript" type="text/javascript" src="retro-game-object.js"></script>
-  <script language="javascript" type="text/javascript" src="retro-game-draw.js" ></script>
-  
- 
-  
-  <link rel="stylesheet" href="retro-game.css">
+
 
 </body>
 
