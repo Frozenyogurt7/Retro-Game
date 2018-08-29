@@ -16,7 +16,7 @@ var crashSound = document.createElement('audio') //car crash sound
 crashSound.setAttribute('src', 'assets/crash.mp3')
 areSoundsActive = true;
 
-var difficulty = 1
+var difficulty = 1 /2
 //theme.play();
 
 //frog json
@@ -394,7 +394,7 @@ function backFromHighscore(){
 }
 
 function setDifficulty(val){
-    difficulty = val;
+    difficulty = val / 2;
     console.log(val);
     var difficultyOptions = document.getElementsByClassName("difficultyNumber");
     for(var i = 0, length = difficultyOptions.length; i < length; i++) {
