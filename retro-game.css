@@ -52,11 +52,11 @@ title{
 }
 
 #game_div{
-	position: absolute;
-    top: 15% ;
-	left: 35.5%;
-	z-index: 5;
-	box-shadow: 1px 1px 60px 30px;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .highscoreInnerContainer{
