@@ -110,15 +110,44 @@ title{
 	width: 80%;
 	height: 40px;
 	margin: 0 10%;
-	padding: 10px 0;
+	padding: 3px 0;
 }
 
 .startBtn{
-	top: 40px;
+	top: 30px;
 }
 
 .musicBtn{
-	top:100px;
+	top:80px;
+}
+
+.soundBtn{
+	top:130px;
+}
+
+.highscoreBtn{
+	top:180px;
+}
+
+.difficultyMenu{
+	top:230px;	
+}
+
+.difficultySelection{
+	position: relative;
+	width: 100%;
+}
+
+.difficultyNumber{
+	float: left;
+    margin: 15px 8%;
+    width: 51px;
+    border: 2px solid;
+    border-radius: 17px;
+}
+
+.difficultySelection .selected{
+	background: #89ce97;
 }
 
 .musicImage{
@@ -141,14 +170,6 @@ title{
     z-index: 9999;
     padding: 5px 0 0 0;
     position: relative;
-}
-
-.soundBtn{
-	top:160px;
-}
-
-.highscoreBtn{
-	top:220px;
 }
 
 #deathMenu{

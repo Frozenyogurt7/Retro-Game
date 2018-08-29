@@ -16,7 +16,7 @@ var crashSound = document.createElement('audio') //car crash sound
 crashSound.setAttribute('src', 'assets/crash.mp3')
 areSoundsActive = true;
 
-var difficult = 1
+var difficulty = 1 /2
 //theme.play();
 
 //frog json
@@ -58,10 +58,7 @@ sprites.onload = function () { //after images are load
 
     deadSprite = new Image() //dead frog image
     deadSprite.src = 'assets/dead_frog.png'
-    createObjects();
-    //Create Cars
-    loop = setInterval(game_loop, 16); //loop //85 mileseconds = ~  30 FPS (motion human able to see)
-
+   
 };
 
 
@@ -352,12 +349,18 @@ var soundsOff = function () {
 // Menu Options
 
 function startGame() {
+    reset();
+    createObjects();
+    //Create Cars
+  
+
     document.getElementById("gameMenu").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
     isInMenu = false;
 }
 
 function deathMenu() {
+   
     document.getElementById("game").classList.add("hidden");
     document.getElementById("deathMenu").classList.remove("hidden");
     isInMenu = true;
@@ -388,6 +391,7 @@ function backFromHighscore(){
 }
 
 function reset(){
+    score=0
     isPlayerAlive = true
     frog = frog = {
         x: spiel.width / 2 - 15,
@@ -396,4 +400,16 @@ function reset(){
     }
     loop = setInterval(game_loop, 16) //new loop beaucse the orher one was cleared
     star.newStar();
+
+}
+
+function setDifficulty(val){
+    difficulty = val / 2;
+    console.log(val);
+    var difficultyOptions = document.getElementsByClassName("difficultyNumber");
+    for(var i = 0, length = difficultyOptions.length; i < length; i++) {
+        difficultyOptions[i].classList.remove("selected");
+     }
+    document.getElementById("difficulty"+val).classList.add("selected");
+
 }
