@@ -377,3 +377,13 @@ function retry() {
     document.getElementById("game").classList.remove("hidden");
     isInMenu = false;
 }
+
+function showHighscore(){
+    document.getElementById("gameMenu").classList.add("hidden");
+    document.getElementById("highscoreView").classList.remove("hidden");
+}
+
+function backFromHighscore(){
+    document.getElementById("gameMenu").classList.remove("hidden");
+    document.getElementById("highscoreView").classList.add("hidden");
+}

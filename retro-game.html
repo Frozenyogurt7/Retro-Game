@@ -18,9 +18,10 @@
       <div class="mainMenuBtn startBtn" onclick="startGame()">Start Game</div>
       <div class="mainMenuBtn musicBtn" onclick="musicOff()">Music <div class="musicImage"></div></div>
       <div class="mainMenuBtn soundBtn" onclick="soundsOff()">Effects <div class="soundImage"></div></div>
+      <div class="mainMenuBtn highscoreBtn" onclick="showHighscore()">Highscores<div class="highScoreImage"></div></div>
     </div>
 
-    <div class="highscoreOuterContainer">
+    <div id="highscoreView" class="highscoreOuterContainer hidden">
       <div class="highscoreInnerContainer">
         <div class="highscorePositionContainer">
           <div class="scoreHeader"> 
@@ -57,6 +58,7 @@
             2300
           </div>
         </div>
+        <div class="backToMenuBtn backFromHighscore" onclick="backFromHighscore()">Back</div>
       </div>
     </div>
 
