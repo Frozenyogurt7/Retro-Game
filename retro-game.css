@@ -54,7 +54,7 @@ title{
 #game_div{
 	position: absolute;
     top: 15% ;
-	left: 38%;
+	left: 35.5%;
 	z-index: 5;
 	box-shadow: 1px 1px 60px 30px;
 }
@@ -189,10 +189,11 @@ title{
 @media screen and (max-height : 850px)  {
 
 	#title span{
-		font-size: 55px;
+		font-size: 65px;
+
 	}
 
-	#game_div{
-		top:17%;
+	#title{
+		margin-top:3px;
 	}
  }
