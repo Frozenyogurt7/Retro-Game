@@ -82,7 +82,10 @@ var game_loop = function () { //game loop 16 times a seconed executed
             if (checkWater()) {
                 if (!checkOnSaveObject() || frog.x > spiel.width - 20 || frog.x < -10) { //If frog is in water and not on an object or to close to the side
                     areSoundsActive ? waterSplashSound.play() : null //play dead sound 
+                    drawBackground(); //have to be orderd. Backgrouds position behind all others  
+                    moveObjects();
                     dead();
+                    
 
                 }
             }
