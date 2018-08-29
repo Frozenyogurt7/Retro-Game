@@ -221,15 +221,8 @@ document.body.onkeydown = async function (event) { //async because we want to aw
                 frog.x = frog.x + 21;
             }
         } else {
-            isPlayerAlive = true
-            frog = frog = {
-                x: spiel.width / 2 - 15,
-                y: spiel.height - 55,
-                picture: "up"
-            };
-            loop = setInterval(game_loop, 16) //new loop beaucse the orher one was cleared
-            
-            star.newStar();
+            reset();
+          
         }
     }
 };
@@ -377,6 +370,8 @@ function showMainMenu() {
 }
 
 function retry() {
+    reset();
+
     document.getElementById("deathMenu").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
     isInMenu = false;
@@ -390,4 +385,15 @@ function showHighscore(){
 function backFromHighscore(){
     document.getElementById("gameMenu").classList.remove("hidden");
     document.getElementById("highscoreView").classList.add("hidden");
+}
+
+function reset(){
+    isPlayerAlive = true
+    frog = frog = {
+        x: spiel.width / 2 - 15,
+        y: spiel.height - 55,
+        picture: "up"
+    }
+    loop = setInterval(game_loop, 16) //new loop beaucse the orher one was cleared
+    star.newStar();
 }
