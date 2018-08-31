@@ -20,9 +20,9 @@
 ## Verwendete Mittel:
 * Nachgebildetes Frogger Template (eigen Erstelllung)
 * Nachgebildetes Totenkopf Bild   (eigen Erstelllung)  
-* Frog Sound:    
-* Car crash Sound:
-* Water Sound:
+* Frog Sound:                     http://soundbible.com/about.php
+* Car crash Sound:                http://soundbible.com/about.php
+* Water Sound:                    http://soundbible.com/about.php
 
 
 
