@@ -39,13 +39,17 @@ var keyPressed = false //keypressed prevent of holding keys
 var isInMenu = true;
 
 try {
-
-    highscore = localStorage.getItem('highscore') //use of local storage to save own highsore. IE needs xampp for local Storage
-    if (highscore == null) {
-        highscore = 0 //most browsers return null if localstorage is not set
+    if(localStorage.getItem("highscore") == null){  
+        var scoreList  = new Array();
+        scoreList = [0,0,0,0,0,0,0,0,0]; 
+        localStorage.setItem("highscore", JSON.stringify(scoreList));
+    }
+    highscore = JSON.parse(localStorage.getItem('highscore')); //use of local storage to save own highsore. IE needs xampp for local Storage
+    if (highscore[0] == null) {
+        highscore[0] = 0 //most browsers return null if localstorage is not set
     }
 } catch (exception) {
-    highscore = 0 //IE gets error if localstroage object not existing
+    highscore[0] = 0 //IE gets error if localstroage object not existing
 }
 
 
@@ -103,7 +107,7 @@ var loadContent = function () {
 }
 
 var checkOnSaveObject = function () {
-console.log(Object.keys(waterObj).length)
+
     for (i = 0; i < Object.keys(waterObj).length; i++) { //for all water objects
         //every
 
@@ -279,10 +283,10 @@ var dead = function () {
         // context.fillStyle = '#38fe14';
         // context.fillText('GAME', 60, 150);  //image game over
         // context.fillText('OVER', 60, 300);
-        if (highscore < score) {
+        if (highscore[highscore.length-1] < score) {
 
-            localStorage.setItem('highscore', score.toString())
-            highscore = score //if dead set new highscore if nececcary
+            setHighscore(score);
+            console.log(highscore);
 
         }
         score = 0
@@ -325,7 +329,7 @@ var playSound = function () {
 }
 var soundsOff = function () {
     var soundsButton = document.getElementsByClassName("soundBtn");
-    console.log(soundsButton);
+
     var imageName="";
     soundImage = soundsButton[0].childNodes[1];
     if (areSoundsActive == true) {
@@ -405,11 +409,44 @@ function reset(){
 
 function setDifficulty(val){
     difficulty = val / 2;
-    console.log(val);
+
     var difficultyOptions = document.getElementsByClassName("difficultyNumber");
     for(var i = 0, length = difficultyOptions.length; i < length; i++) {
         difficultyOptions[i].classList.remove("selected");
      }
     document.getElementById("difficulty"+val).classList.add("selected");
 
+}
+
+function getHighscore(option){
+    switch (option) {
+        case "highest":
+            
+        break;
+
+        case "lowest":
+            
+        break;
+
+        case "all":
+            
+        break;
+    
+        default:
+        break;
+    }
+}
+
+function setHighscore(achievedScore){
+    var rank = 11;
+    var highscoreList = JSON.parse(localStorage.getItem("highscore"));
+    for(var i = 0; i < highscoreList.length; i++){
+        if(achievedScore > highscoreList[i]){
+            rank--;
+        }
+    }
+    if(rank <= 10){
+
+        highscoreList[rank-1] = achievedScore;
+    }
 }
