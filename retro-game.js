@@ -7,7 +7,7 @@ theme.setAttribute('src', 'assets/musik.mp3'); //noisy music
 theme.setAttribute('loop', 'true');
 
 var jumpSound = document.createElement('audio'); //jump sound
-jumpSound.setAttribute('src', 'assets/jump3.mp3');
+jumpSound.setAttribute('src', 'assets/jump.mp3');
 
 var waterSplashSound = document.createElement('audio') //dead water Sound
 waterSplashSound.setAttribute('src', 'assets/waterSplash.mp3')
@@ -37,22 +37,31 @@ var music = true
 var win = [false, false, false, false, false]
 var keyPressed = false //keypressed prevent of holding keys
 var isInMenu = true;
+var highscore={}
 
 try {
-    if(localStorage.getItem("highscore") == null){  
-        var scoreList  = new Array();
-        scoreList = [0,0,0,0,0,0,0,0,0]; 
-        localStorage.setItem("highscore", JSON.stringify(scoreList));
+    if(localStorage.getItem("highscore") == null || localStorage.getItem("highscore") == undefined){  
+      newScoreListe();
     }
-    highscore = JSON.parse(localStorage.getItem('highscore')); //use of local storage to save own highsore. IE needs xampp for local Storage
-    if (highscore[0] == null) {
-        highscore[0] = 0 //most browsers return null if localstorage is not set
-    }
+        highscore = JSON.parse(localStorage.getItem('highscore')); //use of local storage to save own highsore. IE needs xampp for local Storage
+             
 } catch (exception) {
-    highscore[0] = 0 //IE gets error if localstroage object not existing
+    newScoreListe();
 }
 
+function newScoreListe(){
+     highscore  = {
+        "1":0,
+        "2":0,
+        "3":0,
+        "4":0,
+        "5":0,
+    }
+    
+    localStorage.setItem("highscore", JSON.stringify(highscore));
+}
 
+//localStorage.removeItem('highscore')
 
 var score = 0
 //set images
@@ -248,7 +257,7 @@ var checkWin = function () {
     for (i = 0; i < 5; i++) {
         if (frog.y < 100 && frog.x > 5 + (85 * i) && frog.x < 30 + (85 * i)) {
             win[i] = true
-            //score = score +200
+           
             frog.x = spiel.width / 2 - 15
             frog.y = spiel.height - 55
             score = score +500
@@ -268,7 +277,7 @@ var checkWin = function () {
 
 }
 
-var dead = function () {
+var dead = async function () {
     isPlayerAlive = false
     lives = lives - 1
     clearInterval(loop)
@@ -283,17 +292,32 @@ var dead = function () {
         // context.fillStyle = '#38fe14';
         // context.fillText('GAME', 60, 150);  //image game over
         // context.fillText('OVER', 60, 300);
-        if (highscore[highscore.length-1] < score) {
-
-            setHighscore(score);
-            console.log(highscore);
-
-        }
+             
+        await sort();
+              
+        localStorage.setItem("highscore", JSON.stringify(highscore));
         score = 0
         lives = 4
+        drawScore();
         deathMenu();
 
     }
+}
+
+var sort=function(){
+    var old = score
+    var buffer 
+   
+    for(i=1;i<=Object.keys(highscore).length;i++){
+      
+        if (old > highscore[i]){
+            
+            buffer = highscore[i];
+            highscore[i]=old
+            old=buffer
+        }
+    }
+
 }
 
 var musicOff = function () {
@@ -395,7 +419,7 @@ function backFromHighscore(){
 }
 
 function reset(){
-    score=0
+  
     isPlayerAlive = true
     frog = frog = {
         x: spiel.width / 2 - 15,
@@ -418,35 +442,5 @@ function setDifficulty(val){
 
 }
 
-function getHighscore(option){
-    switch (option) {
-        case "highest":
-            
-        break;
 
-        case "lowest":
-            
-        break;
 
-        case "all":
-            
-        break;
-    
-        default:
-        break;
-    }
-}
-
-function setHighscore(achievedScore){
-    var rank = 11;
-    var highscoreList = JSON.parse(localStorage.getItem("highscore"));
-    for(var i = 0; i < highscoreList.length; i++){
-        if(achievedScore > highscoreList[i]){
-            rank--;
-        }
-    }
-    if(rank <= 10){
-
-        highscoreList[rank-1] = achievedScore;
-    }
-}

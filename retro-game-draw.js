@@ -21,14 +21,19 @@ var drawBackground = function () {
     }
 
     drawLine(5, 460) //recursive function just because I can
+    drawScore();
 
 
+   
 
+
+};
+var drawScore = function(){
     context.font = 'bold 12pt arial';
     context.fillText('Score: ', 100, 550); //crate labels on the bottom
     context.fillText('Highscore: ', 240, 550);
     context.fillText(score, 155, 550);
-    context.fillText(highscore[0], 330, 550);
+    context.fillText(highscore[1], 330, 550);
     for (i = 0; i < lives; i++) {
         context.drawImage(sprites, 13, 334, 17, 23, 5 + i * 20, 538, 11, 15); //draw lives
     }
@@ -39,10 +44,9 @@ var drawBackground = function () {
         }
     }
 
+}
 
-};
-
-var drawLine = function (x, y) {
+var drawLine = function (x, y) { //recursive function just because I can
     //draw the lines between the vehicles
 
     context.beginPath() //recursive function just because I can
