@@ -33,7 +33,7 @@ var drawScore = function(){
     context.fillText('Score: ', 100, 550); //crate labels on the bottom
     context.fillText('Highscore: ', 240, 550);
     context.fillText(score, 155, 550);
-    context.fillText(highscore[1], 330, 550);
+    context.fillText(highscore[1].punkte, 330, 550);
     for (i = 0; i < lives; i++) {
         context.drawImage(sprites, 13, 334, 17, 23, 5 + i * 20, 538, 11, 15); //draw lives
     }

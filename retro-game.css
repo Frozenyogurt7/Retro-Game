@@ -85,7 +85,7 @@ title{
 .highscoreNameContainer div, 
 .highscoreScoreContainer div,
 .highscorePositionContainer div{
-	padding: 5px 0;
+	padding: 3px 0;
 	border-bottom: 1px  solid forestgreen;
 }
 
@@ -179,6 +179,9 @@ title{
 	z-index: 5;
 }
 
+.highscoresBtn{
+	top: 120px
+}
 .retryBtn{
 	top: 40px;
 }

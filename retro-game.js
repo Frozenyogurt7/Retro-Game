@@ -39,6 +39,8 @@ var keyPressed = false //keypressed prevent of holding keys
 var isInMenu = true;
 var highscore={}
 
+
+
 try {
     if(localStorage.getItem("highscore") == null || localStorage.getItem("highscore") == undefined){  
       newScoreListe();
@@ -49,17 +51,6 @@ try {
     newScoreListe();
 }
 
-function newScoreListe(){
-     highscore  = {
-        "1":0,
-        "2":0,
-        "3":0,
-        "4":0,
-        "5":0,
-    }
-    
-    localStorage.setItem("highscore", JSON.stringify(highscore));
-}
 
 //localStorage.removeItem('highscore')
 
@@ -80,6 +71,42 @@ sprites.onload = function () { //after images are load
 var counter = 0
 var fx = 1
 
+function newScoreListe(){
+    highscore  = {
+       "1":{
+           name:"noname",
+           punkte:0},
+       "2":{
+           name:"noname",
+           punkte:0},
+       "3":{
+           name:"noname",
+           punkte:0},
+       "4":{
+           name:"noname",
+           punkte:0},
+       "5":{
+           name:"noname",
+           punkte:0},
+        "6":{
+            name:"noname",
+            punkte:0},
+        "7":{
+            name:"noname",
+            punkte:0},
+        "8":{
+            name:"noname",
+            punkte:0},
+        "9":{
+            name:"noname",
+            punkte:0},
+        "10":{
+            name:"noname",
+            punkte:0},
+   }
+   
+   localStorage.setItem("highscore", JSON.stringify(highscore));
+}
 
 var game_loop = function () { //game loop 16 times a seconed executed
 
@@ -270,56 +297,89 @@ var checkWin = function () {
     if (win.every(function (elemet) {
             return elemet == true
         })) {
-        alert("won game") //great alert
+        clearInterval(loop)
+        end('won')
+        win = [false, false, false, false, false]
         return true
     }
     return false
 
 }
+var drawStop = function(winlose){
+    context.globalAlpha = 0.2;
+     context.fillStyle = "white"
+     context.fillRect(0,0,400,560);  //background getting transperent and
+     context.globalAlpha =1;
+     context.font = 'bold 72pt arial';
+     context.fillStyle = '#38fe14';
+     if (winlose=="lose"){
+        context.fillText('GAME', 60, 150);  //image game over
+        context.fillText('OVER', 60, 300);
+     }else{
+        context.fillText('Won', 60, 150);  //image game over
+        context.fillText('Game', 60, 300);
+     }
+    
+}
+
+var end = async function(winlose){
+    await drawStop(winlose);
+    await sleep(100)
+    var name = prompt("Please enter your name")
+  
+     sort(name);
+          
+    localStorage.setItem("highscore", JSON.stringify(highscore));
+    score = 0
+    lives = 4
+    drawScore();
+    deathMenu();
+
+}
+
 
 var dead = async function () {
     isPlayerAlive = false
     lives = lives - 1
-    clearInterval(loop)
+     await clearInterval(loop)
+     
     if (lives == 0) { //if dead with no lives
         win = [false, false, false, false, false]
-        // context.globalAlpha = 0.2;
-        // context.fillStyle = "white"
-        // context.fillRect(0,0,400,560);  //background getting transperent and
-        // context.globalAlpha =1;
-        // context.font = 'bold 72pt arial';
-
-        // context.fillStyle = '#38fe14';
-        // context.fillText('GAME', 60, 150);  //image game over
-        // context.fillText('OVER', 60, 300);
-             
-        await sort();
-              
-        localStorage.setItem("highscore", JSON.stringify(highscore));
-        score = 0
-        lives = 4
-        drawScore();
-        deathMenu();
-
+        end('lose');
     }
 }
 
-var sort=function(){
-    var old = score
-    var buffer 
-   
+var sort=function(name){
+    var points = score
+    var bufferPoints 
+  
+    console.log(name)
+    name=="" || name == null ? name="noname": null
+    var bufferName
     for(i=1;i<=Object.keys(highscore).length;i++){
       
-        if (old > highscore[i]){
+        if (points > highscore[i].punkte){
             
-            buffer = highscore[i];
-            highscore[i]=old
-            old=buffer
+            bufferPoints = highscore[i].punkte;
+            bufferName = highscore[i].name;
+
+            highscore[i].punkte=points
+            highscore[i].name=name
+
+            points = bufferPoints
+            name = bufferName
         }
     }
 
 }
+var displayHighscore = function(){
+    for(i=1;i<11;i++){
+        document.getElementById("name"+i).innerHTML=highscore[i].name
+        document.getElementById("points"+i).innerHTML=highscore[i].punkte
+    }
+    
 
+}
 var musicOff = function () {
     var musicButton = document.getElementsByClassName("musicBtn")
     var imageName= "";
@@ -345,7 +405,8 @@ var playSound = function () {
 
     if (areSoundsActive == true) {
 
-        jumpSound.load() //if Sounds are enables make sound by every jump
+        //jumpSound.load() //if Sounds are enables make sound by every jump
+        jumpSound.load()
         jumpSound.play()
     }
 
@@ -409,7 +470,9 @@ function retry() {
 }
 
 function showHighscore(){
+    displayHighscore();
     document.getElementById("gameMenu").classList.add("hidden");
+    document.getElementById("deathMenu").classList.add("hidden");
     document.getElementById("highscoreView").classList.remove("hidden");
 }
 
@@ -421,6 +484,7 @@ function backFromHighscore(){
 function reset(){
   
     isPlayerAlive = true
+    
     frog = frog = {
         x: spiel.width / 2 - 15,
         y: spiel.height - 55,
