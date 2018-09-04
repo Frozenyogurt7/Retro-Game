@@ -56,6 +56,7 @@ try {
 //localStorage.removeItem('highscore')
 
 var score = 0
+var starScore = 0
 //set images
 sprites = new Image();
 sprites.src = 'assets/frogger.png'; //frogger template with all objects
@@ -203,11 +204,11 @@ var moveObjects = function () {
 }
 
 var checkScore = function () {
-    if ((505 - frog.y) / 35 * 100 > score && !frog.picture.includes("way")) {
-        score = (505 - frog.y) / 35 * 100 //new score   //every new step take a look how far the frog is gone. Increase if frogs position is higher then score
+    if ((505 - frog.y) / 35 * 100 * (difficulty/2)> score && !frog.picture.includes("way")) {
+        score = (505 - frog.y) / 35 * 100  * (difficulty/2) //new score   //every new step take a look how far the frog is gone. Increase if frogs position is higher then score
     }
     if (frog.x + 25 >= star.x && frog.x - 25 <= star.x  && frog.y <= star.y + 25 && frog.y >= star.y - 25) {
-        score = score +50
+        starScore = starScore +50
         star.newStar();
     }
 }
@@ -284,11 +285,14 @@ var checkWin = function () {
     //check if frog is on lilly if yes move frog to the beginning
     for (i = 0; i < 5; i++) {
         if (frog.y < 100 && frog.x > 5 + (85 * i) && frog.x < 30 + (85 * i)) {
+            if(win[i]==false){
+            starScore = starScore +score  + 500 * difficulty / 2
+            score=0
+            }
             win[i] = true
-           
             frog.x = spiel.width / 2 - 15
             frog.y = spiel.height - 55
-            score = score +500
+            
             star.newStar();
             return true
         }
@@ -327,6 +331,7 @@ var drawStop = async function(winlose){
           
     localStorage.setItem("highscore", JSON.stringify(highscore));
     score = 0
+    starScore=0
     lives = 4
     drawScore();
     deathMenu();
@@ -349,7 +354,7 @@ var dead =  function () {
 }
 
 var sort=function(name){
-    var points = score
+    var points = score + starScore
     var bufferPoints 
   
     console.log(name)
