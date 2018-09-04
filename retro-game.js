@@ -328,7 +328,7 @@ var drawStop = async function(winlose){
      }
      
      await sleep(100)
-     var name = prompt("Please enter your name")
+     var name = prompt("Please enter your name (Max. 11 Characters)")
      sort(name);
           
     localStorage.setItem("highscore", JSON.stringify(highscore));
@@ -361,6 +361,9 @@ var sort=function(name){
   
     console.log(name)
     name=="" || name == null ? name="noname": null
+    if(name.length > 11){
+        name=name.substring(0,11);
+    }
     var bufferName
     for(i=1;i<=Object.keys(highscore).length;i++){
       
