@@ -4,6 +4,7 @@ var context = spiel.getContext('2d'); //get Canvas
 
 var theme = document.createElement('audio');
 theme.setAttribute('src', 'assets/musik.mp3'); //noisy music
+//http://freemusicarchive.org/music/Komiku/Captain_Glouglous_Incredible_Week_Soundtrack/Skate
 theme.setAttribute('loop', 'true');
 
 var jumpSound = document.createElement('audio'); //jump sound
@@ -305,7 +306,7 @@ var checkWin = function () {
     return false
 
 }
-var drawStop = function(winlose){
+var drawStop = async function(winlose){
     context.globalAlpha = 0.2;
      context.fillStyle = "white"
      context.fillRect(0,0,400,560);  //background getting transperent and
@@ -319,14 +320,9 @@ var drawStop = function(winlose){
         context.fillText('Won', 60, 150);  //image game over
         context.fillText('Game', 60, 300);
      }
-    
-}
-
-var end = async function(winlose){
-    await drawStop(winlose);
-    await sleep(100)
-    var name = prompt("Please enter your name")
-  
+     
+     await sleep(100)
+     var name = prompt("Please enter your name")
      sort(name);
           
     localStorage.setItem("highscore", JSON.stringify(highscore));
@@ -334,18 +330,21 @@ var end = async function(winlose){
     lives = 4
     drawScore();
     deathMenu();
-
+    
 }
 
 
-var dead = async function () {
+
+
+var dead =  function () {
     isPlayerAlive = false
     lives = lives - 1
-     await clearInterval(loop)
+       clearInterval(loop)
      
     if (lives == 0) { //if dead with no lives
         win = [false, false, false, false, false]
-        end('lose');
+        isInMenu=true
+        drawStop('lose');
     }
 }
 

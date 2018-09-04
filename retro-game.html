@@ -23,16 +23,16 @@
 
   <div id="game_div">
     <div id="gameMenu">
-      <div class="mainMenuBtn startBtn" onclick="startGame()">Start Game</div>
-      <div class="mainMenuBtn musicBtn" onclick="musicOff()">Music <div class="musicImage"></div></div>
-      <div class="mainMenuBtn soundBtn" onclick="soundsOff()">Effects <div class="soundImage"></div></div>
-      <div class="mainMenuBtn highscoreBtn" onclick="showHighscore()">Highscores<div class="highScoreImage"></div></div>
-      <div class="mainMenuBtn difficultyMenu">
+      <div class="mainMenuBtn startBtn buttonchangecolor" onclick="startGame()">Start Game</div>
+      <div class="mainMenuBtn musicBtn buttonchangecolor" onclick="musicOff()">Music <div class="musicImage"></div></div>
+      <div class="mainMenuBtn soundBtn buttonchangecolor" onclick="soundsOff()">Effects <div class="soundImage"></div></div>
+      <div class="mainMenuBtn highscoreBtn buttonchangecolor" onclick="showHighscore()">Highscores<div class="highScoreImage"></div></div>
+      <div class="mainMenuBtn difficultyMenu ">
         <div class="difficultyHeader">Difficulty</div>
         <div class="difficultySelection">
-          <div id="difficulty1" class="difficultyNumber selected" onclick="setDifficulty(1)">1</div>
-          <div id="difficulty2" class="difficultyNumber" onclick="setDifficulty(2)">2</div>
-          <div id="difficulty3" class="difficultyNumber" onclick="setDifficulty(3)">3</div>
+          <div id="difficulty1" class="difficultyNumber selected buttonchangecolor" onclick="setDifficulty(1)">1</div>
+          <div id="difficulty2" class="difficultyNumber buttonchangecolor" onclick="setDifficulty(2)">2</div>
+          <div id="difficulty3" class="difficultyNumber buttonchangecolor" onclick="setDifficulty(3)">3</div>
         </div>
       </div>
     </div>
@@ -147,16 +147,16 @@
           </div>
 
         </div>
-        <div class="backToMenuBtn backFromHighscore" onclick="backFromHighscore()">Back</div>
+        <div class="backToMenuBtn backFromHighscore buttonchangecolor" onclick="backFromHighscore()">Back</div>
       </div>
     </div>
 
    
 
     <div id="deathMenu" class="hidden">
-      <div class="mainMenuBtn retryBtn" onclick="retry()">Retry</div>
-      <div class="mainMenuBtn backToMenuBtn" onclick="showMainMenu()">Back to Menu</div>
-      <div class="mainMenuBtn highscoresBtn" onclick="showHighscore()">Highscores</div>
+      <div class="mainMenuBtn retryBtn buttonchangecolor" onclick="retry()">Retry</div>
+      <div class="mainMenuBtn backToMenuBtn buttonchangecolor" onclick="showMainMenu()">Back to Menu</div>
+      <div class="mainMenuBtn highscoresBtn buttonchangecolor" onclick="showHighscore()">Highscores</div>
     </div>
     <canvas class="hidden" id="game" height="560" width="400"></canvas>
     <!-- <div class="soundOptions">

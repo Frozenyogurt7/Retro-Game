@@ -111,7 +111,14 @@ title{
 	height: 40px;
 	margin: 0 10%;
 	padding: 3px 0;
+	
 }
+
+.buttonchangecolor:hover /* Eigenschaften beim Überfahren mit der Maus */
+    {
+    color: white; /* Neue Farbe */
+    }
+
 
 .startBtn{
 	top: 30px;

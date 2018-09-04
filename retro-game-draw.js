@@ -29,6 +29,8 @@ var drawBackground = function () {
 
 };
 var drawScore = function(){
+
+
     context.font = 'bold 12pt arial';
     context.fillText('Score: ', 100, 550); //crate labels on the bottom
     context.fillText('Highscore: ', 240, 550);
