@@ -382,11 +382,17 @@ var sort=function(name){
 
 }
 var displayHighscore = function(){
+    var positionElement = '<div class="scoreHeader">&nbsp;</div>';
+    var nameElement = '<div class="scoreHeader">Name:</div>';
+    var scoreElement = '<div class="scoreHeader">Score:</div>';
     for(i=1;i<11;i++){
-        document.getElementById("name"+i).innerHTML=highscore[i].name
-        document.getElementById("points"+i).innerHTML=highscore[i].punkte
+        positionElement += '<div class="highscorePositionRow">'+i+'.</div>';
+        nameElement += '<div class="highscoreNameRow">'+highscore[i].name+'</div>';
+        scoreElement += '<div class="highscoreScoreRow">'+highscore[i].punkte+'</div>';
     }
-    
+    document.getElementById("positionContainer").innerHTML = positionElement;
+    document.getElementById("nameContainer").innerHTML = nameElement;
+    document.getElementById("scoreContainer").innerHTML = scoreElement;
 
 }
 var musicOff = function () {
