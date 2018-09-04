@@ -71,6 +71,7 @@ sprites.onload = function () { //after images are load
 
 //-----------------------loop event---------------------------
 var counter = 0
+var counter2 = 0
 var fx = 1
 
 function newScoreListe(){
@@ -165,6 +166,7 @@ var moveObjects = function () {
 
     //creazy alorithm to change the picture and behavior of turtles and crodociles
     counter = (counter + 2 * fx) % 602
+    counter2 = (counter2 +3 * fx) % 600
     for (x = 0; x < Object.keys(waterObj).length; x++) {
         
         waterObj[x].move(); //move all waterObjects
@@ -184,11 +186,11 @@ var moveObjects = function () {
             //check counter... counter goes ip to 600 and then down to 0 and again... on different numbers the pictture of the tutles change
 
         }
+        
 
-
-        if (waterObj[x].ObjPicture.includes("crocodile") && counter < 400) {
+        if (waterObj[x].ObjPicture.includes("crocodile") && (counter2 < 300 || counter2 >350)) {
             waterObj[x].ObjPicture = "crocodile1" //crocodile save 2/3 of time
-        } else if (waterObj[x].ObjPicture.includes("crocodile") && counter >= 400) {
+        } else if (waterObj[x].ObjPicture.includes("crocodile")) {
             waterObj[x].ObjPicture = "crocodile2" //crocodie not sace 1/3 of time
         }
 
