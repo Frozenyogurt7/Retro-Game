@@ -28,12 +28,12 @@ Die retro-game.html Datei startet das Spiel
 ### Ziel:            
 Nachbildung des Retrospiels Frogger mit unterschiedlichen Schwierigkeitsgraden und neueren Features
 ### Verwendete Mittel: 
-HTML5, CSS, JavaScrpit
+HTML5, CSS, JavaScript
 ### Lauffähig auf:   
 Chrome, Firefox, Opera
 ### Nicht lauffähig auf IE aufgrund der folgenden Funktionaliäten:
 * Animationen durch Async Functions und "Await" Keyword
-* Verwendung mehererer JavaScript Dokumente zur Übersichtlichkeit
+* Verwendung mehrerer JavaScript Dokumente zur Übersichtlichkeit
 * Verwendung von LocalStorage ohne Xampp
 * Verwendung des Keywords "Include"
 
@@ -48,13 +48,24 @@ Chrome, Firefox, Opera
 * Musik:                          -> http://freemusicarchive.org/music/Komiku/Captain_Glouglous_Incredible_Week_Soundtrack/Skate
 
 
-##Features
+## Features
 * Ein Stern der auf dem Weg eingesammelt werden kann und zusätzliche Punkte gibt.
 * Vorher festgelegte Schwierigkeiten. Höhere Schwierigkeiten geben mehr Punkte
 * Ein Leaderbord für die Locale Anwendung
 * Schildkröten tauchen ab. (Erst seit neueren Froggern inclusive)
 * Rutschen auf glitschigen Schildkröten. (Kein runterfallen)
 
+## Lizenz und Datenschutz
+
+#### Lizenz
+```
+Hier die Lizenz
+```
+
+#### Datenschutz
+```
+Hier der Datenschutz
+```
 
 ## Dokumentation
 
