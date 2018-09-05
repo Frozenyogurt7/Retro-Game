@@ -2,16 +2,18 @@
 Retro Frogger-Spiel mit zusätzlichen Features 
 
 ## Download Frogger
-'''
+
+```
 git clone https://gitlab.com/Frozenyogurt7/bglTour.git
-''' 
+```
+
 Die retro-game.html Datei startet das Spiel
 
 
-
-### Autoren: Dirk Soltenborn, Gerorg Westbomke, Yannik Kasper
-### Versionsnummer: 0.9 Bei Anmerkungen oder Fragen bitte an ykasper84@gmail.com wenden
-### Datum: 29.08.2018
+###Details
+#### Autoren: Dirk Soltenborn, Gerorg Westbomke, Yannik Kasper
+#### Versionsnummer: 0.9 Bei Anmerkungen oder Fragen bitte an ykasper84@gmail.com wenden
+#### Datum: 29.08.2018
 
 ## Spezifikation:
 
@@ -38,7 +40,7 @@ Die retro-game.html Datei startet das Spiel
 ## Dokumentation
 
 ### Klassen und Methoden
-* gameObject
+#### gameObject
 * move()
 * checkOn()
 
