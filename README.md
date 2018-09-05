@@ -19,19 +19,19 @@ Die retro-game.html Datei startet das Spiel
 
 
 
-#### Versionsnummer:
+### Version
 1.1 Bei Anmerkungen oder Fragen bitte an ykasper84@gmail.com wenden
 #### Datum: 29.08.2018
 
 ## Spezifikation:
-##
-#### Ziel:            
+
+### Ziel:            
 Nachbildung des Retrospiels Frogger mit unterschiedlichen Schwierigkeitsgraden und neueren Features
-#### Verwendete Mittel: 
+### Verwendete Mittel: 
 HTML5, CSS, JavaScrpit
-#### Lauffähig auf:   
+### Lauffähig auf:   
 Chrome, Firefox, Opera
-#### Nicht lauffähig auf IE aufgrund der folgenden Funktionaliäten:
+### Nicht lauffähig auf IE aufgrund der folgenden Funktionaliäten:
 * Animationen durch Async Functions und "Await" Keyword
 * Verwendung mehererer JavaScript Dokumente zur Übersichtlichkeit
 * Verwendung von LocalStorage ohne Xampp
