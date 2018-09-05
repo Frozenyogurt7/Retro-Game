@@ -1,7 +1,16 @@
 # Frogger Retro-Game
+Retro Frogger-Spiel mit zusätzlichen Features 
+
+## Download Frogger
+'''
+git clone https://gitlab.com/Frozenyogurt7/bglTour.git
+''' 
+Die retro-game.html Datei startet das Spiel
+
+
 
 ### Autoren: Dirk Soltenborn, Gerorg Westbomke, Yannik Kasper
-### Versionsnummer: 0.9
+### Versionsnummer: 0.9 Bei Anmerkungen oder Fragen bitte an ykasper84@gmail.com wenden
 ### Datum: 29.08.2018
 
 ## Spezifikation:
@@ -18,12 +27,12 @@
 
 
 ## Verwendete Mittel:
-* Nachgebildetes Frogger Template (eigen Erstellung)
-* Nachgebildetes Totenkopf Bild   (eigen Erstellung)  
-* Frog Sound:                     http://soundbible.com/about.php
-* Car crash Sound:                http://soundbible.com/about.php
-* Water Sound:                    http://soundbible.com/about.php
-* Musik:                          https://www.youtube.com/watch?v=bhWRYaGkqMw
+* Nachgebildetes Frogger Template -> (eigen Erstellung)
+* Nachgebildetes Totenkopf Bild   -> (eigen Erstellung)  
+* Frog Sound:                     -> http://soundbible.com/about.php
+* Car crash Sound:                -> http://soundbible.com/about.php
+* Water Sound:                    -> http://soundbible.com/about.php
+* Musik:                          -> https://www.youtube.com/watch?v=bhWRYaGkqMw
 
 
 ## Dokumentation
@@ -34,24 +43,25 @@
 * checkOn()
 
 ### Functionen
-* createObjects()             Objekterstellung Levelspezifisch
-* soundsOff()                 Ein und ausschalten von Sounds
-* playSound()                 Abspielen des Frosch Sounds
-* dead()                      Bei Tot ausgeführte Function
-* checkWin()                  Prüfung auf Gewinn
-* sleep()                     Wait Function durch Pomiss return
-* document.body.onkeydown()   tastatur Eingabe
-* document.body.onkeyup()     tastatur Eingabe
-* checkWater()                Prüfung ob Frosch im Wasser
-* drawFrog()                  Zeichnen des Frosches
-* drawLine()                  Linien zwischen den Autos malen
-* checkScore()                Prüfung ob neuer Score erreicht wurde
-* moveObjects()               Bewegung aller Objecte
-* checkOnSaveObject()         Prüfung ob Forsch auf Wasser Object ist
-* drawBackground()            Zeichnen des Hintergrundes
-* gameLoop()                  Schleife für Zeichnung und Prüfung ??? retro-game.js 75
-* Star()                      Stern der eingesammelt werden kann
-* drawStar()                  Zeichnen des Sterns
+* createObjects()			  -> Objekterstellung Levelspezifisch
+  
+* soundsOff()                 -> Ein und ausschalten von Sounds
+* playSound()                 -> Abspielen des Frosch Sounds
+* dead()                      -> Bei Tot ausgeführte Function
+* checkWin()                  -> Prüfung auf Gewinn
+* sleep()                     -> Wait Function durch Pomiss return
+* document.body.onkeydown()   -> tastatur Eingabe
+* document.body.onkeyup()     -> tastatur Eingabe
+* checkWater()                -> Prüfung ob Frosch im Wasser
+* drawFrog()                  -> Zeichnen des Frosches
+* drawLine()                  -> Linien zwischen den Autos malen
+* checkScore()                -> Prüfung ob neuer Score erreicht wurde
+* moveObjects()               -> Bewegung aller Objecte
+* checkOnSaveObject()         -> Prüfung ob Forsch auf Wasser Object ist
+* drawBackground()            -> Zeichnen des Hintergrundes
+* gameLoop()                  -> Schleife für Zeichnung und Prüfung ??? retro-game.js 75
+* Star()                      -> Stern der eingesammelt werden kann
+* drawStar()                  -> Zeichnen des Sterns
 * newStar()                   
 * gameObjekt()
 * move()
