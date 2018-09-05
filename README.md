@@ -21,7 +21,7 @@ Die retro-game.html Datei startet das Spiel
 
 ### Version
 1.1 Bei Anmerkungen oder Fragen bitte an ykasper84@gmail.com wenden
-#### Datum: 29.08.2018
+#### Datum: 05.01.2018
 
 ## Spezifikation:
 
@@ -45,7 +45,15 @@ Chrome, Firefox, Opera
 * Frog Sound:                     -> http://soundbible.com/about.php
 * Car crash Sound:                -> http://soundbible.com/about.php
 * Water Sound:                    -> http://soundbible.com/about.php
-* Musik:                          -> https://www.youtube.com/watch?v=bhWRYaGkqMw
+* Musik:                          -> http://freemusicarchive.org/music/Komiku/Captain_Glouglous_Incredible_Week_Soundtrack/Skate
+
+
+##Features
+* Ein Stern der auf dem Weg eingesammelt werden kann und zusätzliche Punkte gibt.
+* Vorher festgelegte Schwierigkeiten. Höhere Schwierigkeiten geben mehr Punkte
+* Ein Leaderbord für die Locale Anwendung
+* Schildkröten tauchen ab. (Erst seit neueren Froggern inclusive)
+* Rutschen auf glitschigen Schildkröten. (Kein runterfallen)
 
 
 ## Dokumentation
@@ -71,24 +79,23 @@ Chrome, Firefox, Opera
 * moveObjects()               -> Bewegung aller Objecte
 * checkOnSaveObject()         -> Prüfung ob Forsch auf Wasser Object ist
 * drawBackground()            -> Zeichnen des Hintergrundes
-* gameLoop()                  -> Schleife für Zeichnung und Prüfung ??? retro-game.js 75
+* gameLoop()                  -> Schleife für Zeichnung und Prüfung 
 * Star()                      -> Stern der eingesammelt werden kann
 * drawStar()                  -> Zeichnen des Sterns
-* newStar()                   
-* gameObjekt()
-* move()
-* checkOn()
-* loadContent()               retro-game.js 105
-* reset()
-* onKeyDown()
-* onkeyup()
-* deathMenu()
-* musicOff()
-* startGame()
-* retry()
-* setDifficulty()
-* getHighscore()
-* setHighscore()
+* newStar()                   -> Die Koordinaten des Sterns ändern sich
+* gameObjekt()				  -> Level Initialisierung. Objecte werden erstellt
+* move()					  -> Object wird mit seinen Eigenschaften bewegt
+* checkOn()					  -> Prüfung ob sich der Frosch auf einem Object befindet
+* reset()				      -> Bereitet alles vor für einen neuen Versuch		
+* onKeyDown()				  -> Tastaur Eingabe abfangen und verarbeiten
+* onkeyup()					  -> Zur Prüfung ob die Taste nicht gehalten wird
+* deathMenu()				  -> Zeigt das Todes Menü an	
+* musicOff()				  -> Schaltet die Musik aus
+* startGame()				  -> Lässt das Menü verschwinden um zu spielen
+* retry()					  -> Lässt das Todes Menü veschwinden um erneut zu spielen
+* setDifficulty()			  -> Setzt die Schwierigkeit und animiert das Menü
+* getHighscore()			  -> Holt sich den Highscore aus dem LocalStorage
+* setHighscore()			  -> Setzt den Highscore in den LocalStorage	
 
 ### Objekte
 * Frog Json Object

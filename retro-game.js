@@ -141,9 +141,7 @@ var game_loop = function () { //game loop 16 times a seconed executed
 //----------------------------draw background------------ 
 
 
-var loadContent = function () {
 
-}
 
 var checkOnSaveObject = function () {
 
