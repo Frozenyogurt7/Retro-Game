@@ -10,16 +10,27 @@ git clone https://gitlab.com/Frozenyogurt7/bglTour.git
 Die retro-game.html Datei startet das Spiel
 
 
-###Details
-#### Autoren: Dirk Soltenborn, Gerorg Westbomke, Yannik Kasper
-#### Versionsnummer: 0.9 Bei Anmerkungen oder Fragen bitte an ykasper84@gmail.com wenden
+
+## Authors
+
+* **Dirk Soltenborn** Konzept und Planung
+* **Yannik Kasper** Programmierung 
+* **Georg Westbomke** Design und Menu
+
+
+
+#### Versionsnummer:
+1.1 Bei Anmerkungen oder Fragen bitte an ykasper84@gmail.com wenden
 #### Datum: 29.08.2018
 
 ## Spezifikation:
-
-#### Ziel:            Nachbildung des Retrospiels Frogger mit unterschiedlichen Schwierigkeitsgraden und neueren Features
-#### Verwendete       Mittel: HTML5, CSS, JavaScrpit
-#### Lauffähig auf:   Chrome, Firefox, Opera
+##
+#### Ziel:            
+Nachbildung des Retrospiels Frogger mit unterschiedlichen Schwierigkeitsgraden und neueren Features
+#### Verwendete Mittel: 
+HTML5, CSS, JavaScrpit
+#### Lauffähig auf:   
+Chrome, Firefox, Opera
 #### Nicht lauffähig auf IE aufgrund der folgenden Funktionaliäten:
 * Animationen durch Async Functions und "Await" Keyword
 * Verwendung mehererer JavaScript Dokumente zur Übersichtlichkeit
@@ -39,8 +50,7 @@ Die retro-game.html Datei startet das Spiel
 
 ## Dokumentation
 
-### Klassen und Methoden
-#### gameObject
+### Klassen und Methoden 
 * move()
 * checkOn()
 
@@ -80,7 +90,7 @@ Die retro-game.html Datei startet das Spiel
 * getHighscore()
 * setHighscore()
 
-### Objecte
+### Objekte
 * Frog Json Object
 * Spiel object
 * content Canvas Objekt
