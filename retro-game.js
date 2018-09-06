@@ -3,9 +3,11 @@ var spiel = document.getElementById('game'); //game Object
 var context = spiel.getContext('2d'); //get Canvas
 
 var theme = document.createElement('audio');
-theme.setAttribute('src', 'assets/musik.mp3'); //noisy music
+theme.setAttribute('src', 'assets/musik.mp3') //noisy music
 //http://freemusicarchive.org/music/Komiku/Captain_Glouglous_Incredible_Week_Soundtrack/Skate
 theme.setAttribute('loop', 'true');
+
+
 
 var jumpSound = document.createElement('audio'); //jump sound
 jumpSound.setAttribute('src', 'assets/jump.mp3');
@@ -17,8 +19,8 @@ var crashSound = document.createElement('audio') //car crash sound
 crashSound.setAttribute('src', 'assets/crash.mp3')
 areSoundsActive = true;
 
-var difficulty = 1 /2
-//theme.play();
+var difficulty = 0.5
+
 
 //frog json
 var frog = {
@@ -39,8 +41,11 @@ var win = [false, false, false, false, false]
 var keyPressed = false //keypressed prevent of holding keys
 var isInMenu = true;
 var highscore={}
-
-
+var score = 0
+var starScore = 0
+var counter = 0
+var counter2 = 0
+var fx = 1
 
 try {
     if(localStorage.getItem("highscore") == null || localStorage.getItem("highscore") == undefined){  
@@ -55,8 +60,6 @@ try {
 
 //localStorage.removeItem('highscore')
 
-var score = 0
-var starScore = 0
 //set images
 sprites = new Image();
 sprites.src = 'assets/frogger.png'; //frogger template with all objects
@@ -70,11 +73,9 @@ sprites.onload = function () { //after images are load
 
 
 //-----------------------loop event---------------------------
-var counter = 0
-var counter2 = 0
-var fx = 1
 
-function newScoreListe(){
+
+function newScoreListe(){  //Generate new highscore object and past it into the LocalStorage
     highscore  = {
        "1":{
            name:"noname",
@@ -303,40 +304,14 @@ var checkWin = function () {
             return elemet == true
         })) {
         clearInterval(loop)
-        end('won')
+        drawStop('won')
         win = [false, false, false, false, false]
         return true
     }
     return false
 
 }
-var drawStop = async function(winlose){
-    context.globalAlpha = 0.2;
-     context.fillStyle = "white"
-     context.fillRect(0,0,400,560);  //background getting transperent and
-     context.globalAlpha =1;
-     context.font = 'bold 72pt arial';
-     context.fillStyle = '#38fe14';
-     if (winlose=="lose"){
-        context.fillText('GAME', 60, 150);  //image game over
-        context.fillText('OVER', 60, 300);
-     }else{
-        context.fillText('Won', 60, 150);  //image game over
-        context.fillText('Game', 60, 300);
-     }
-     
-     await sleep(100)
-     var name = prompt("Please enter your name (Max. 11 Characters)")
-     sort(name);
-          
-    localStorage.setItem("highscore", JSON.stringify(highscore));
-    score = 0
-    starScore=0
-    lives = 4
-    drawScore();
-    deathMenu();
-    
-}
+
 
 
 
@@ -357,7 +332,7 @@ var sort=function(name){
     var points = score + starScore
     var bufferPoints 
   
-    console.log(name)
+    
     name=="" || name == null ? name="noname": null
     if(name.length > 11){
         name=name.substring(0,11);
@@ -397,16 +372,16 @@ var musicOff = function () {
     var musicButton = document.getElementsByClassName("musicBtn")
     var imageName= "";
     musicImage = musicButton[0].childNodes[1];
-    if (music == true) {
+    if (music == false) {
         theme.pause()
         imageName = "soundOff";
         musicButton.innerHTML = "Music anschalten"
-        music = false
+        music = true
     } else {
         theme.play()
         imageName = "soundOn";
         musicButton.innerHTML = "Music ausschalten"
-        music = true
+        music = false
     }
 
     musicImage.style.background = "url('assets/"+imageName+".png') 100% 100% no-repeat";
@@ -454,8 +429,6 @@ function startGame() {
     reset();
     createObjects();
     //Create Cars
-  
-
     document.getElementById("gameMenu").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
     isInMenu = false;

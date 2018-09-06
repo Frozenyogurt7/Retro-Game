@@ -1,5 +1,6 @@
 var createObjects = function () {
     //level one  creation of all objects
+                                //X Coor, Y coor, object type, speed, direction, lenght
     vehicle[0] = new gameObject(50, 465, "pink car", 2+difficulty, "left",1)
     vehicle[1] = new gameObject(100, 465, "pink car", 2+difficulty, "left",1)
     vehicle[2] = new gameObject(150, 465, "pink car", 2+difficulty, "left",1)
@@ -66,15 +67,16 @@ var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter
         //move the object method. check if out of bound and then move position to the other bound
         switch (this.direction) {
             case "right":
-                this.x <= spiel.width + this.lenght * 40 ? this.x = (this.x + this.speed) : this.x = -this.lenght * 40; //move right
+                this.x <= spiel.width + this.lenght * 40 ? this.x = (this.x + this.speed) : this.x = -this.lenght * 40; //move right // if out of cound move to other side
                 break;
             case "left":
-                this.x >= (-40 * this.lenght) ? this.x = (this.x - this.speed) : this.x = spiel.width + this.lenght * 40; //move left
+                this.x >= (-40 * this.lenght) ? this.x = (this.x - this.speed) : this.x = spiel.width + this.lenght * 40; //move left  // if out of cound move to other side
         }
 
         //all pictures of objects drawn on there positions
         switch (this.ObjPicture) { //draw objects
             case "pink car":
+                                //(picture,oldx,oldy,oldWidth,oldLenght,newX,newY,newWidth,newLenght=
                 context.drawImage(sprites, 8, 265, 30, 22, this.x, this.y, 30, 22); //green car
                 break;
             case "red car":
@@ -100,7 +102,7 @@ var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter
                 break;
             case "turtle0":
             case "turtle1":
-            case "turtle2": //fall through for longer tutrle 0
+            case "turtle2": //fall through for longer tutrle 4
             case "turtle3":
             case "turtle4":
                 context.drawImage(sprites, 16, 405, 26, 22, this.x, this.y, 26, 22); //turtle 1

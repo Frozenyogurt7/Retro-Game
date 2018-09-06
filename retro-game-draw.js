@@ -14,7 +14,7 @@ var drawBackground = function () {
     for (i = 0; i < 5; i++) {
         context.beginPath()
         context.arc(27 + i * 85, 90, 10, 0, 2 * Math.PI); //water lily
-        
+                  //  (x,y,radius,startpoint,umfang)
         context.stroke(); //draw circle
         context.fillStyle = 'green';
         context.fill() //set green style of circles
@@ -137,5 +137,59 @@ var Star = function(){
         context.stroke();
         
     }
+    var drawStop = async function(winlose){
+    context.globalAlpha = 0.2;
+     context.fillStyle = "white"
+     context.fillRect(0,0,400,560);  //background getting transperent and
+     context.globalAlpha =1;
+     context.font = 'bold 72pt arial';
+     context.fillStyle = '#38fe14';
+     if (winlose=="lose"){
+        context.fillText('GAME', 60, 150);  //image game over
+        context.fillText('OVER', 60, 300);
+     }else{
+        context.fillText('Won', 60, 150);  //image game over
+        context.fillText('Game', 60, 300);
+     }
+     
+     await sleep(100)
+     var name = prompt("Please enter your name (Max. 11 Characters)")
+     sort(name);
+          
+    localStorage.setItem("highscore", JSON.stringify(highscore));
+    score = 0
+    starScore=0
+    lives = 4
+    
+   
+    
+}
+var drawStop = async function(winlose){
+    context.globalAlpha = 0.2;
+     context.fillStyle = "white"
+     context.fillRect(0,0,400,560);  //background getting transperent and
+     context.globalAlpha =1;
+     context.font = 'bold 72pt arial';
+     context.fillStyle = '#38fe14';
+     if (winlose=="lose"){
+        context.fillText('GAME', 60, 150);  //image game over
+        context.fillText('OVER', 60, 300);
+     }else{
+        context.fillText('Won', 60, 150);  //image game over
+        context.fillText('Game', 60, 300);
+     }
+     
+     await sleep(100)
+     var name = prompt("Please enter your name (Max. 11 Characters)")
+     sort(name);
+          
+    localStorage.setItem("highscore", JSON.stringify(highscore));
+    //score = 0
+    //starScore=0
+    //lives = 4
+    drawScore();
+    deathMenu();
+    
+}
 
 }

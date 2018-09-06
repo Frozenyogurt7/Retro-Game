@@ -40,12 +40,14 @@ Chrome, Firefox, Opera
 
 
 ## Verwendete Mittel:
+#### Credentials.txt
 * Nachgebildetes Frogger Template -> (eigen Erstellung)
 * Nachgebildetes Totenkopf Bild   -> (eigen Erstellung)  
 * Frog Sound:                     -> http://soundbible.com/about.php
 * Car crash Sound:                -> http://soundbible.com/about.php
 * Water Sound:                    -> http://soundbible.com/about.php
 * Musik:                          -> http://freemusicarchive.org/music/Komiku/Captain_Glouglous_Incredible_Week_Soundtrack/Skate
+* Hintergrung                     -> https://www.pexels.com/photo/led-light-signage-1293269/
 
 
 ## Features

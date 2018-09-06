@@ -1,3 +1,5 @@
+/*Einbinung einer externen freien Schriftart */
+
 @font-face {			/*Source: https://www.1001fonts.com/drummon-font.html */
     font-family: 'Drummon 3D';
     src: url('assets/fonts/Drummon3D.eot');
@@ -167,7 +169,7 @@ title{
 .musicImage{
     width: 40px;
     height: 40px;
-    background: url("assets/soundOn.png") 100% 100% no-repeat;
+    background: url("assets/soundOff.png") 100% 100% no-repeat;
     background-size: 40px;
     float: right;
     z-index: 9999;

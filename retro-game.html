@@ -20,7 +20,7 @@
 <div class="whiteTransparent"></div>
   <h1 id="title"><span>Frogger</span></h1>
 
-
+    <!--Haupt Menu-->
   <div id="game_div">
     <div id="gameMenu">
       <div class="mainMenuBtn startBtn buttonchangecolor" onclick="startGame()">Start Game</div>
@@ -37,6 +37,7 @@
       </div>
     </div>
 
+    <!--Highscore Menü-->
     <div id="highscoreView" class="highscoreOuterContainer hidden">
       <div class="highscoreInnerContainer">
         <div class="highscorePositionContainer" id="positionContainer">
@@ -52,12 +53,17 @@
     </div>
 
    
-
+    <!--Death Menü-->
     <div id="deathMenu" class="hidden">
       <div class="mainMenuBtn retryBtn buttonchangecolor" onclick="retry()">Retry</div>
       <div class="mainMenuBtn backToMenuBtn buttonchangecolor" onclick="showMainMenu()">Back to Menu</div>
       <div class="mainMenuBtn highscoresBtn buttonchangecolor" onclick="showHighscore()">Highscores</div>
     </div>
+
+
+
+    <!--Spiel-->
+
     <canvas class="hidden" id="game" height="560" width="400"></canvas>
     <!-- <div class="soundOptions">
       <button id="musicBtn"onclick="musicOff()">Musik anschalten</button> 
