@@ -13,9 +13,9 @@ Die retro-game.html Datei startet das Spiel
 
 ## Authors
 
-* **Dirk Soltenborn** Konzept und Planung
-* **Yannik Kasper** Programmierung 
-* **Georg Westbomke** Design und Menu
+* **Dirk Soltenborn** Konzept, Planung, Datenschutz, Lizenz, Impressum, Readme, Musik/Bild Lizenzen
+* **Yannik Kasper** Programmierung: Spieldynamik, Animationen, Highscore, LocalStorage, Canvas
+* **Georg Westbomke** Design, Menu, Schriften, HTML navigation, Icons
 
 
 
