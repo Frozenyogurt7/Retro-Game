@@ -21,7 +21,7 @@ Die retro-game.html Datei startet das Spiel
 
 ### Version
 1.1 Bei Anmerkungen oder Fragen bitte an ykasper84@gmail.com wenden
-#### Datum: 05.01.2018
+#### Datum: 06.09.2018
 
 ## Spezifikation:
 
@@ -51,7 +51,7 @@ Chrome, Firefox, Opera
 ## Features
 * Ein Stern der auf dem Weg eingesammelt werden kann und zusätzliche Punkte gibt.
 * Vorher festgelegte Schwierigkeiten. Höhere Schwierigkeiten geben mehr Punkte
-* Ein Leaderbord für die Locale Anwendung
+* Ein Leaderbord für die locale Anwendung
 * Schildkröten tauchen ab. (Erst seit neueren Froggern inclusive)
 * Rutschen auf glitschigen Schildkröten. (Kein runterfallen)
 
@@ -59,17 +59,17 @@ Chrome, Firefox, Opera
 
 #### Lizenz
 ```
-Hier die Lizenz
+LICENCE  (Apache)
 ```
 
 #### Datenschutz
 ```
-Hier der Datenschutz
+Datenschutz.html
 ```
 
 ## Dokumentation
 
-### Klassen und Methoden 
+### Methoden der Object Klasse
 * move()
 * checkOn()
 
