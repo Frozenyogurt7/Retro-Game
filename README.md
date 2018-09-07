@@ -57,16 +57,19 @@ Chrome, Firefox, Opera
 * Schildkröten tauchen ab. (Erst seit neueren Froggern inclusive)
 * Rutschen auf glitschigen Schildkröten. (Kein runterfallen)
 
+## Zusätzliches
+* Springen zwischen Wasserobjekten beim Treffen der Kante. Gelassen, weil die Schwierigkeit schon hoch genug ist.
+
 ## Lizenz und Datenschutz
 
 #### Lizenz
 ```
-LICENCE  (Apache)
+[License.html  (Apache)](https://github.com/Frozenyogurt7/Retro-Game/License.html)
 ```
 
 #### Datenschutz
 ```
-Datenschutz.html
+[Datenschutz.html](https://github.com/Frozenyogurt7/Retro-Game/Datenschutz.html)
 ```
 
 ## Dokumentation

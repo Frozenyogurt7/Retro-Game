@@ -164,8 +164,10 @@ var checkOnSaveObject = function () {
 var moveObjects = function () {
 
     //creazy alorithm to change the picture and behavior of turtles and crodociles
-    counter = (counter + 2 * fx) % 602
-    counter2 = (counter2 +3 * fx) % 600
+    var difficultyFactor 
+    (difficulty*2) <=2 ? difficultyFactor=difficulty*2 : difficultyFactor=5
+    counter = (counter + difficultyFactor* fx) % 602
+    counter2 = (counter2 + difficultyFactor * fx) % 600
     for (x = 0; x < Object.keys(waterObj).length; x++) {
         
         waterObj[x].move(); //move all waterObjects
@@ -325,6 +327,7 @@ var dead =  function () {
         win = [false, false, false, false, false]
         isInMenu=true
         drawStop('lose');
+        console.log("test")
     }
 }
 
