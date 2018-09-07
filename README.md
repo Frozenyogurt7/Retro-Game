@@ -63,17 +63,23 @@ Chrome, Firefox, Opera
 ## Lizenz und Datenschutz
 
 #### Lizenz
-
 ```
-[License.html  (Apache)] (https://github.com/Frozenyogurt7/Retro-Game/License.html)
+License.html  (Apache)
 ```
-
-[License.html  (Apache)]( https://github.com/Frozenyogurt7/Retro-Game/License.html)
-
 
 #### Datenschutz
 ```
-[Datenschutz.html](https://github.com/Frozenyogurt7/Retro-Game/Datenschutz.html)
+Datenschutz.html
+```
+
+#### Credentials
+```
+Credentials.html
+```
+
+#### Impressum
+```
+Impressum.html
 ```
 
 ## Dokumentation
