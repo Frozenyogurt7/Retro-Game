@@ -4,7 +4,7 @@ Retro Frogger-Spiel mit zusätzlichen Features
 ## Download Frogger
 
 ```
-git clone https://gitlab.com/Frozenyogurt7/bglTour.git
+git clone https://github.com/Frozenyogurt7/Retro-Game.git
 ```
 
 Die retro-game.html Datei startet das Spiel
