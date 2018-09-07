@@ -105,16 +105,18 @@ var drawFrog = function () {
 }
 
 var Star = function(){
+    
     this.x= Math.round(Math.random()* 360 +20)//20 to 380
     this.y=Math.round(Math.random()* 370 +100) // 100 to 470
 
+    //create new star randomly in canvas 
     this.newStar = function(){
         this.x= Math.round(Math.random()* 360 +20)//20 to 380
         this.y=Math.round(Math.random()* 370 +100) // 100 to 470
 
     }
     this.drawStar = function(){
-  
+            //draw star with canvas
         context.beginPath();
         context.moveTo(this.x,this.y);
         context.lineTo(this.x+2.5,this.y+5);
@@ -163,8 +165,8 @@ var drawStop =  async function(winlose){
     localStorage.setItem("highscore", JSON.stringify(highscore));
     score = 0
     starScore=0
-    lives = 4
-    drawScore();
+    lives = 4   // important variables
+  
     deathMenu();
     
     
