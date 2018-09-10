@@ -21,7 +21,7 @@ Die retro-game.html Datei startet das Spiel
 
 ### Version
 1.1 Bei Anmerkungen oder Fragen bitte an ykasper84@gmail.com wenden
-#### Datum: 06.09.2018
+#### Datum: 10.09.2018
 
 ## Spezifikation:
 
@@ -40,9 +40,10 @@ Chrome, Firefox, Opera
 
 
 ## Verwendete Mittel:
-#### Credentials.txt
+#### Credentials.html
 * Nachgebildetes Frogger Template -> (eigen Erstellung)
-* Nachgebildetes Totenkopf Bild   -> (eigen Erstellung)  
+* Nachgebildetes Totenkopf Bild   -> (eigen Erstellung) 
+* Win / Dead Sound                -> (eigen Erstellung) 
 * Frog Sound:                     -> http://soundbible.com/about.php
 * Car crash Sound:                -> http://soundbible.com/about.php
 * Water Sound:                    -> http://soundbible.com/about.php
@@ -53,8 +54,8 @@ Chrome, Firefox, Opera
 ## Features
 * Ein Stern der auf dem Weg eingesammelt werden kann und zusätzliche Punkte gibt.
 * Vorher festgelegte Schwierigkeiten. Höhere Schwierigkeiten geben mehr Punkte
-* Ein Leaderbord für die locale Anwendung
-* Schildkröten tauchen ab. (Erst seit neueren Froggern inclusive)
+* Ein Leaderbord für die lokale Anwendung
+* Schildkröten tauchen ab. (Erst seit neueren Froggern inklusive)
 * Rutschen auf glitschigen Schildkröten. (Kein runterfallen)
 
 ## Zusätzliches
@@ -89,15 +90,15 @@ Impressum.html
 * checkOn()
 
 ### Functionen
-* createObjects()			  -> Objekterstellung Levelspezifisch
+* createObjects()			  -> Objekterstellung levelspezifisch
   
-* soundsOff()                 -> Ein und ausschalten von Sounds
+* soundsOff()                 -> Ein- und Ausschalten von Sounds
 * playSound()                 -> Abspielen des Frosch Sounds
-* dead()                      -> Bei Tot ausgeführte Function
+* dead()                      -> Bei Tot ausgeführte Funktion
 * checkWin()                  -> Prüfung auf Gewinn
-* sleep()                     -> Wait Function durch Pomiss return
-* document.body.onkeydown()   -> tastatur Eingabe
-* document.body.onkeyup()     -> tastatur Eingabe
+* sleep()                     -> Wait Funktion durch Promiss return
+* document.body.onkeydown()   -> Tastatur Eingabe
+* document.body.onkeyup()     -> Tastatur Eingabe
 * checkWater()                -> Prüfung ob Frosch im Wasser
 * drawFrog()                  -> Zeichnen des Frosches
 * drawLine()                  -> Linien zwischen den Autos malen
@@ -108,12 +109,12 @@ Impressum.html
 * gameLoop()                  -> Schleife für Zeichnung und Prüfung 
 * Star()                      -> Stern der eingesammelt werden kann
 * drawStar()                  -> Zeichnen des Sterns
-* newStar()                   -> Die Koordinaten des Sterns ändern sich
+* newStar()                   -> Die Koordinaten des Sterns ändern 
 * gameObjekt()				  -> Level Initialisierung. Objecte werden erstellt
 * move()					  -> Object wird mit seinen Eigenschaften bewegt
 * checkOn()					  -> Prüfung ob sich der Frosch auf einem Object befindet
 * reset()				      -> Bereitet alles vor für einen neuen Versuch		
-* onKeyDown()				  -> Tastaur Eingabe abfangen und verarbeiten
+* onKeyDown()				  -> Tastatur Eingabe abfangen und verarbeiten
 * onkeyup()					  -> Zur Prüfung ob die Taste nicht gehalten wird
 * deathMenu()				  -> Zeigt das Todes Menü an	
 * musicOff()				  -> Schaltet die Musik aus
@@ -122,11 +123,13 @@ Impressum.html
 * setDifficulty()			  -> Setzt die Schwierigkeit und animiert das Menü
 * getHighscore()			  -> Holt sich den Highscore aus dem LocalStorage
 * setHighscore()			  -> Setzt den Highscore in den LocalStorage	
+* setName()                   -> Prüft den eingegebenen Namen auf die Länge
+* window.onload()             -> Prüft ob Dokument geladen ist und setzt einen Event Listener
 
 ### Objekte
 * Frog Json Object
 * Spiel object
-* content Canvas Objekt
+* Content Canvas Objekt
 * Theme Bild Object
 * JumpSound Sound Object
 * WaterSplasch Sound Object
