@@ -170,6 +170,7 @@ var drawStop = async function(winlose){
      }
      document.getElementById("rankingname").style.display="block"
      document.getElementById("highscoreInfo").style.display="block"
+     document.getElementById("enterMessage").style.display="block"
      setHighscore=true
 
      
@@ -196,6 +197,7 @@ var setName= function(){
 
         document.getElementById("rankingname").style.display="none"     //disable inpufields
         document.getElementById("highscoreInfo").style.display="none"
+        document.getElementById("enterMessage").style.display="none"
        
         setHighscore=false      //bock event Listener
         document.getElementById("rankingname").value=""     //reset Inputs

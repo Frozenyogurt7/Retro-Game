@@ -81,6 +81,18 @@ title{
 	text-align: center;
 	color:white;
 }
+#enterMessage{
+	background: green;
+	
+	top:80%;
+	border: solid;
+	border-color: green;
+	position: absolute!Important;
+	font-size: 20px;
+	display: none;
+	text-align: center;
+	color:white;
+}
 #gameMenu, .highscoreOuterContainer, #deathMenu{
 	background: #000000;
 	width: 400px;
@@ -150,13 +162,11 @@ title{
 	margin: 0 10%;
 	padding: 3px 0;
 	
-	
 }
 
 .buttonchangecolor:hover /* Eigenschaften beim Überfahren mit der Maus */
     {
-	color: white; /* Neue Farbe */
-	cursor: pointer;
+    color: white; /* Neue Farbe */
     }
 
 
