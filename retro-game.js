@@ -164,8 +164,10 @@ var checkOnSaveObject = function () {
 var moveObjects = function () {
 
     //creazy alorithm to change the picture and behavior of turtles and crodociles
-    counter = (counter + 2 * fx) % 602
-    counter2 = (counter2 +3 * fx) % 600
+    var difficultyFactor 
+    (difficulty*2) <=2 ? difficultyFactor=difficulty*2 : difficultyFactor=5
+    counter = (counter + difficultyFactor* fx) % 602
+    counter2 = (counter2 + difficultyFactor * fx) % 600
     for (x = 0; x < Object.keys(waterObj).length; x++) {
         
         waterObj[x].move(); //move all waterObjects
@@ -286,6 +288,8 @@ var checkWin = function () {
     //check if frog is on lilly if yes move frog to the beginning
     for (i = 0; i < 5; i++) {
         if (frog.y < 100 && frog.x > 5 + (85 * i) && frog.x < 30 + (85 * i)) {
+            //hitbox
+            
             if(win[i]==false){
             starScore = starScore +score  + 500 * difficulty / 2
             score=0
@@ -305,7 +309,7 @@ var checkWin = function () {
         })) {
         clearInterval(loop)
         drawStop('won')
-        win = [false, false, false, false, false]
+        win = [false, false, false, false, false] //reset win array so promt only shows up once
         return true
     }
     return false
@@ -315,35 +319,37 @@ var checkWin = function () {
 
 
 
-
+//if player is dead
 var dead =  function () {
     isPlayerAlive = false
     lives = lives - 1
-       clearInterval(loop)
+       clearInterval(loop)      //stop animations
      
     if (lives == 0) { //if dead with no lives
         win = [false, false, false, false, false]
         isInMenu=true
-        drawStop('lose');
+        drawStop('lose');   
+        console.log("test")
     }
 }
 
-var sort=function(name){
+var sort=function(name){        //sorts the highscore objects and places new score if high enough
     var points = score + starScore
     var bufferPoints 
   
     
     name=="" || name == null ? name="noname": null
-    if(name.length > 11){
-        name=name.substring(0,11);
+    if(name.length > 11){                               //check if user added a name if not
+        name=name.substring(0,11);                      //take "Noname"
     }
-    var bufferName
-    for(i=1;i<=Object.keys(highscore).length;i++){
+    var bufferName                                      //performaz:
+                                                        //object no array. Kind of bubble sort with just one round
+    for(i=1;i<=Object.keys(highscore).length;i++){      //starts at the top 
       
         if (points > highscore[i].punkte){
-            
-            bufferPoints = highscore[i].punkte;
-            bufferName = highscore[i].name;
+                                                        //if new highscore is higher
+            bufferPoints = highscore[i].punkte;            //load old in buffer and repleace. Next step
+            bufferName = highscore[i].name;                 //buffer also name
 
             highscore[i].punkte=points
             highscore[i].name=name
@@ -354,7 +360,7 @@ var sort=function(name){
     }
 
 }
-var displayHighscore = function(){
+var displayHighscore = function(){      //creates highscore html with loop
     var positionElement = '<div class="scoreHeader">&nbsp;</div>';
     var nameElement = '<div class="scoreHeader">Name:</div>';
     var scoreElement = '<div class="scoreHeader">Score:</div>';
@@ -364,26 +370,24 @@ var displayHighscore = function(){
         scoreElement += '<div class="highscoreScoreRow">'+highscore[i].punkte+'</div>';
     }
     document.getElementById("positionContainer").innerHTML = positionElement;
-    document.getElementById("nameContainer").innerHTML = nameElement;
+    document.getElementById("nameContainer").innerHTML = nameElement;   //past highscores
     document.getElementById("scoreContainer").innerHTML = scoreElement;
 
 }
-var musicOff = function () {
+var musicOff = function () {        //switch on / off music and change image
     var musicButton = document.getElementsByClassName("musicBtn")
     var imageName= "";
     musicImage = musicButton[0].childNodes[1];
     if (music == false) {
         theme.pause()
         imageName = "soundOff";
-        musicButton.innerHTML = "Music anschalten"
         music = true
     } else {
         theme.play()
         imageName = "soundOn";
-        musicButton.innerHTML = "Music ausschalten"
         music = false
     }
-
+    //change picture
     musicImage.style.background = "url('assets/"+imageName+".png') 100% 100% no-repeat";
     musicImage.style.backgroundSize = "40px";
 
@@ -393,7 +397,7 @@ var playSound = function () {
 
     if (areSoundsActive == true) {
 
-        //jumpSound.load() //if Sounds are enables make sound by every jump
+        //load because of often use //if Sounds are enables make sound by every jump
         jumpSound.load()
         jumpSound.play()
     }
@@ -414,7 +418,7 @@ var soundsOff = function () {
         imageName = "soundOn";
         //soundsButton.innerHTML = "Sounds ausschalten"
     }
-
+    // change images
     soundImage.style.background = "url('assets/"+imageName+".png') 100% 100% no-repeat";
     soundImage.style.backgroundSize = "40px";
 }
@@ -423,7 +427,7 @@ var soundsOff = function () {
 
 
 
-// Menu Options
+// Menu Options // show relevant screens and hide others
 
 function startGame() {
     reset();
@@ -468,7 +472,7 @@ function backFromHighscore(){
 }
 
 function reset(){
-  
+  //sets frog to bottom creates a new star and starts the loop again
     isPlayerAlive = true
     
     frog = frog = {
@@ -481,15 +485,17 @@ function reset(){
 
 }
 
+//val = 1 2 3
 function setDifficulty(val){
     difficulty = val / 2;
-
+    //set difficultly factor to 0,5 1 1,5 so it can be used
     var difficultyOptions = document.getElementsByClassName("difficultyNumber");
     for(var i = 0, length = difficultyOptions.length; i < length; i++) {
         difficultyOptions[i].classList.remove("selected");
+        //remove css class from old selected
      }
     document.getElementById("difficulty"+val).classList.add("selected");
-
+     //assign selected css class to chosen difficulty
 }
 
 

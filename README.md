@@ -4,7 +4,7 @@ Retro Frogger-Spiel mit zusätzlichen Features
 ## Download Frogger
 
 ```
-git clone https://gitlab.com/Frozenyogurt7/bglTour.git
+git clone https://github.com/Frozenyogurt7/Retro-Game.git
 ```
 
 Die retro-game.html Datei startet das Spiel
@@ -57,16 +57,29 @@ Chrome, Firefox, Opera
 * Schildkröten tauchen ab. (Erst seit neueren Froggern inclusive)
 * Rutschen auf glitschigen Schildkröten. (Kein runterfallen)
 
+## Zusätzliches
+* Springen zwischen Wasserobjekten beim Treffen der Kante. Gelassen, weil die Schwierigkeit schon hoch genug ist.
+
 ## Lizenz und Datenschutz
 
 #### Lizenz
 ```
-LICENCE  (Apache)
+License.html  (Apache)
 ```
 
 #### Datenschutz
 ```
 Datenschutz.html
+```
+
+#### Credentials
+```
+Credentials.html
+```
+
+#### Impressum
+```
+Impressum.html
 ```
 
 ## Dokumentation
