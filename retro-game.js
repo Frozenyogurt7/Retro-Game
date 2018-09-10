@@ -8,6 +8,11 @@ theme.setAttribute('src', 'assets/musik.mp3') //noisy music
 theme.setAttribute('loop', 'true');
 
 
+var winSound = document.createElement('audio')
+winSound.setAttribute("src","assets/win.mp3")
+
+var loseSound = document.createElement('audio')
+loseSound.setAttribute("src","assets/lose.mp3")
 
 var jumpSound = document.createElement('audio'); //jump sound
 jumpSound.setAttribute('src', 'assets/jump.mp3');
@@ -200,7 +205,10 @@ var moveObjects = function () {
     for (i = 0; i < Object.keys(vehicle).length; i++) {
         vehicle[i].move(); //loop through all cars
         if (vehicle[i].checkOn()) {
-            areSoundsActive ? crashSound.play() : null //crash with car, play sound
+            if(areSoundsActive){
+                crashSound.load();
+                crashSound.play()
+            }//crash with car, play sound
             dead();
         }
     }
@@ -308,6 +316,7 @@ var checkWin = function () {
             return elemet == true
         })) {
         clearInterval(loop)
+        winSound.play();
         drawStop('won')
         win = [false, false, false, false, false] //reset win array so promt only shows up once
         return true
@@ -330,6 +339,7 @@ var dead =  function () {
         isInMenu=true
         drawStop('lose');   
         console.log("test")
+        loseSound.play();
     }
 }
 
