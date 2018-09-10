@@ -1,4 +1,4 @@
-/*Einbinung einer externen freien Schriftart */
+/* Custom Font embedding */
 
 @font-face {			/*Source: https://www.1001fonts.com/drummon-font.html */
     font-family: 'Drummon 3D';
@@ -37,6 +37,7 @@ body{
 	margin: 0!important;
 	top:0;
 	left: 0;
+	/* Prevent text from getting marked */
 	-webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
@@ -64,14 +65,14 @@ title{
 
 
 
-
+/* Highscore name input field */
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: green;
     opacity: 1; /* Firefox */
 }
+
 #highscoreInfo{
 	background: green;
-	
 	top:60%;
 	border: solid;
 	border-color: green;
@@ -83,7 +84,6 @@ title{
 }
 #enterMessage{
 	background: green;
-	
 	top:80%;
 	border: solid;
 	border-color: green;
@@ -164,10 +164,11 @@ title{
 	
 }
 
-.buttonchangecolor:hover /* Eigenschaften beim Überfahren mit der Maus */
-    {
-    color: white; /* Neue Farbe */
-    }
+/* Change color of Text element on mouse hover */
+.buttonchangecolor:hover 
+{
+	color: white;
+}
 
 
 .startBtn{
@@ -268,18 +269,18 @@ title{
 }
 
 .containerRechtliches{
-position: absolute; 
-bottom: 20px; 
-left: 20px; 
-z-index: 5;
-font-family: Arial, Helvetica, sans-serif;
+	position: absolute; 
+	bottom: 20px; 
+	left: 20px; 
+	z-index: 5;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Specific changes for smaller resolutions */
 @media screen and (max-height : 850px)  {
 
 	#title span{
 		font-size: 65px;
-
 	}
 
 	#title{
