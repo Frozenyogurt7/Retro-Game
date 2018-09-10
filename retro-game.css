@@ -60,6 +60,7 @@ title{
 	font-size: 30px;
 	text-align: center;
 	color:green;
+	font:Drummon!Important
 }
 
 
@@ -80,6 +81,7 @@ title{
 	display: none;
 	text-align: center;
 	color:white;
+	font:Drummon!Important
 }
 #enterMessage{
 	background: green;
@@ -255,7 +257,7 @@ title{
 	height: 100%;
 	z-index: 2;
 	background: #ffffff;
-	opacity: 0.5;
+	opacity: 0.3;
 }
 
 #title span{

@@ -154,17 +154,20 @@ var Star = function(){
 
 
 
-var drawStop = async function(winlose){
-    context.globalAlpha = 0.4;
-     context.fillStyle = "white"
+var drawStop =  function(winlose){
+      context.globalAlpha = 0.5;
+     context.fillStyle = "black"
      context.fillRect(0,0,400,560);  //background getting transperent and
      context.globalAlpha =1;
+     
      context.font = 'bold 72pt arial';
-     context.fillStyle = 'green';
+     context.fillStyle =  '#FFFFFF';
      if (winlose=="lose"){
+
         context.fillText('GAME', 60, 150);  //image game over
         context.fillText('OVER', 60, 300);
      }else{
+         
         context.fillText('Won', 60, 150);  //image game over
         context.fillText('Game', 60, 300);
      }
