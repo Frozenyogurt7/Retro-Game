@@ -3,7 +3,7 @@ window.onload = function(){
 
     input.addEventListener("keyup", function(event) {
         event.preventDefault();
-        if (event.keyCode === 13 && setHighscore==true) {
+        if (event.keyCode === 13 && setHighscore==true) { // On Enter if new Highscore
             setName();
         }
     });
@@ -12,28 +12,28 @@ window.onload = function(){
 
 
 var drawBackground = function () {
-    context.beginPath() //!important for performance. erases the already drawn pixels?
+    context.beginPath() //important for performance. erases the already drawn pixels
     context.fillStyle = '#191970'; //color blue
     context.fillRect(0, 0, 400, 284); //fill syle
-    context.fillStyle = '#000000'; //new color black after first 
-    context.fillRect(0, 284, 400, 283); //
+    context.fillStyle = '#000000'; //new color black 
+    context.fillRect(0, 284, 400, 283); 
     // image,x old, y old, width old, height old, x new, y new, width new, height new
-    context.drawImage(sprites, 0, 0, 399, 113, 0, 0, 399, 113); // yelow on top of page
-    context.drawImage(sprites, 0, 119, 399, 34, 0, 283, 400, 38); //lila between water and street
-    context.drawImage(sprites, 0, 119, 399, 34, 0, 490, 400, 38); //lila at the beginnng
+    context.drawImage(sprites, 0, 0, 399, 113, 0, 0, 399, 113); // yellow on top of page
+    context.drawImage(sprites, 0, 119, 399, 34, 0, 283, 400, 38); //purple between water and street
+    context.drawImage(sprites, 0, 119, 399, 34, 0, 490, 400, 38); //purple at the beginnng
 
 
 
     for (i = 0; i < 5; i++) {
         context.beginPath()
-        context.arc(27 + i * 85, 90, 10, 0, 2 * Math.PI); //water lily
-                  //  (x,y,radius,startpoint,umfang)
+        context.arc(27 + i * 85, 90, 10, 0, 2 * Math.PI); //water lily pad
+                  //  (x,y,radius,startpoint, circumference)
         context.stroke(); //draw circle
         context.fillStyle = 'green';
         context.fill() //set green style of circles
     }
 
-    drawLine(5, 460) //recursive function just because I can
+    drawLine(5, 460) //recursive function
     drawScore();
 
 
@@ -45,7 +45,7 @@ var drawScore = function(){
 
 
     context.font = 'bold 12pt arial';
-    context.fillText('Score: ', 100, 550); //crate labels on the bottom
+    context.fillText('Score: ', 100, 550); //create labels on the bottom
     context.fillText('Highscore: ', 240, 550);
     context.fillText(score+starScore, 155, 550);
     context.fillText(highscore[1].punkte, 330, 550);
@@ -55,16 +55,16 @@ var drawScore = function(){
 
     for (i = 0; i < 5; i++) {
         if (win[i] == true) {
-            context.drawImage(sprites, 12, 369, 23, 20, 15 + (i * 85), 82, 23, 20) //if player has one win the frog will be drawn all the time on the lilly
+            context.drawImage(sprites, 12, 369, 23, 20, 15 + (i * 85), 82, 23, 20) //if player has reached a lily it will remain on that spot
         }
     }
 
 }
 
-var drawLine = function (x, y) { //recursive function just because I can
-    //draw the lines between the vehicles
+//draw the lines between the vehicles
+var drawLine = function (x, y) { //recursive function 
 
-    context.beginPath() //recursive function just because I can
+    context.beginPath() //recursive function
     context.moveTo(x, y)
     context.lineTo(x + 30, y)
     context.strokeStyle = "white"
@@ -75,7 +75,7 @@ var drawLine = function (x, y) { //recursive function just because I can
         drawLine(x = x + 40, y = y) //selfcall of function for next line
         return;
     } else if (y > 355) {
-        drawLine(x = 5, y = y - 35) //street finished next street line habe to be drawn
+        drawLine(x = 5, y = y - 35) //street finished next street line have to be drawn
     }
 
 }
@@ -102,7 +102,7 @@ var drawFrog = function () {
                 context.drawImage(sprites, 110, 338, 26, 22, frog.x, frog.y, 26, 22); // draw left way
                 break;
             case "upway":
-                context.drawImage(sprites, 45, 365, 23, 26, frog.x, frog.y, 23, 26); // draw frog upway
+                context.drawImage(sprites, 45, 365, 23, 26, frog.x, frog.y, 23, 26); // draw frog up way
                 break;
             case "rightway":
                 context.drawImage(sprites, 43, 335, 26, 22, frog.x, frog.y, 26, 22); // draw right way
@@ -118,6 +118,7 @@ var drawFrog = function () {
 }
 
 var Star = function(){
+    //Place star on a random position on the playing field
     this.x= Math.round(Math.random()* 360 +20)//20 to 380
     this.y=Math.round(Math.random()* 370 +100) // 100 to 470
 
@@ -153,33 +154,26 @@ var Star = function(){
 }
 
 
-
+// Draw the final screen on game end
 var drawStop =  function(winlose){
       context.globalAlpha = 0.5;
      context.fillStyle = "black"
-     context.fillRect(0,0,400,560);  //background getting transperent and
+     context.fillRect(0,0,400,560);  //background getting transparent and
      context.globalAlpha =1;
      
      context.font = 'bold 72pt arial';
      context.fillStyle =  '#FFFFFF';
      if (winlose=="lose"){
-
-        context.fillText('GAME', 60, 150);  //image game over
+        context.fillText('GAME', 60, 150);  //game over screen
         context.fillText('OVER', 60, 300);
      }else{
-         
-        context.fillText('Won', 60, 150);  //image game over
+        context.fillText('Won', 60, 150);  //win screen
         context.fillText('Game', 60, 300);
      }
      document.getElementById("rankingname").style.display="block"
      document.getElementById("highscoreInfo").style.display="block"
      document.getElementById("enterMessage").style.display="block"
      setHighscore=true
-
-     
-     //await sleep(100)
-
-    
 }
 
 
@@ -187,7 +181,7 @@ var setName= function(){
 
     var name =  document.getElementById("rankingname").value;       //get input field value
  
-    if(name.length<12){     //if t ext is short enough
+    if(name.length<12){     //if text is short enough
         sort(name);
         //set highscore
         
@@ -198,14 +192,13 @@ var setName= function(){
         drawScore();
         deathMenu();
 
-        document.getElementById("rankingname").style.display="none"     //disable inpufields
+        document.getElementById("rankingname").style.display="none"     //disable input fields
         document.getElementById("highscoreInfo").style.display="none"
         document.getElementById("enterMessage").style.display="none"
        
-        setHighscore=false      //bock event Listener
+        setHighscore=false      //block event Listener
         document.getElementById("rankingname").value=""     //reset Inputs
         document.getElementById("highscoreInfo").innerHTML="Bitte gib deinen Namen ein (Max 11 Zeichen)"
-        //name = prompt("Name zu lang, bitte gebe einen neuen Namen ein (Max. 11 Zeichen)");
     }else{
         document.getElementById("highscoreInfo").innerHTML="Neue Eingabe: Name zu lang (Max 11 Zeichen)" //Error Message
     }

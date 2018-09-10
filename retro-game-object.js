@@ -1,6 +1,6 @@
 var createObjects = function () {
     //level one  creation of all objects
-                                //X Coor, Y coor, object type, speed, direction, lenght
+                                //X coord, Y coord, object type, speed, direction, lenght
     vehicle[0] = new gameObject(50, 465, "pink car", 2+difficulty, "left",1)
     vehicle[1] = new gameObject(100, 465, "pink car", 2+difficulty, "left",1)
     vehicle[2] = new gameObject(150, 465, "pink car", 2+difficulty, "left",1)
@@ -43,10 +43,10 @@ var createObjects = function () {
     waterObj[11] = new gameObject(330, 182, "turtle1", 0.1 + difficulty, "left",1)
     waterObj[12] = new gameObject(360, 182, "turtle1", 0.1 + difficulty, "left",1)
 
-    waterObj[13] = new gameObject(100, 148, "crocodile1", 0.8, "right", 2.5)
-    waterObj[14] = new gameObject(200, 148, "crocodile1", 0.8, "right", 2.5)
-    waterObj[23] = new gameObject(350, 148, "wood line", 0.8, "right", 2.5)
-    waterObj[24] = new gameObject(450, 148, "wood line", 0.8, "right", 2.5)
+    waterObj[13] = new gameObject(100, 148, "crocodile1", 0.8 + difficulty, "right", 2.5)
+    waterObj[14] = new gameObject(200, 148, "crocodile1", 0.8 + difficulty, "right", 2.5)
+    waterObj[23] = new gameObject(350, 148, "wood line", 0.8 + difficulty, "right", 2.5)
+    waterObj[24] = new gameObject(450, 148, "wood line", 0.8 + difficulty, "right", 2.5)
 
     waterObj[17] = new gameObject(120, 112, "wood line", 0.1 + difficulty, "left", 2.5)
     waterObj[18] = new gameObject(240, 112, "wood line", 0.1 + difficulty, "left", 2.5)
@@ -54,23 +54,23 @@ var createObjects = function () {
     waterObj[16] = new gameObject(480, 112, "wood line", 0.1 + difficulty, "left", 2.5)
 }
 
-var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter x y bzw row and speed have to be given
+var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter x, y, row and speed have to be given
     this.x = x
     this.y = y
     this.ObjPicture = ObjPicture
     this.speed = speed
     this.direction = direc
-    this.lenght = length 
+    this.lenght = length // length is a factor
 
 
     this.move = function () {
         //move the object method. check if out of bound and then move position to the other bound
         switch (this.direction) {
             case "right":
-                this.x <= spiel.width + this.lenght * 40 ? this.x = (this.x + this.speed) : this.x = -this.lenght * 40; //move right // if out of cound move to other side
+                this.x <= spiel.width + this.lenght * 40 ? this.x = (this.x + this.speed) : this.x = -this.lenght * 40; //move right // if out of bounds move to other side
                 break;
             case "left":
-                this.x >= (-40 * this.lenght) ? this.x = (this.x - this.speed) : this.x = spiel.width + this.lenght * 40; //move left  // if out of cound move to other side
+                this.x >= (-40 * this.lenght) ? this.x = (this.x - this.speed) : this.x = spiel.width + this.lenght * 40; //move left  // if out of bounds move to other side
         }
 
         //all pictures of objects drawn on there positions
@@ -83,7 +83,7 @@ var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter
                 context.drawImage(sprites, 44, 265, 30, 22, this.x, this.y, 30, 22); //red car
                 break;
             case "white LKW":
-                context.drawImage(sprites, 100, 300, 60, 22, this.x, this.y, 60, 22); //LKW
+                context.drawImage(sprites, 100, 300, 60, 22, this.x, this.y, 60, 22); //Truck
                 break;
             case "bagger":
                 context.drawImage(sprites, 8, 300, 30, 22, this.x, this.y, 32, 22); //bagger
@@ -102,7 +102,7 @@ var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter
                 break;
             case "turtle0":
             case "turtle1":
-            case "turtle2": //fall through for longer tutrle 4
+            case "turtle2": //fall through for longer turtle 4
             case "turtle3":
             case "turtle4":
                 context.drawImage(sprites, 16, 405, 26, 22, this.x, this.y, 26, 22); //turtle 1
@@ -121,22 +121,14 @@ var gameObject = function (x, y, ObjPicture, speed, direc, length) { //parameter
                 break;
             case "turtle9":
                 break;
-
-
-
-
         }
-
     }
+    //Check for hitbox
     this.checkOn = function () {
-     
         if (frog.x  < (this.x + this.lenght*30) && frog.x +15 > this.x   && frog.y <= this.y + 10 && frog.y >= this.y - 10) {
             //true if frog in hitbox
             return true
-
         }
-
-
     }
 }
 

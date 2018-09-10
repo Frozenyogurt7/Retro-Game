@@ -6,30 +6,37 @@ var theme = document.createElement('audio');
 theme.setAttribute('src', 'assets/musik.mp3') //noisy music
 //http://freemusicarchive.org/music/Komiku/Captain_Glouglous_Incredible_Week_Soundtrack/Skate
 theme.setAttribute('loop', 'true');
+theme.volume=0.15
 
-
+// Load sounds
 var winSound = document.createElement('audio')
 winSound.setAttribute("src","assets/win.mp3")
+
 
 var loseSound = document.createElement('audio')
 loseSound.setAttribute("src","assets/lose.mp3")
 
-var jumpSound = document.createElement('audio'); //jump sound
+
+var jumpSound = document.createElement('audio');
 jumpSound.setAttribute('src', 'assets/jump.mp3');
+jumpSound.volume=0.3
 
-var waterSplashSound = document.createElement('audio') //dead water Sound
+var waterSplashSound = document.createElement('audio')
 waterSplashSound.setAttribute('src', 'assets/waterSplash.mp3')
+waterSplashSound.volume=0.5
 
-var crashSound = document.createElement('audio') //car crash sound
+var crashSound = document.createElement('audio')
 crashSound.setAttribute('src', 'assets/crash.mp3')
+crashSound.volume=0.4
+
 areSoundsActive = true;
 
 var difficulty = 0.5
 var setHighscore=false
 
-//frog json
+//frog object. Frog is drawn from this object
 var frog = {
-    x: spiel.width / 2 - 15, //frog json. Frog is drawn from this object
+    x: spiel.width / 2 - 15, 
     y: spiel.height - 55,
     picture: "up"
 };
@@ -48,39 +55,30 @@ var isInMenu = true;
 var highscore={}
 var score = 0
 var starScore = 0
-var counter = 0
-var counter2 = 0
+// Conters for animations
+var turtleCounter = 0
+var crocodileCounter = 0
 var fx = 1
 
+//use of local storage to save own highsore. IE needs xampp for local Storage
 try {
     if(localStorage.getItem("highscore") == null || localStorage.getItem("highscore") == undefined){  
       newScoreListe();
     }
-        highscore = JSON.parse(localStorage.getItem('highscore')); //use of local storage to save own highsore. IE needs xampp for local Storage
-             
+    highscore = JSON.parse(localStorage.getItem('highscore')); 
 } catch (exception) {
     newScoreListe();
 }
-
 
 //localStorage.removeItem('highscore')
 
 //set images
 sprites = new Image();
 sprites.src = 'assets/frogger.png'; //frogger template with all objects
-sprites.onload = function () { //after images are load
+deadSprite = new Image() //dead frog image
+deadSprite.src = 'assets/dead_frog.png'
 
-    deadSprite = new Image() //dead frog image
-    deadSprite.src = 'assets/dead_frog.png'
-   
-};
-
-
-
-//-----------------------loop event---------------------------
-
-
-function newScoreListe(){  //Generate new highscore object and past it into the LocalStorage
+function newScoreListe(){  //Generate new highscore object and pass it into the LocalStorage
     highscore  = {
        "1":{
            name:"noname",
@@ -117,26 +115,23 @@ function newScoreListe(){  //Generate new highscore object and past it into the 
    localStorage.setItem("highscore", JSON.stringify(highscore));
 }
 
-var game_loop = function () { //game loop 16 times a seconed executed
+var game_loop = function () { //game loop every 16ms
 
 
-    drawBackground(); //have to be orderd. Backgrouds position behind all others  
+    drawBackground(); //have to be ordered. Background position behind all others  
 
 
     moveObjects();
     if (!frog.picture.includes("way")) { //if frog is not in animaton
         if (!checkWin()) {
-            if (checkWater()) {
+            if (checkWater()) { // If frog is in water region
                 if (!checkOnSaveObject() || frog.x > spiel.width - 20 || frog.x < -10) { //If frog is in water and not on an object or to close to the side
                     areSoundsActive ? waterSplashSound.play() : null //play dead sound 
-                    drawBackground(); //have to be orderd. Backgrouds position behind all others  
+                    drawBackground();
                     moveObjects();
                     dead();
-                    
-
                 }
             }
-
         }
     }
     star.drawStar();
@@ -148,12 +143,10 @@ var game_loop = function () { //game loop 16 times a seconed executed
 
 
 
-
+// Frog on any save water object
 var checkOnSaveObject = function () {
 
     for (i = 0; i < Object.keys(waterObj).length; i++) { //for all water objects
-        //every
-
         if (waterObj[i].checkOn() && waterObj[i].ObjPicture != "turtle9" && waterObj[i].ObjPicture != "crocodile2") {
 
             return true //return if save. Turtles and crocodiles are not always save
@@ -168,36 +161,34 @@ var checkOnSaveObject = function () {
 
 var moveObjects = function () {
 
-    //creazy alorithm to change the picture and behavior of turtles and crodociles
-    var difficultyFactor 
+    //algorithm to change the picture and behaviour of turtles and crocodiles
+    var difficultyFactor // can be 1 / 2 / 5
     (difficulty*2) <=2 ? difficultyFactor=difficulty*2 : difficultyFactor=5
-    counter = (counter + difficultyFactor* fx) % 602
-    counter2 = (counter2 + difficultyFactor * fx) % 600
+    turtleCounter = (turtleCounter + difficultyFactor* fx)
+    crocodileCounter = (crocodileCounter + difficultyFactor * fx)
     for (x = 0; x < Object.keys(waterObj).length; x++) {
         
         waterObj[x].move(); //move all waterObjects
 
         if (waterObj[x].checkOn()) {
-            waterObj[x].direction == "right" ? frog.x = frog.x + waterObj[x].speed : frog.x = frog.x - waterObj[x].speed
-            //if frog on oject frog moves with object
-
+            waterObj[x].direction == "right" ? frog.x = frog.x + waterObj[x].speed : frog.x = frog.x - waterObj[x].speed  //if frog on oject frog moves with object
         }
 
-        counter == 450 || counter == 0 ? fx = fx * -1 : null
+        turtleCounter == 450 || turtleCounter == 0 ? fx = fx * -1 : null
 
 
    
-        if (counter % 50 == 0 && waterObj[x].ObjPicture.includes("turtle")) {
-            waterObj[x].ObjPicture = "turtle" + (counter / 50)
-            //check counter... counter goes ip to 600 and then down to 0 and again... on different numbers the pictture of the tutles change
+        if (turtleCounter % 50 == 0 && waterObj[x].ObjPicture.includes("turtle")) {
+            waterObj[x].ObjPicture = "turtle" + (turtleCounter / 50)
+            //check turtleCounter... turtleCounter goes up to 450 and then down to 0 and again... on different numbers the pictture of the tutles change
 
         }
         
 
-        if (waterObj[x].ObjPicture.includes("crocodile") && (counter2 < 300 || counter2 >350)) {
-            waterObj[x].ObjPicture = "crocodile1" //crocodile save 2/3 of time
+        if (waterObj[x].ObjPicture.includes("crocodile") && (crocodileCounter < 300 || crocodileCounter >350)) {
+            waterObj[x].ObjPicture = "crocodile1" //crocodile save
         } else if (waterObj[x].ObjPicture.includes("crocodile")) {
-            waterObj[x].ObjPicture = "crocodile2" //crocodie not sace 1/3 of time
+            waterObj[x].ObjPicture = "crocodile2" //crocodie not save
         }
 
     }
@@ -214,6 +205,9 @@ var moveObjects = function () {
     }
 }
 
+
+// 505 = Y length of Canvas
+// How far the frog has gone, also if any stars collected
 var checkScore = function () {
     if ((505 - frog.y) / 35 * 100 * (difficulty/2)> score && !frog.picture.includes("way")) {
         score = (505 - frog.y) / 35 * 100  * (difficulty/2) //new score   //every new step take a look how far the frog is gone. Increase if frogs position is higher then score
@@ -224,12 +218,12 @@ var checkScore = function () {
     }
 }
 
-
+// Is frog at water region
 var checkWater = function () {
 
     if (frog.y <= spiel.height / 2) {
         return true
-    } //iif over the middle return true
+    } //if over the middle return true
     return false
 }
 
@@ -243,31 +237,31 @@ document.body.onkeydown = async function (event) { //async because we want to aw
             keyPressed = true
             if (event.keyCode == 38 && frog.y - 100 > 0) { //move and change picture while jumping 100 ms
 
-                frog.picture = "upway"; //frog up
+                frog.picture = "upway"; //frog up way
                 frog.y = frog.y - 25;
                 await sleep(100) //sleep function for animation wait 0.1 seconds to it looks like the frog is moving slowly
-                frog.picture = "up"; //frog left
+                frog.picture = "up"; //frog up
                 frog.y = frog.y - 10;
 
             } else if (event.keyCode == 40 && frog.y < spiel.height - 80) {
-                frog.picture = "downway"; //frog down
+                frog.picture = "downway"; //frog down way
                 frog.y = frog.y + 20;
                 await sleep(100)
-                frog.picture = "down"; //frog left
+                frog.picture = "down"; //frog down
                 frog.y = frog.y + 15;
 
             } else if (event.keyCode == 37 && frog.x > 40) {
-                frog.picture = "leftway"; //frog left
+                frog.picture = "leftway"; //frog left way
                 frog.x = frog.x - 21;
                 await sleep(100)
                 frog.picture = "left"; //frog left
                 frog.x = frog.x - 21;
 
             } else if (event.keyCode == 39 && frog.x < spiel.width - 50) {
-                frog.picture = "rightway"; //frog right
+                frog.picture = "rightway"; //frog right way
                 frog.x = frog.x + 21;
                 await sleep(100)
-                frog.picture = "right"; //frog left
+                frog.picture = "right"; //frog right
                 frog.x = frog.x + 21;
             }
         } else {
@@ -277,23 +271,20 @@ document.body.onkeydown = async function (event) { //async because we want to aw
     }
 };
 
+//prevents holding key
 document.body.onkeyup = function () {
     keyPressed = false
-    //prevends holding key
 }
 
 //sleep function returns and promise after x miliseconds so a async function can wait while executing
 var sleep = function (ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-    //returns a promise to in async function its ppossible to "await" a command.
+    //returns a promise to in async function its possible to "await" a command.
 }
 //-----------------------------------------classes-----------------
 
-
-//should be a class but IE does not support classes. Workawound with function and this parameters
-
 var checkWin = function () {
-    //check if frog is on lilly if yes move frog to the beginning
+    //check if frog is on lily if yes move frog to the beginning
     for (i = 0; i < 5; i++) {
         if (frog.y < 100 && frog.x > 5 + (85 * i) && frog.x < 30 + (85 * i)) {
             //hitbox
@@ -311,12 +302,12 @@ var checkWin = function () {
         }
     }
 
-    //if frog is on all lillys player has won the whole game
+    //if frog is on all lilys, player has won the whole game
     if (win.every(function (elemet) {
             return elemet == true
         })) {
         clearInterval(loop)
-        winSound.play();
+        areSoundsActive ? winSound.play(): null
         drawStop('won')
         win = [false, false, false, false, false] //reset win array so promt only shows up once
         return true
@@ -324,9 +315,6 @@ var checkWin = function () {
     return false
 
 }
-
-
-
 
 //if player is dead
 var dead =  function () {
@@ -339,7 +327,7 @@ var dead =  function () {
         isInMenu=true
         drawStop('lose');   
         console.log("test")
-        loseSound.play();
+        areSoundsActive ?  loseSound.play() : null
     }
 }
 
@@ -411,9 +399,8 @@ var playSound = function () {
         jumpSound.load()
         jumpSound.play()
     }
-
-
 }
+
 var soundsOff = function () {
     var soundsButton = document.getElementsByClassName("soundBtn");
 
@@ -422,11 +409,10 @@ var soundsOff = function () {
     if (areSoundsActive == true) {
         areSoundsActive = false;
         imageName = "soundOff";
-        //soundsButton.innerHTML = "Sounds anschalten" //change html to switch of and on musik/sound
-    } else {
+    } 
+    else {
         areSoundsActive = true;
         imageName = "soundOn";
-        //soundsButton.innerHTML = "Sounds ausschalten"
     }
     // change images
     soundImage.style.background = "url('assets/"+imageName+".png') 100% 100% no-repeat";
@@ -442,7 +428,6 @@ var soundsOff = function () {
 function startGame() {
     reset();
     createObjects();
-    //Create Cars
     document.getElementById("gameMenu").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
     isInMenu = false;
@@ -463,7 +448,6 @@ function showMainMenu() {
 
 function retry() {
     reset();
-
     document.getElementById("deathMenu").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
     isInMenu = false;
@@ -490,15 +474,15 @@ function reset(){
         y: spiel.height - 55,
         picture: "up"
     }
-    loop = setInterval(game_loop, 16) //new loop beaucse the orher one was cleared
+    loop = setInterval(game_loop, 16) //new loop beaucse the other one was cleared
     star.newStar();
 
 }
 
-//val = 1 2 3
+//val can be 1 2 3
 function setDifficulty(val){
     difficulty = val / 2;
-    //set difficultly factor to 0,5 1 1,5 so it can be used
+    //set difficultly factor to 0,5 / 1 / 1,5 so it can be used
     var difficultyOptions = document.getElementsByClassName("difficultyNumber");
     for(var i = 0, length = difficultyOptions.length; i < length; i++) {
         difficultyOptions[i].classList.remove("selected");
@@ -523,14 +507,9 @@ function setHighscore(){
         lives = 4
         drawScore();
         deathMenu();
-
-        document.getElementById("rankingname").style.display="none"
        
         setHighscore=false
         
-        //name = prompt("Name zu lang, bitte gebe einen neuen Namen ein (Max. 11 Zeichen)");
-    }else{
-         //name = prompt("Bitte trage deinen Namen ein (Max. 11 Zeichen)");
     }
 
    }

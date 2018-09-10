@@ -21,7 +21,7 @@
 <div class="whiteTransparent"></div>
   <h1 id="title"><span>Frogger</span></h1>
 
-    <!--Haupt Menu-->
+    <!--Main Menu-->
   <div id="game_div">
     <div id="gameMenu">
       <div class="mainMenuBtn startBtn buttonchangecolor" onclick="startGame()">Start Game</div>
@@ -38,22 +38,19 @@
       </div>
     </div>
 
-    <!--Highscore Menü-->
+    <!--Highscore Menu-->
     <div id="highscoreView" class="highscoreOuterContainer hidden">
       <div class="highscoreInnerContainer">
         <div class="highscorePositionContainer" id="positionContainer">
         </div>
-
         <div class="highscoreNameContainer" id="nameContainer">
         </div>
-
         <div class="highscoreScoreContainer" id="scoreContainer">
         </div>
         <div class="backToMenuBtn backFromHighscore buttonchangecolor" onclick="backFromHighscore()">Back</div>
       </div>
     </div>
 
-   
     <!--Death Menu-->
     <div id="deathMenu" class="hidden">
       <div class="mainMenuBtn retryBtn buttonchangecolor" onclick="retry()">Retry</div>
@@ -61,38 +58,30 @@
       <div class="mainMenuBtn highscoresBtn buttonchangecolor" onclick="showHighscore()">Highscores</div>
     </div>
 
-
-
-    <!--Spiel-->
+    <!-- Highscore Input -->
     <p id="highscoreInfo" class="highscoreInfo" >Bitte gib deinen Namen ein (Max 11 Zeichen)</p>
     <input type="text" placeholder="Name" id="rankingname" value="" >
-    <p  class="highscoreInfo" id="enterMessage">Enter zum bestätigen</p>
- 
-    <canvas class="hidden" id="game" height="560" width="400">
+    <p  class="highscoreInfo" id="enterMessage">Enter zum Best&auml;tigen</p>
 
-    </canvas>
-    
+    <!-- Canvas / Game -->
+    <canvas class="hidden" id="game" height="560" width="400"></canvas>
   </div>
 
-<div class="containerRechtliches">
-  <div class="Impressum">
-    <a href="Impressum.html">Impressum</a>
+  <!-- Credentials -->
+  <div class="containerRechtliches">
+    <div class="Impressum">
+      <a href="Impressum.html">Impressum</a>
+    </div>
+    <div class="Datenschutz">
+      <a href="Datenschutz.html">Datenschutzerkl&auml;rung</a>
+    </div>
+    <div>
+      <a href="License.html">License</a>
+    </div>
+    <div>
+      <a href="Credentials.html">Credentials</a>
+    </div>
   </div>
-  <div class="Datenschutz">
-    <a href="Datenschutz.html">Datenschutzerkl&auml;rung</a>
-  </div>
-  <div>
-    <a href="License.html">License</a>
-  </div>
-  <div>
-    <a href="Credentials.html">Credentials</a>
-  </div>
-</div>
-  
- 
-
 
 </body>
-
-
 </html>
