@@ -1,3 +1,16 @@
+window.onload = function(){
+    var input = document.getElementById("rankingname");
+
+    input.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13 && setHighscore==true) {
+            setName();
+        }
+    });
+
+}
+
+
 var drawBackground = function () {
     context.beginPath() //!important for performance. erases the already drawn pixels?
     context.fillStyle = '#191970'; //color blue
@@ -137,40 +150,17 @@ var Star = function(){
         context.stroke();
         
     }
-    var drawStop = async function(winlose){
-    context.globalAlpha = 0.2;
-     context.fillStyle = "white"
-     context.fillRect(0,0,400,560);  //background getting transperent and
-     context.globalAlpha =1;
-     context.font = 'bold 72pt arial';
-     context.fillStyle = '#38fe14';
-     if (winlose=="lose"){
-        context.fillText('GAME', 60, 150);  //image game over
-        context.fillText('OVER', 60, 300);
-     }else{
-        context.fillText('Won', 60, 150);  //image game over
-        context.fillText('Game', 60, 300);
-     }
-     
-     await sleep(100)
-     var name = prompt("Please enter your name (Max. 11 Characters)")
-     sort(name);
-          
-    localStorage.setItem("highscore", JSON.stringify(highscore));
-    score = 0
-    starScore=0
-    lives = 4
-    
-   
-    
 }
+
+
+
 var drawStop = async function(winlose){
-    context.globalAlpha = 0.2;
+    context.globalAlpha = 0.4;
      context.fillStyle = "white"
      context.fillRect(0,0,400,560);  //background getting transperent and
      context.globalAlpha =1;
      context.font = 'bold 72pt arial';
-     context.fillStyle = '#38fe14';
+     context.fillStyle = 'green';
      if (winlose=="lose"){
         context.fillText('GAME', 60, 150);  //image game over
         context.fillText('OVER', 60, 300);
@@ -178,18 +168,48 @@ var drawStop = async function(winlose){
         context.fillText('Won', 60, 150);  //image game over
         context.fillText('Game', 60, 300);
      }
+     document.getElementById("rankingname").style.display="block"
+     document.getElementById("highscoreInfo").style.display="block"
+     setHighscore=true
+
      
-     await sleep(100)
-     var name = prompt("Please enter your name (Max. 11 Characters)")
-     sort(name);
-          
-    localStorage.setItem("highscore", JSON.stringify(highscore));
-    //score = 0
-    //starScore=0
-    //lives = 4
-    drawScore();
-    deathMenu();
+     //await sleep(100)
+
     
 }
 
-}
+
+var setName= function(){
+
+    var name =  document.getElementById("rankingname").value;       //get input field value
+ 
+    if(name.length<12){     //if t ext is short enough
+        sort(name);
+        //set highscore
+        
+        localStorage.setItem("highscore", JSON.stringify(highscore));       //write highscore in local Stroage
+        score = 0               //reset variables
+        starScore=0
+        lives = 4
+        drawScore();
+        deathMenu();
+
+        document.getElementById("rankingname").style.display="none"     //disable inpufields
+        document.getElementById("highscoreInfo").style.display="none"
+       
+        setHighscore=false      //bock event Listener
+        document.getElementById("rankingname").value=""     //reset Inputs
+        document.getElementById("highscoreInfo").innerHTML="Bitte gib deinen Namen ein (Max 11 Zeichen)"
+        //name = prompt("Name zu lang, bitte gebe einen neuen Namen ein (Max. 11 Zeichen)");
+    }else{
+        document.getElementById("highscoreInfo").innerHTML="Neue Eingabe: Name zu lang (Max 11 Zeichen)" //Error Message
+    }
+
+   }
+
+
+
+    
+
+
+    

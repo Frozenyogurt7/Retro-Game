@@ -20,7 +20,7 @@ crashSound.setAttribute('src', 'assets/crash.mp3')
 areSoundsActive = true;
 
 var difficulty = 0.5
-
+var setHighscore=false
 
 //frog json
 var frog = {
@@ -494,3 +494,27 @@ function setDifficulty(val){
 
 
 
+function setHighscore(){
+
+    var name =  document.getElementById("rankingname");
+ 
+    if(name.length<12){
+        sort(name);
+        //set highscore
+        localStorage.setItem("highscore", JSON.stringify(highscore));
+        score = 0
+        starScore=0
+        lives = 4
+        drawScore();
+        deathMenu();
+
+        document.getElementById("rankingname").style.display="none"
+       
+        setHighscore=false
+        
+        //name = prompt("Name zu lang, bitte gebe einen neuen Namen ein (Max. 11 Zeichen)");
+    }else{
+         //name = prompt("Bitte trage deinen Namen ein (Max. 11 Zeichen)");
+    }
+
+   }
